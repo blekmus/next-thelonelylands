@@ -8,6 +8,7 @@ import LinkAlcohol from '../public/images/alcohol.jpg'
 import LinkAnitracker from '../public/images/anime.jpg'
 import LinkDocs from '../public/images/docs.jpg'
 import LinkWatch from '../public/images/watch.jpg'
+import LinkPodcasts from '../public/images/podcasts.jpg'
 
 
 const styles = {
@@ -151,7 +152,7 @@ const HomeLinks: NextPage = () => {
           title="Time Pieces"
           description="Don't you just love it when things are needlessly complicated? It's like a work of art! A collection of automatic, mechanical and quartz watches I appreciate."
           image={LinkWatch}
-          url="https://dinil.notion.site/ccc975160b9848f2afbc48275d224ecf?v=f29dd0639c964227b1a5f159470673e1"
+          url="https://dinil.notion.site/087bf556c2aa48d58fe97183b40b3ea5?v=f29ad37abc07438f939e7c84b8758dc0"
         />
 
         <LinkCard
@@ -180,6 +181,13 @@ const HomeLinks: NextPage = () => {
           description="I read books occasionally, with more emphasis on novels than non-fiction. This includes nearly all of the books I've read so far, excluding light novels."
           image={LinkBooks}
           url="https://www.libib.com/u/blekmus"
+        />
+
+        <LinkCard
+          title="Podcasts"
+          description="There was a time when I was burned out by all of the movies and shows available. I was bored and desperately wanted something new. Audio dramas revitalized me."
+          image={LinkPodcasts}
+          url="https://dinil.notion.site/5542c932c46146138666a1617f2eb177?v=936ae363a7854116b4f927dcf507dc6c"
         />
       </div>
     </div>

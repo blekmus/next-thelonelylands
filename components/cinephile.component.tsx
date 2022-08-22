@@ -193,7 +193,7 @@ const styles = {
 
 const QUERY = gql`
   query Entries($types: [Types]) {
-    entries(types: $types) {
+    entries(types: $types, status: PUBLISHED) {
       id
       title
       notes

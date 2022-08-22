@@ -79,7 +79,7 @@ interface Comment {
 }
 
 const AdminEntryList = () => {
-  const perPage = 10
+  const perPage = 5
   const [viewPage, setViewPage] = useState<number>(1)
   const [deleteModalOpened, setDeleteModalOpened] = useState(false)
 
@@ -231,7 +231,7 @@ const AdminEntryList = () => {
       </Header>
 
       <Box>
-        <Container size={760} mt={40} className={classes.content}>
+        <Container size={760} mt={40} mb={40} className={classes.content}>
           <Button
             color="blue"
             size="md"

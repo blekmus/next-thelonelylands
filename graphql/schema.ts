@@ -4,7 +4,7 @@ const typeDefs = gql`
   type Query {
     entries(
       types: [Types]
-      status: Statuses
+      status: Status
       currentPage: Int
       perPage: Int
     ): [Entry]!
@@ -35,7 +35,7 @@ const typeDefs = gql`
     updated_at: String
     type: Types
     cover: String
-    status: Statuses
+    status: Status
   }
 
   type Comment {
@@ -52,7 +52,7 @@ const typeDefs = gql`
     type: Types!
     created_at: String!
     cover: String
-    status: Statuses!
+    status: Status!
   }
 
   input EntryUpdateContent {
@@ -60,7 +60,7 @@ const typeDefs = gql`
     notes: String
     type: Types
     cover: String
-    status: Statuses
+    status: Status
     created_at: String
   }
 
@@ -70,7 +70,7 @@ const typeDefs = gql`
     token: String
   }
 
-  enum Statuses {
+  enum Status {
     DRAFT
     PUBLISHED
   }

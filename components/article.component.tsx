@@ -204,7 +204,7 @@ const Article: NextPage<Props> = ({
   headerSection = link ? (
     <header css={styles.entry_title_link}>
       <Link href={`/post/${link}`}>
-        <a href={`/post/${link}`} title="Open in fullpage">
+        <a href={`/post/${link}`} title="Fullpage">
           <h2>{title}</h2>
         </a>
       </Link>

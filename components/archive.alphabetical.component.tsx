@@ -111,7 +111,6 @@ const ArchiveAlphabetical: NextPage<Props> = ({ entries }) => {
       }
     }))
 
-
   return (
     <div>
       {alphabeticalEntries.map((letter) => (
@@ -124,6 +123,8 @@ const ArchiveAlphabetical: NextPage<Props> = ({ entries }) => {
                   <h3>{entry.title}</h3>
                   <p>
                     {dayjs(Number(entry.created_at)).format('D MMMM, YYYY')}
+                    <strong> · </strong>
+                    {entry.type.charAt(0) + entry.type.slice(1).toLowerCase()}
                   </p>
                 </a>
               </Link>

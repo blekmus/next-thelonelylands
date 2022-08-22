@@ -6,7 +6,6 @@ import mediaQuery from '../lib/mediaQuery'
 import { useEffect, useState } from 'react'
 import { useQuery, useLazyQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import AnilistPfp from '../public/images/anilist_pfp.png'
 import Article from './article.component'
 import AnilistFilter from '../lib/anilist-filter'
 import queries from '../lib/anilist-query'
@@ -377,14 +376,19 @@ const Otaku: NextPage = () => {
 
           <p css={styles.description}>
             Japanese Anime, Manga and Light Novels have become a cornerstone in
-            my life. I didn&apos;t always feel this way, though. There was a time
-            when I hated anime and everything about the culture surrounding it.
-            Now... I am whom I swore I would never become.
+            my life. I didn&apos;t always feel this way, though. There was a
+            time when I hated anime and everything about the culture surrounding
+            it. Now... I am whom I swore I would never become.
             <br />
             <br />I love putting my feelings into words after finishing a title;
-            this is a collection of everything I&apos;ve written on {' '}
-            <a href="https://anilist.co" target="_blank" rel="noreferrer">
-              <u>Anilist</u>
+            this is a collection of everything I&apos;ve written on{' '}
+            <a
+              href="https://anilist.co"
+              target="_blank"
+              rel="noreferrer"
+              style={{ borderBottom: 'solid var(--light-text) 1px' }}
+            >
+              <strong>Anilist</strong>
             </a>
             . <br />
             <br />

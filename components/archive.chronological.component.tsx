@@ -27,6 +27,8 @@ const styles = {
     ':not(:last-of-type)': {
       borderBottom: '2px solid rgb(51, 51, 51)',
     },
+
+    marginTop: '40px',
   }),
 
   archive_year_header: css({
@@ -136,6 +138,9 @@ const ArchiveChronological: NextPage<Props> = ({ entries }) => {
                       <h3>{entry.title}</h3>
                       <p>
                         {dayjs(Number(entry.created_at)).format('D MMMM, YYYY')}
+                        <strong> · </strong>
+                        {entry.type.charAt(0) +
+                          entry.type.slice(1).toLowerCase()}
                       </p>
                     </a>
                   </Link>

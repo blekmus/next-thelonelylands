@@ -75,6 +75,7 @@ const styles = {
     background: 'none',
     fontWeight: 600,
     fontSize: '16px',
+    marginRight: '10px',
 
     [mediaQuery[2]]: {
       margin: 0,

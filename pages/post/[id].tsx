@@ -40,6 +40,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     const entry = await prisma.entry.findFirstOrThrow({
       where: {
         id: id,
+        status: "PUBLISHED",
       },
     })
 
