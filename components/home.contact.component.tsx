@@ -128,6 +128,7 @@ const HomeContact: NextPage = () => {
           href="https://discordid.netlify.app/?id=534321754517143553"
           style={{ borderBottom: 'solid var(--light-text) 1px' }}
           target="_blank"
+          rel="noreferrer"
         >
           <strong>Discord</strong>
         </a>

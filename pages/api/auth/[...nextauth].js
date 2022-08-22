@@ -20,4 +20,5 @@ export default NextAuth({
   pages: {
     signIn: '/admin',
   },
+  url: process.env.VERCEL_URL,
 });
