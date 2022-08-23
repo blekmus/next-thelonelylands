@@ -31,13 +31,13 @@ const HomePage: NextPage<Props> = ({ entries }) => {
         <GoogleReCaptchaProvider
           reCaptchaKey="6Le6HHghAAAAAEZFpUolmQBOLJO-84Q0p-qcW7rH"
           useEnterprise={true}
-          // container={{
-          //   element: 'captcha-placeholder',
-          //   parameters: {
-          //     badge: 'inline',
-          //     theme: 'dark',
-          //   },
-          // }}
+          container={{
+            element: 'captcha-placeholder',
+            parameters: {
+              badge: 'inline',
+              theme: 'dark',
+            },
+          }}
         >
           <Home entries={entries} />
         </GoogleReCaptchaProvider>

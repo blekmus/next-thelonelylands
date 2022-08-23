@@ -339,7 +339,14 @@ const AdminEdit = ({ id }: { id: string }) => {
               >
                 Cancel
               </Button>
-              <Button color="red" onClick={handleDeleteBtn}>
+              <Button
+                color="red"
+                onClick={() => {
+                  setDeleteLoading(true)
+                  handleDeleteBtn()
+                }}
+                loading={deleteLoading}
+              >
                 Confirm
               </Button>
             </SimpleGrid>
@@ -355,7 +362,6 @@ const AdminEdit = ({ id }: { id: string }) => {
                 color="gray"
                 variant="subtle"
                 onClick={() => {
-                  setDeleteLoading(true)
                   setDeleteModalOpened(true)
                 }}
               >
@@ -389,7 +395,11 @@ const AdminEdit = ({ id }: { id: string }) => {
                 </Menu.Dropdown>
               </Menu>
 
-              <Button color={'gray'} onClick={handleSaveBtn} loading={saveLoading}>
+              <Button
+                color={'gray'}
+                onClick={handleSaveBtn}
+                loading={saveLoading}
+              >
                 <Text>Save</Text>
               </Button>
             </Group>

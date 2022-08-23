@@ -1,4 +1,4 @@
-import type { NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import AdminBase from '../../../components/admin.base.component'
@@ -7,9 +7,12 @@ import client from '../../../lib/site-client'
 import { ApolloProvider } from '@apollo/client'
 import { Center, Loader } from '@mantine/core'
 
-const AdminEditPage = () => {
+interface Props {
+  id: string
+}
+
+const AdminEditPage: NextPage<Props> = ({id}) => {
   const router = useRouter()
-  const { id } = router.query
 
   const { status } = useSession({
     required: true,
@@ -17,11 +20,6 @@ const AdminEditPage = () => {
       router.push('/admin')
     },
   })
-
-  if (!id || typeof id !== 'string') {
-    router.push('/admin/dashboard')
-    return
-  }
 
   if (status === 'authenticated') {
     return (
@@ -39,5 +37,22 @@ const AdminEditPage = () => {
     </Center>
   )
 }
+
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const id = params?.id
+
+  if (!id || Array.isArray(id)) {
+    return {
+      notFound: true,
+    }
+  }
+
+  return {
+    props: {
+      id: id
+    },
+  }
+}
+
 
 export default AdminEditPage
