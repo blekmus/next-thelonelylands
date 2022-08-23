@@ -20,5 +20,5 @@ export default NextAuth({
   pages: {
     signIn: '/admin',
   },
-  url: (process.env.NODE_ENV === 'production') ? process.env.VERCEL_URL : process.env.NEXTAUTH_URL,
+  // url: (process.env.NODE_ENV === 'production') ? process.env.NEXTAUTH_URL_PROD : process.env.NEXTAUTH_URL_DEV,
 });
