@@ -16,24 +16,24 @@ const AdminDashboardPage: NextPage = () => {
     },
   })
 
-  if (status === 'loading') {
+  if (status === 'authenticated') {
     return (
-      <Center sx={{ height: '100vh' }}>
-        <Loader color="gray" size="sm" />
-      </Center>
+      <>
+        <Head>
+          <title>Dashboard (Admin) - The Lonely Lands</title>
+        </Head>
+
+        <AdminBase content="dashboard">
+          <AdminDashboard />
+        </AdminBase>
+      </>
     )
   }
 
   return (
-    <>
-      <Head>
-        <title>Dashboard (Admin) - The Lonely Lands</title>
-      </Head>
-
-      <AdminBase content="dashboard">
-        <AdminDashboard />
-      </AdminBase>
-    </>
+    <Center sx={{ height: '100vh' }}>
+      <Loader color="gray" size="sm" />
+    </Center>
   )
 }
 

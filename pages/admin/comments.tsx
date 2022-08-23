@@ -18,26 +18,26 @@ const AdminCommentsPage: NextPage = () => {
     },
   })
 
-  if (status === 'loading') {
+  if (status === 'authenticated') {
     return (
-      <Center sx={{ height: '100vh' }}>
-        <Loader color="gray" size="sm" />
-      </Center>
+      <>
+        <Head>
+          <title>Comments (Admin) - The Lonely Lands</title>
+        </Head>
+
+        <ApolloProvider client={client}>
+          <AdminBase content="comments">
+            <AdminComments />
+          </AdminBase>
+        </ApolloProvider>
+      </>
     )
   }
 
   return (
-    <>
-      <Head>
-        <title>Comments (Admin) - The Lonely Lands</title>
-      </Head>
-
-      <ApolloProvider client={client}>
-        <AdminBase content="comments">
-          <AdminComments />
-        </AdminBase>
-      </ApolloProvider>
-    </>
+    <Center sx={{ height: '100vh' }}>
+      <Loader color="gray" size="sm" />
+    </Center>
   )
 }
 

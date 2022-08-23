@@ -1,12 +1,10 @@
 import type { NextPage } from 'next'
 import { css } from '@emotion/react'
 import TopBar from './top_bar.component'
-import Image from 'next/image'
 import mediaQuery from '../lib/mediaQuery'
 import { useEffect, useState } from 'react'
 import { useQuery, gql } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import AnilistPfp from '../public/images/anilist_pfp.png'
 import Article from './article.component'
 import { Text } from '@mantine/core'
 import { showNotification } from '@mantine/notifications'
@@ -220,7 +218,6 @@ const Writer: NextPage = () => {
       setCurrentData(data.entries)
     },
     onError: (e) => {
-      console.log(e)
       showNotification({
         disallowClose: true,
         message: (

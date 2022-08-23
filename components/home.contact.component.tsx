@@ -60,9 +60,8 @@ const HomeContact: NextPage = () => {
       setSubmitLoading(false)
       setSubmitted(true)
     },
-    onError: (error) => {
+    onError: () => {
       setSubmitLoading(false)
-      console.log(error)
       showNotification({
         disallowClose: true,
         message: (
@@ -92,7 +91,7 @@ const HomeContact: NextPage = () => {
           icon: <IconX />,
         })
 
-        console.log('Execute recaptcha not yet available')
+        console.log('Recaptcha not yet available')
         setSubmitLoading(false)
         return
       }

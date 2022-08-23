@@ -185,8 +185,6 @@ const AdminEdit = ({ id }: { id: string }) => {
     },
     onError: (_e) => {
       router.push('/admin/dashboard')
-      // console.log(e)
-      // console.log('error')
     },
   })
 

@@ -204,7 +204,6 @@ export const resolvers = {
 
         return comment
       } catch (error) {
-        console.log(error)
         throw new ApolloError('Creation Error')
       }
     },

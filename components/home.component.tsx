@@ -4,7 +4,7 @@ import TopBar from './top_bar.component'
 import Image from 'next/image'
 import mediaQuery from '../lib/mediaQuery'
 import Article from './article.component'
-
+import AnilistPfp from '../public/images/anilist_pfp.png'
 import HomeContact from './home.contact.component'
 import HomeLinks from './home.links.component'
 import HomeAccordian from './home.accordian.component'
@@ -198,12 +198,13 @@ const Home: NextPage<Props> = ({ entries }) => {
       <div css={styles.header}>
         <div css={styles.picture}>
           <Image
-            src="https://s4.anilist.co/file/anilistcdn/user/avatar/large/b695637-QyHl3bkGf3ow.png"
+            src={AnilistPfp}
             alt="profile"
             width="300px"
             height="300px"
             layout="responsive"
             css={styles.profile_pic}
+            priority
           />
         </div>
 
@@ -337,3 +338,38 @@ const Home: NextPage<Props> = ({ entries }) => {
 }
 
 export default Home
+
+// const [mouseMoving, setMouseMoving] = useState(false)
+
+// const [stylesMenuAnimation, setMenuAnimation] = useSpring(() => ({ opacity: 0, y: 0, config: config.gentle }))
+
+// let timeout: ReturnType<typeof setTimeout>
+// const changeMouse = () => {
+//   clearTimeout(timeout)
+//   timeout = setTimeout(() => setMouseMoving(false), 500)
+
+//   if (!mouseMoving) {
+//     // when the state is set here, the timeout created above is orphaned
+//     // the clearTimeout run in the next function run doesn't work on it
+//     // so the timeout has to be cleared beforehand
+//     // this causes a false to appear every two second because the first timeout isn't cleared
+//     clearTimeout(timeout)
+//     setMouseMoving(true)
+//   }
+// }
+
+// useEffect(() => {
+//   if (mouseMoving) {
+//     setMenuAnimation({ opacity: 1, y: 0 })
+//   } else {
+//     setMenuAnimation({ opacity: 0 })
+//   }
+// }, [mouseMoving, setMenu  // content: css({
+// Animation])
+
+// return (
+//   <div css={styles.base}>
+// {/* onMouseMove={() => changeMouse()} */}
+// {/* <animated.div style={stylesMenuAnimation}>
+//   <TopBar />
+// </animated.div> */}

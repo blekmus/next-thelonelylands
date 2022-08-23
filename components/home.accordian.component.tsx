@@ -3,10 +3,10 @@ import { css } from '@emotion/react'
 import Image from 'next/image'
 import mediaQuery from '../lib/mediaQuery'
 import Link from 'next/link'
-import BannerOtaku from '../public/images/otaku-banner.jpg'
-import BannerWriter from '../public/images/writer-banner.png'
-import BannerEnthusiast from '../public/images/enthusiast-banner.png'
-import BannerCinephile from '../public/images/cinephile-banner.png'
+import BannerOtaku from '../public/images/otaku-banner.webp'
+import BannerWriter from '../public/images/writer-banner.webp'
+import BannerEnthusiast from '../public/images/enthusiast-banner.webp'
+import BannerCinephile from '../public/images/cinephile-banner.webp'
 
 
 const styles = {

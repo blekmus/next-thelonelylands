@@ -18,26 +18,26 @@ const AdminEntryListPage: NextPage = () => {
     },
   })
 
-  if (status === 'loading') {
+  if (status === 'authenticated') {
     return (
-      <Center sx={{ height: '100vh' }}>
-        <Loader color="gray" size="sm" />
-      </Center>
+      <>
+        <Head>
+          <title>Entry List (Admin) - The Lonely Lands</title>
+        </Head>
+
+        <ApolloProvider client={client}>
+          <AdminBase content="entry_list">
+            <AdminEntryList />
+          </AdminBase>
+        </ApolloProvider>
+      </>
     )
   }
 
   return (
-    <>
-      <Head>
-        <title>Entry List (Admin) - The Lonely Lands</title>
-      </Head>
-
-      <ApolloProvider client={client}>
-        <AdminBase content="entry_list">
-          <AdminEntryList />
-        </AdminBase>
-      </ApolloProvider>
-    </>
+    <Center sx={{ height: '100vh' }}>
+      <Loader color="gray" size="sm" />
+    </Center>
   )
 }
 

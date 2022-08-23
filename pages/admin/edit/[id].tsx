@@ -18,25 +18,25 @@ const AdminEditPage = () => {
     },
   })
 
-  if (status === 'loading') {
-    return (
-      <Center sx={{ height: '100vh' }}>
-        <Loader color="gray" size="sm" />
-      </Center>
-    )
-  }
-
   if (!id || typeof id !== 'string') {
     router.push('/admin/dashboard')
     return
-  } 
-  
+  }
+
+  if (status === 'authenticated') {
+    return (
+      <ApolloProvider client={client}>
+        <AdminBase content="edit">
+          <AdminEdit id={id} />
+        </AdminBase>
+      </ApolloProvider>
+    )
+  }
+
   return (
-    <ApolloProvider client={client}>
-      <AdminBase content="edit">
-        <AdminEdit id={id} />
-      </AdminBase>
-    </ApolloProvider>
+    <Center sx={{ height: '100vh' }}>
+      <Loader color="gray" size="sm" />
+    </Center>
   )
 }
 

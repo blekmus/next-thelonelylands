@@ -18,25 +18,25 @@ const AdminNewPage: NextPage = () => {
     },
   })
 
-  if (status === 'loading') {
+  if (status === 'authenticated') {
     return (
-      <Center sx={{ height: '100vh' }}>
-        <Loader color="gray" size="sm" />
-      </Center>
+      <>
+        <Head>
+          <title>New Entry (Admin) - The Lonely Lands</title>
+        </Head>
+        <ApolloProvider client={client}>
+          <AdminBase content="new">
+            <AdminNew />
+          </AdminBase>
+        </ApolloProvider>
+      </>
     )
   }
 
   return (
-    <>
-      <Head>
-        <title>New Entry (Admin) - The Lonely Lands</title>
-      </Head>
-      <ApolloProvider client={client}>
-        <AdminBase content="new">
-          <AdminNew />
-        </AdminBase>
-      </ApolloProvider>
-    </>
+    <Center sx={{ height: '100vh' }}>
+      <Loader color="gray" size="sm" />
+    </Center>
   )
 }
 

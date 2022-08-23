@@ -257,8 +257,7 @@ const Otaku: NextPage = () => {
       totalWords.manga = words
       totalEntries.manga = filteredData.length
     },
-    onError: (e) => {
-      console.log(e)
+    onError: () => {
       showNotification({
         disallowClose: true,
         message: (
@@ -286,8 +285,7 @@ const Otaku: NextPage = () => {
       totalWords.reviews = words
       totalEntries.reviews = filteredData.length
       },
-    onError: (e) => {
-      console.log(e)
+    onError: () => {
       showNotification({
         disallowClose: true,
         message: (
@@ -317,8 +315,7 @@ const Otaku: NextPage = () => {
       getManga()
       getReviews()
     },
-    onError: (e) => {
-      console.log(e)
+    onError: () => {
       showNotification({
         disallowClose: true,
         message: (
