@@ -34,8 +34,8 @@ const HomePage: NextPage<Props> = ({ entries }) => {
           container={{
             element: 'captcha-placeholder',
             parameters: {
-              badge: 'inline', // optional, default undefined
-              theme: 'dark', // optional, default undefined
+              badge: 'inline',
+              theme: 'dark',
             },
           }}
         >
@@ -62,7 +62,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
     return {
       props: { entries: entries },
     }
-  } catch {
+  } catch (e) {
+    console.log(e)
     return {
       notFound: true,
     }
