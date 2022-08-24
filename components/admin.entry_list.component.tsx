@@ -117,7 +117,7 @@ interface Entry {
   cover: string
   created_at: string
   updated_at: string
-  type: "MOVIE" | "SERIES" | "POEM" | "SHORT" | "ESSAY" | "STORY" | 'OTHER'
+  type: "MOVIE" | "SERIES" | "POEM" | "ESSAY" | "STORY" | 'OTHER'
   status: "PUBLISHED" | "DRAFT"
 }
 
@@ -257,7 +257,6 @@ const AdminEntryList = () => {
                     { label: 'Poem', value: 'POEM' },
                     { label: 'Essay', value: 'ESSAY' },
                     { label: 'Story', value: 'STORY' },
-                    { label: 'Short', value: 'SHORT' },
                     { label: 'Other', value: 'OTHER' },
                   ]}
                   variant="filled"

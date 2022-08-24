@@ -79,7 +79,6 @@ const typeDefs = gql`
     MOVIE
     SERIES
     POEM
-    SHORT
     ESSAY
     STORY
     OTHER

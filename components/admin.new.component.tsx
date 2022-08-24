@@ -40,7 +40,7 @@ interface Entry {
   notes: string
   cover: string
   created_at: string
-  type: 'MOVIE' | 'SERIES' | 'POEM' | 'SHORT' | 'ESSAY' | 'STORY' | 'OTHER' | string
+  type: 'MOVIE' | 'SERIES' | 'POEM' | 'ESSAY' | 'STORY' | 'OTHER' | string
   status: 'PUBLISHED' | 'DRAFT'
 }
 
@@ -439,7 +439,6 @@ const AdminNew = () => {
                   { label: 'Poem', value: 'POEM' },
                   { label: 'Essay', value: 'ESSAY' },
                   { label: 'Story', value: 'STORY' },
-                  { label: 'Short', value: 'SHORT' },
                   { label: 'Other', value: 'OTHER' },
                 ]}
                 variant="filled"

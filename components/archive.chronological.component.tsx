@@ -8,7 +8,7 @@ interface Entry {
   id: string
   title: string
   created_at: string
-  type: 'MOVIE' | 'SERIES' | 'POEM' | 'SHORT' | 'ESSAY' | 'STORY' | 'OTHER'
+  type: 'MOVIE' | 'SERIES' | 'POEM' | 'ESSAY' | 'STORY' | 'OTHER'
 }
 interface ChronologicalEntries {
   year: number
@@ -28,7 +28,8 @@ const styles = {
       borderBottom: '2px solid rgb(51, 51, 51)',
     },
 
-    marginTop: '40px',
+    marginTop: '20px',
+    paddingBottom: '20px',
   }),
 
   archive_year_header: css({

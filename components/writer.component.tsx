@@ -17,7 +17,7 @@ interface Entry {
   cover: string
   created_at: string
   updated_at: string
-  type: 'MOVIE' | 'SERIES' | 'POEM' | 'SHORT' | 'ESSAY' | 'STORY' | 'OTHER'
+  type: 'MOVIE' | 'SERIES' | 'POEM' | 'ESSAY' | 'STORY' | 'OTHER'
   status: 'PUBLISHED' | 'DRAFT'
 }
 
@@ -206,13 +206,13 @@ const QUERY = gql`
 `
 
 const Writer: NextPage = () => {
-  const [viewType, setViewType] = useState<'ALL' | 'POEM' | 'SHORT' | 'ESSAY' | 'STORY'>('ALL')
+  const [viewType, setViewType] = useState<'ALL' | 'POEM' | 'ESSAY' | 'STORY'>('ALL')
   const [currentData, setCurrentData] = useState<Entry[]>([])
   const [currentVisibleData, setCurrentVisibleData] = useState<Entry[]>([])
 
   useQuery(QUERY, {
     variables: {
-      types: ['POEM', 'ESSAY', 'SHORT', 'STORY'],
+      types: ['POEM', 'ESSAY', 'STORY'],
     },
     onCompleted: (data) => {
       setCurrentData(data.entries)
@@ -235,7 +235,7 @@ const Writer: NextPage = () => {
     if (viewType === 'ALL') {
       setCurrentVisibleData(
         currentData
-          .filter((entry) => ['POEM', 'ESSAY', 'SHORT', 'STORY'].includes(entry.type))
+          .filter((entry) => ['POEM', 'ESSAY', 'STORY'].includes(entry.type))
           .slice(0, 5)
       )
       return
@@ -323,15 +323,6 @@ const Writer: NextPage = () => {
             onClick={() => setViewType('STORY')}
           >
             <p>Stories</p>
-          </button>
-          <button
-            css={[
-              styles.content_menu_btn,
-              viewType === 'SHORT' ? styles.content_menu_btn_active : null,
-            ]}
-            onClick={() => setViewType('SHORT')}
-          >
-            <p>Shorts</p>
           </button>
         </nav>
 

@@ -14,7 +14,7 @@ interface Entry {
   id: string
   title: string
   created_at: string
-  type: 'MOVIE' | 'SERIES' | 'POEM' | 'SHORT' | 'ESSAY' | 'STORY' | 'OTHER'
+  type: 'MOVIE' | 'SERIES' | 'POEM' | 'ESSAY' | 'STORY' | 'OTHER'
 }
 
 interface Props {

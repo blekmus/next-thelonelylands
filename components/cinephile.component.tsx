@@ -17,7 +17,7 @@ interface Entry {
   cover: string
   created_at: string
   updated_at: string
-  type: 'MOVIE' | 'SERIES' | 'POEM' | 'SHORT' | 'ESSAY' | 'STORY'
+  type: 'MOVIE' | 'SERIES' | 'POEM' | 'ESSAY' | 'STORY'
   status: 'PUBLISHED' | 'DRAFT'
 }
 

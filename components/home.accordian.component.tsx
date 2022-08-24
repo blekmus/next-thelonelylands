@@ -99,7 +99,7 @@ const HomeAccordian: NextPage = () => {
             <div css={styles.accordian_content}>
               <h2>Writer</h2>
               <p>
-                <strong>Essays · Poems · Stories · Shorts</strong>
+                <strong>Essays · Poems · Stories</strong>
               </p>
             </div>
 
