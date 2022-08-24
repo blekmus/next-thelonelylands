@@ -1,7 +1,6 @@
 import type { NextPage } from 'next'
 import { css } from '@emotion/react'
 import TopBar from './top_bar.component'
-import Image from 'next/image'
 import mediaQuery from '../lib/mediaQuery'
 import { useEffect, useState } from 'react'
 import { useQuery, useLazyQuery } from '@apollo/client'
@@ -9,7 +8,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import Article from './article.component'
 import AnilistFilter from '../lib/anilist-filter'
 import queries from '../lib/anilist-query'
-import { MediaQuery, Text } from '@mantine/core'
+import { Text } from '@mantine/core'
 import { showNotification } from '@mantine/notifications'
 import { IconX } from '@tabler/icons'
 
@@ -25,13 +24,6 @@ interface Entry {
 const styles = {
   base: css({
     backgroundColor: 'var(--background)',
-  }),
-
-  video_background: css({
-    height: '100vh',
-    width: '100%',
-    objectFit: 'cover',
-    filter: 'brightness(40%)',
   }),
 
   // header: css({
@@ -67,21 +59,16 @@ const styles = {
     margin: '0 auto',
     padding: '24px',
     minHeight: '70vh',
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    left: 0,
 
     [mediaQuery[2]]: {
       width: '90%',
       flexDirection: 'column',
       alignItems: 'start',
-      paddingTop: '150px',
+      paddingTop: '170px',
       marginBottom: '50px',
       height: 'auto',
       paddingLeft: '0',
       paddingRight: '0',
-      position: 'relative',
       justifyContent: 'flex-start',
     },
   }),
@@ -360,12 +347,6 @@ const Otaku: NextPage = () => {
   return (
     <div css={styles.base}>
       <TopBar />
-
-      <MediaQuery smallerThan="md" styles={{ display: 'none' }}>
-        <video muted loop autoPlay css={styles.video_background}>
-          <source src="videos/anime_scenery.webm" type="video/webm" />
-        </video>
-      </MediaQuery>
 
       <div css={styles.header}>
         <div>
