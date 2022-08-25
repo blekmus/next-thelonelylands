@@ -142,16 +142,19 @@ const styles = {
 
 const Otaku: NextPage = () => {
   const [format, setFormat] = useState('anime')
-  const [totalEntries, _setTotalEntries] = useState({
+
+  const totalEntries = {
     anime: 0,
     manga: 0,
     reviews: 0,
-  })
-  const [totalWords, _setTotalWords] = useState({
+  }
+
+  const totalWords = {
     anime: 0,
     manga: 0,
     reviews: 0,
-  })
+  }
+
 
   const [animeData, setAnimeData] = useState<Entry[]>([])
   const [mangaData, setMangaData] = useState<Entry[]>([])
@@ -386,7 +389,7 @@ const Otaku: NextPage = () => {
                 />
               ))}
             </InfiniteScroll>
-            <p css={styles.link_text}>You've reached the end</p>
+            <p css={styles.link_text}>{"You've reached the end"}</p>
           </div>
         ) : (
           <div>

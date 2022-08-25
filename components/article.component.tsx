@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import { css } from '@emotion/react'
 import mediaQuery from '../lib/mediaQuery'
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 
 import dayjs from 'dayjs'
 import Link from 'next/link'
@@ -153,10 +153,6 @@ const Article: NextPage<Props> = ({
   link
 }) => {
   let coverSection
-  let headerSection
-  let contentSection
-  let footerSection
-
   const entryEl = useRef<HTMLDivElement>(null)
 
 
@@ -185,7 +181,7 @@ const Article: NextPage<Props> = ({
   }
 
   // header section
-  headerSection = link ? (
+  const headerSection = link ? (
     <header css={styles.entry_title_link}>
       <Link href={`/post/${link}`}>
         <a href={`/post/${link}`} title="Fullpage">
@@ -201,14 +197,14 @@ const Article: NextPage<Props> = ({
   )
 
   // content section
-  contentSection = (
+  const contentSection = (
     <div className="entry-content" css={styles.entry_content}>
       <p>{notes}</p>
     </div>
   )
 
   // footer section
-  footerSection = (
+  const footerSection = (
     <footer css={styles.entry_footer}>
       <p>
         {note_words && <>{note_words} words</>}{' '}

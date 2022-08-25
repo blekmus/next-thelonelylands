@@ -6,7 +6,7 @@ import AdminComments from '../../components/admin.comments.component'
 import client from '../../lib/site-client'
 import { ApolloProvider } from '@apollo/client'
 import Head from 'next/head'
-import { Box, Center, Loader } from '@mantine/core'
+import { Center, Loader } from '@mantine/core'
 
 const AdminCommentsPage: NextPage = () => {
   const router = useRouter()

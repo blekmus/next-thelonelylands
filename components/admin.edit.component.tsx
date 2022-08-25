@@ -183,7 +183,7 @@ const AdminEdit = ({ id }: { id: string }) => {
       setEntryContent(data.entry.notes)
       setSaveType(data.entry.status)
     },
-    onError: (_e) => {
+    onError: () => {
       router.push('/admin/dashboard')
     },
   })

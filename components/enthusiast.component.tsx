@@ -115,7 +115,7 @@ const Enthusiast: NextPage = () => {
     onCompleted: (data) => {
       setCurrentData(data.entries)
     },
-    onError: (e) => {
+    onError: () => {
       showNotification({
         disallowClose: true,
         message: (
@@ -196,7 +196,7 @@ const Enthusiast: NextPage = () => {
         )}
       </div>
 
-      <p css={styles.link_text}>You've reached the end</p>
+      <p css={styles.link_text}>{"You've reached the end"}</p>
     </div>
   )
 }

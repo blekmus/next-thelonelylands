@@ -119,7 +119,7 @@ const styles = {
   }),
 
   entry_list: css({}),
-  
+
   link_text: css({
     marginBottom: '50px',
     fontWeight: 700,
@@ -143,7 +143,9 @@ const QUERY = gql`
 `
 
 const Writer: NextPage = () => {
-  const [viewType, setViewType] = useState<'ALL' | 'POEM' | 'ESSAY' | 'STORY'>('ALL')
+  const [viewType, setViewType] = useState<'ALL' | 'POEM' | 'ESSAY' | 'STORY'>(
+    'ALL'
+  )
   const [currentData, setCurrentData] = useState<Entry[]>([])
   const [currentVisibleData, setCurrentVisibleData] = useState<Entry[]>([])
 
@@ -154,7 +156,7 @@ const Writer: NextPage = () => {
     onCompleted: (data) => {
       setCurrentData(data.entries)
     },
-    onError: (e) => {
+    onError: () => {
       showNotification({
         disallowClose: true,
         message: (
@@ -181,7 +183,6 @@ const Writer: NextPage = () => {
     setCurrentVisibleData(
       currentData.filter((entry) => entry.type === viewType).slice(0, 5)
     )
-
   }, [currentData, viewType])
 
   const loadMore = () => {
@@ -297,7 +298,7 @@ const Writer: NextPage = () => {
         )}
       </div>
 
-      <p css={styles.link_text}>You've reached the end</p>
+      <p css={styles.link_text}>{"You've reached the end"}</p>
     </div>
   )
 }

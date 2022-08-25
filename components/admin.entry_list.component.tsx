@@ -160,7 +160,7 @@ const AdminEntryList = () => {
     },
   })
 
-  const { classes, theme, cx } = useStyles()
+  const { classes, theme } = useStyles()
 
   useEffect(() => {
     if (!selectedEntryId) {

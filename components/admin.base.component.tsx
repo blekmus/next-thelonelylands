@@ -34,7 +34,7 @@ const useStyles = createStyles(() => ({
 
 
 const AdminBase: NextPage<Props> = ({ content, children }) => {
-  const { classes, theme } = useStyles()
+  const { classes } = useStyles()
 
   return (
     <Box className={classes.base}>

@@ -25,7 +25,7 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 dayjs.extend(relativeTime)
 
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles(() => ({
   topbar: {
     position: 'sticky',
     zIndex: 2,

@@ -1,6 +1,8 @@
+import { MediaList, ReviewList } from '../Types/anilist-filter'
+
 import naturalCompare from 'string-natural-compare'
 
-interface Entry {
+interface NewEntry {
   title: string
   notes: string
   note_words: number
@@ -9,16 +11,16 @@ interface Entry {
   date: Date | undefined
 }
 
-const filterAnimeData = (data: any): [Entry] => {
+const filterAnimeData = (data: MediaList): NewEntry[] => {
   let reduced = []
 
-  reduced = data.MediaListCollection.lists.reduce((acc: any, list: any) => {
-    let entries = list.entries
-    entries = entries.filter((entry: any) => entry.notes !== null)
-    entries = entries.filter((entry: any) => entry.notes.length > 200)
+  reduced = data.MediaListCollection.lists.reduce((acc: NewEntry[], list) => {
+    const filteredEntries = list.entries.filter(
+      (entry) => entry.notes && entry.notes.length > 200
+    )
 
-    entries = entries.map((entry: any) => {
-      const newEntry = {} as Entry
+    const output = filteredEntries.map((entry) => {
+      const newEntry = {} as NewEntry
 
       if (entry.media.title.english) {
         newEntry.title = entry.media.title.english
@@ -28,11 +30,11 @@ const filterAnimeData = (data: any): [Entry] => {
         newEntry.title = entry.media.title.native
       }
 
-      newEntry.notes = entry.notes
+      newEntry.notes = entry.notes ? entry.notes : ''
       newEntry.note_words = entry.notes
-        .split(' ')
-        .filter((item: any) => item.trim() !== '').length
-      newEntry.id = entry.id
+        ? entry.notes.split(' ').filter((item) => item.trim() !== '').length
+        : 0
+      newEntry.id = String(entry.id)
 
       if (entry.completedAt.year) {
         newEntry.date = new Date(
@@ -47,32 +49,31 @@ const filterAnimeData = (data: any): [Entry] => {
       return newEntry
     })
 
-    acc = acc.concat(entries)
+    acc = acc.concat(output)
     return acc
   }, [])
 
   reduced = reduced.filter(
-    (value: any, index: any, self: any) =>
-      self.findIndex((v2: any) => v2.id === value.id) === index
+    (value, index, self) => self.findIndex((v2) => v2.id === value.id) === index
   )
 
-  reduced = reduced.sort((a: Entry, b: Entry) =>
+  reduced = reduced.sort((a, b) =>
     naturalCompare(a.title, b.title, { caseInsensitive: true })
   )
 
   return reduced
 }
 
-const filterMangaData = (data: any): [Entry] => {
+const filterMangaData = (data: MediaList): NewEntry[] => {
   let reduced = []
 
-  reduced = data.MediaListCollection.lists.reduce((acc: any, list: any) => {
-    let entries = list.entries
-    entries = entries.filter((entry: any) => entry.notes !== null)
-    entries = entries.filter((entry: any) => entry.notes.length > 200)
+  reduced = data.MediaListCollection.lists.reduce((acc: NewEntry[], list) => {
+    const filteredEntries = list.entries.filter(
+      (entry) => entry.notes && entry.notes.length > 200
+    )
 
-    entries = entries.map((entry: any) => {
-      const newEntry = {} as Entry
+    const output = filteredEntries.map((entry) => {
+      const newEntry = {} as NewEntry
 
       if (entry.media.title.english) {
         newEntry.title = entry.media.title.english
@@ -82,9 +83,11 @@ const filterMangaData = (data: any): [Entry] => {
         newEntry.title = entry.media.title.native
       }
 
-      newEntry.notes = entry.notes
-      newEntry.note_words = entry.notes.split(' ').length
-      newEntry.id = entry.id
+      newEntry.notes = entry.notes ? entry.notes : ''
+      newEntry.note_words = entry.notes
+        ? entry.notes.split(' ').filter((item) => item.trim() !== '').length
+        : 0
+      newEntry.id = String(entry.id)
 
       if (entry.completedAt.year) {
         newEntry.date = new Date(
@@ -99,27 +102,26 @@ const filterMangaData = (data: any): [Entry] => {
       return newEntry
     })
 
-    acc = acc.concat(entries)
+    acc = acc.concat(output)
     return acc
   }, [])
 
   reduced = reduced.filter(
-    (value: any, index: any, self: any) =>
-      self.findIndex((v2: any) => v2.id === value.id) === index
+    (value, index, self) => self.findIndex((v2) => v2.id === value.id) === index
   )
 
-  reduced = reduced.sort((a: Entry, b: Entry) =>
+  reduced = reduced.sort((a, b) =>
     naturalCompare(a.title, b.title, { caseInsensitive: true })
   )
 
   return reduced
 }
 
-const filterReviewData = (data: any): [Entry] => {
+const filterReviewData = (data: ReviewList): NewEntry[] => {
   let reduced = []
 
-  reduced = data.Page.reviews.map((entry: any) => {
-    const newEntry = {} as Entry
+  reduced = data.Page.reviews.map((entry) => {
+    const newEntry = {} as NewEntry
 
     if (entry.media.title.english) {
       newEntry.title = entry.media.title.english
@@ -131,7 +133,7 @@ const filterReviewData = (data: any): [Entry] => {
 
     newEntry.notes = entry.body
     newEntry.note_words = entry.body.split(' ').length
-    newEntry.id = entry.id
+    newEntry.id = String(entry.id)
     newEntry.date = new Date(entry.createdAt * 1000)
 
     if (entry.media.bannerImage) {
@@ -141,7 +143,7 @@ const filterReviewData = (data: any): [Entry] => {
     return newEntry
   })
 
-  reduced = reduced.sort((a: Entry, b: Entry) =>
+  reduced = reduced.sort((a, b) =>
     naturalCompare(a.title, b.title, { caseInsensitive: true })
   )
 
