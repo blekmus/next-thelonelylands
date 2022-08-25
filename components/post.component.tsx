@@ -42,7 +42,7 @@ const styles = {
     [mediaQuery[1]]: {
       padding: 0,
       width: '90%',
-      paddingTop: '140px',
+      paddingTop: '40px',
     },
   }),
 
@@ -51,7 +51,7 @@ const styles = {
     marginBottom: '30px',
 
     [mediaQuery[0]]: {
-      marginBottom: '10px',
+      marginBottom: '20px',
     },
   }),
 
@@ -71,8 +71,6 @@ const styles = {
 
   header: css({
     marginBottom: '20px',
-
-    [mediaQuery[0]]: { marginBottom: '10px' },
   }),
 
   header_title: css({
@@ -82,7 +80,8 @@ const styles = {
     fontWeight: 700,
 
     [mediaQuery[0]]: {
-      fontSize: '32px',
+      fontSize: '30px',
+      marginBottom: '5px',
     },
   }),
 

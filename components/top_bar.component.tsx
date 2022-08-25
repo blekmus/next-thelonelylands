@@ -23,6 +23,12 @@ const styles = {
     },
   }),
 
+  title: css({
+    'a:hover': {
+      borderBottom: 'solid var(--light-text) 1px',
+    },
+  }),
+
   menu: css({
     display: 'flex',
     columnGap: '50px',
@@ -36,13 +42,17 @@ const styles = {
       columnGap: '25px',
       lineHeight: 1,
     },
+
+    'a:hover': {
+      borderBottom: 'solid var(--light-text) 1px',
+    },
   }),
 }
 
 const TopBar: NextPage = () => {
   return (
     <header css={styles.base}>
-      <div>
+      <div css={styles.title}>
         <h2>
           <Link href="/">
             <a>The Lonely Lands</a>
