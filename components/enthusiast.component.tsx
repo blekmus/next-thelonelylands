@@ -38,10 +38,11 @@ const styles = {
 
     [mediaQuery[2]]: {
       width: '90%',
+      minHeight: 'initial',
       flexDirection: 'column',
       alignItems: 'start',
-      paddingTop: '170px',
-      marginBottom: '50px',
+      paddingTop: '60px',
+      marginBottom: '70px',
       height: 'auto',
       paddingLeft: '0',
       paddingRight: '0',
@@ -52,37 +53,26 @@ const styles = {
   title: css({
     fontSize: '35px',
     marginBottom: '15px',
+
+    [mediaQuery[0]]: {
+      fontSize: '30px',
+    },
   }),
 
   description: css({
     lineHeight: 1.6,
-  }),
 
-  picture: css({
-    justifySelf: 'right',
-    marginRight: '80px',
-    width: '300px',
-    heigh: '300px',
-
-    [mediaQuery[2]]: {
-      margin: '0 0 10px 0',
-      width: '150px',
-      heigh: '150px',
+    [mediaQuery[0]]: {
+      fontSize: '15px',
+      lineHeight: 1.5,
     },
   }),
-
-  profile_pic: css({
-    borderRadius: 15,
-
-    [mediaQuery[2]]: {
-      borderRadius: '10px',
-    },
-  }),
-
+  
   content: css({
     maxWidth: '760px',
     margin: '0 auto',
     padding: '24px',
+    marginBottom: '40px',
 
     [mediaQuery[1]]: {
       padding: 0,
@@ -90,103 +80,12 @@ const styles = {
     },
   }),
 
-  content_menu: css({
-    marginBottom: '30px',
-
-    [mediaQuery[2]]: {
-      display: 'flex',
-      justifyContent: 'center',
-      columnGap: '10px',
-      flexWrap: 'wrap',
-    },
-  }),
-
-  content_menu_btn: css({
-    padding: '9px 17px 11px 17px',
-    marginRight: '20px',
-    borderRadius: '6px',
-    color: 'var(--light-text)',
-    cursor: 'pointer',
-    background: 'none',
-    fontWeight: 600,
-    fontSize: '16px',
-
-    [mediaQuery[2]]: {
-      margin: 0,
-    },
-  }),
-
-  content_menu_btn_active: css({
-    background: 'var(--foreground)',
-  }),
-
   entry_list: css({}),
 
-  entry: css({
-    position: 'relative',
-    marginBottom: '24px',
-    background: 'var(--foreground)',
-    borderRadius: '8px',
-    border: '1px solid rgb(51, 51, 51)',
-    padding: '24px',
-    cursor: 'pointer',
-
-    [mediaQuery[1]]: {
-      marginBottom: '14px',
-      padding: '14px',
-    },
-  }),
-
-  entry_active: css`
-    &.active .entry-content {
-      color: var(--light-text);
-      -webkit-line-clamp: initial;
-    }
-  `,
-
-  entry_cover: css({
-    marginBottom: '24px',
-    textAlign: 'center',
-    position: 'relative',
-
-    [mediaQuery[1]]: {
-      marginBottom: '14px',
-    },
-  }),
-
-  entry_cover_img: css({
-    borderRadius: '8px',
-    pointerEvents: 'none',
-    width: '100%',
-    height: 'auto',
-    maxHeight: '250px',
-    objectFit: 'cover',
-  }),
-
-  entry_title: css({
+  link_text: css({
+    marginBottom: '50px',
     fontWeight: 700,
-
-    [mediaQuery[0]]: {
-      fontSize: '13px',
-    },
-  }),
-
-  entry_content: css({
-    margin: '8px 0',
-    color: 'var(--dark-text)',
-    fontSize: '14px',
-    lineHeight: 1.6,
-    overflow: 'hidden',
-    WebkitLineClamp: '2',
-    display: '-webkit-box',
-    MozBoxOrient: 'vertical',
-    whiteSpace: 'pre-wrap',
-    WebkitBoxOrient: 'vertical',
-  }),
-
-  entry_footer: css({
-    color: 'var(--dark-text)',
-    fontSize: '13px',
+    textAlign: 'center',
   }),
 }
 
@@ -252,15 +151,15 @@ const Enthusiast: NextPage = () => {
           <h1 css={styles.title}>Enthusiast</h1>
 
           <p css={styles.description}>
-            I&apos;m like a gust of wind, blowing through people and places without a
-            care in the world.
+            I&apos;m like a gust of wind, blowing through people and places
+            without a care in the world.
             <br />
             <br />
             Never content with the same thing, always searching for new and
-            exciting things to do. I&apos;ve found some of my favourite things in the
-            most unlikely places, from music to games to abridged anime. To me,
-            life is all about finding the next thing to enjoy and taking it all
-            in.
+            exciting things to do. I&apos;ve found some of my favourite things
+            in the most unlikely places, from music to games to abridged anime.
+            To me, life is all about finding the next thing to enjoy and taking
+            it all in.
             <br />
             <br />
             So sit back, relax, and enjoy the ride.
@@ -296,6 +195,8 @@ const Enthusiast: NextPage = () => {
           </div>
         )}
       </div>
+
+      <p css={styles.link_text}>You've reached the end</p>
     </div>
   )
 }

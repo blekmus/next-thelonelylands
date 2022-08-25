@@ -4,19 +4,9 @@ import mediaQuery from '../lib/mediaQuery'
 import { useEffect, useRef, useState } from 'react'
 
 import dayjs from 'dayjs'
-import relativeTime from 'dayjs/plugin/relativeTime'
 import Link from 'next/link'
-import { IconArrowsMaximize, IconLink, IconMaximize } from '@tabler/icons'
-dayjs.extend(relativeTime)
+import { IconArrowsMaximize, } from '@tabler/icons'
 
-interface Entry {
-  title: string
-  notes: string
-  note_words: number
-  id: string
-  cover: string
-  date: Date | number | null
-}
 
 interface Props {
   title: string
@@ -34,7 +24,6 @@ const styles = {
     marginBottom: '24px',
     background: 'var(--foreground)',
     borderRadius: '8px',
-    border: '1px solid rgb(51, 51, 51)',
     padding: '24px 24px 20px 24px',
 
     '&.active': {
@@ -168,7 +157,6 @@ const Article: NextPage<Props> = ({
   let contentSection
   let footerSection
 
-  const [relativeDate, setRelativeDate] = useState('')
   const entryEl = useRef<HTMLDivElement>(null)
 
 
@@ -179,10 +167,6 @@ const Article: NextPage<Props> = ({
       entryEl.current?.classList.add('active')
     }
   }
-
-  useEffect(() => {
-    setRelativeDate(dayjs(date).fromNow())
-  }, [date])
 
   // cover section
   if (cover) {
@@ -230,7 +214,8 @@ const Article: NextPage<Props> = ({
         {note_words && <>{note_words} words</>}{' '}
         {date && (
           <>
-            {note_words && <strong>·</strong>} {relativeDate}
+            {note_words && <strong>·</strong>}{' '}
+            {dayjs(Number(date)).format('D MMMM, YYYY')}
           </>
         )}{' '}
         {type && (

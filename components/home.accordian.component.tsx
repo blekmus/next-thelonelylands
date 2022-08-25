@@ -107,6 +107,7 @@ const HomeAccordian: NextPage = () => {
               css={styles.accordian_image}
               src={BannerWriter}
               alt="accordian image"
+              loading="eager"
             />
           </a>
         </Link>
@@ -124,6 +125,7 @@ const HomeAccordian: NextPage = () => {
               css={styles.accordian_image}
               src={BannerEnthusiast}
               alt="accordian image"
+              loading="eager"
             />
           </a>
         </Link>
@@ -140,6 +142,7 @@ const HomeAccordian: NextPage = () => {
               css={styles.accordian_image}
               src={BannerCinephile}
               alt="accordian image"
+              loading="eager"
             />
           </a>
         </Link>
@@ -157,6 +160,7 @@ const HomeAccordian: NextPage = () => {
               css={styles.accordian_image}
               src={BannerOtaku}
               alt="accordian image"
+              loading="eager"
             />
           </a>
         </Link>

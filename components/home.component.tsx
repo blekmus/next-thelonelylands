@@ -44,19 +44,29 @@ const styles = {
       width: '90%',
       flexDirection: 'column',
       alignItems: 'start',
-      paddingTop: '150px',
-      marginBottom: '50px',
+      paddingTop: '50px',
       height: 'auto',
+      marginBottom: '70px',
     },
   }),
 
   title: css({
     fontSize: '35px',
-    marginBottom: '15px',
+    marginBottom: '30px',
+
+    [mediaQuery[0]]: {
+      fontSize: '30px',
+      textAlign: 'center',
+    },
   }),
 
   description: css({
     lineHeight: 1.6,
+
+    [mediaQuery[0]]: {
+      fontSize: '15px',
+      lineHeight: 1.5,
+    },
   }),
 
   picture: css({
@@ -69,6 +79,10 @@ const styles = {
       margin: '0 0 10px 0',
       width: '150px',
       heigh: '150px',
+    },
+
+    [mediaQuery[0]]: {
+      margin: '0 auto 5px auto',
     },
   }),
 
@@ -84,13 +98,19 @@ const styles = {
     display: 'flex',
     columnGap: '10px',
     marginTop: '15px',
+
+    [mediaQuery[0]]: {
+      justifyContent: 'center',
+      marginTop: '30px',
+      columnGap: '20px',
+    },
   }),
 
   content: css({
     marginBottom: '80px',
 
-    [mediaQuery[1]]: {
-      marginBottom: '30px',
+    [mediaQuery[0]]: {
+      marginBottom: '70px',
     },
   }),
 
@@ -112,81 +132,6 @@ const styles = {
     [mediaQuery[2]]: {
       marginBottom: '20px',
     },
-  }),
-
-  accordian_cont: css({
-    display: 'block',
-    overflow: 'hidden',
-    maxWidth: '1800px',
-    margin: 'auto',
-  }),
-
-  accordian: css({
-    display: 'flex',
-    width: '100%',
-    height: '160px',
-
-    [mediaQuery[2]]: {
-      display: 'block',
-      height: 'initial',
-    },
-  }),
-
-  accordian_text: css({
-    marginBottom: '30px',
-    fontWeight: 700,
-
-    [mediaQuery[2]]: {
-      marginBottom: '20px',
-    },
-  }),
-
-  accordian_item: css({
-    flexGrow: '1',
-    transition: 'all 0.8s cubic-bezier(.22,.61,.36,1)',
-    position: 'relative',
-    overflow: 'hidden',
-    flexBasis: '1px',
-    cursor: 'pointer',
-    display: 'flex',
-
-    [mediaQuery[2]]: {
-      // display: 'block',
-      transition: 'none',
-      height: '190px',
-    },
-
-    p: {
-      textAlign: 'center',
-    },
-
-    ':hover': {
-      flexBasis: '80px',
-    },
-  }),
-
-  accordian_content: css({
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    zIndex: 2,
-    height: '100%',
-    width: '100%',
-  }),
-
-  accordian_image: css({
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-    zIndex: 1,
-    filter: 'brightness(50%)',
   }),
 }
 

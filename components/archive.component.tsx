@@ -37,7 +37,7 @@ const styles = {
     [mediaQuery[1]]: {
       padding: 0,
       width: '90%',
-      paddingTop: '140px',
+      paddingTop: '40px',
     },
   }),
 
@@ -48,7 +48,7 @@ const styles = {
   }),
 
   header_title: css({
-    fontSize: '40px',
+    fontSize: '35px',
     marginBottom: '2px',
     lineHeight: 1.2,
     fontWeight: 700,
@@ -64,6 +64,11 @@ const styles = {
     [mediaQuery[2]]: {
       display: 'flex',
       columnGap: '10px',
+      flexWrap: 'wrap',
+    },
+
+    [mediaQuery[0]]: {
+      columnGap: '0',
     },
   }),
 
@@ -79,6 +84,11 @@ const styles = {
 
     [mediaQuery[2]]: {
       margin: 0,
+    },
+
+    [mediaQuery[0]]: {
+      padding: '9px 9px 11px 9px',
+      fontSize: '14px',
     },
   }),
 

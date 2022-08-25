@@ -19,6 +19,7 @@ const styles = {
 
     [mediaQuery[1]]: {
       flexDirection: 'column',
+      position: 'relative',
     },
   }),
 

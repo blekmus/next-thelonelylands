@@ -21,7 +21,10 @@ const styles = {
     [mediaQuery[1]]: {
       padding: 0,
       width: '90%',
-      marginBottom: '30px',
+    },
+
+    [mediaQuery[0]]: {
+      marginBottom: '70px'
     },
   }),
 
@@ -32,7 +35,7 @@ const styles = {
     gap: '30px 20px',
 
     [mediaQuery[1]]: {
-      gap: '14px 20px',
+      gap: '20px 20px',
     },
   }),
 
@@ -96,6 +99,11 @@ const styles = {
 
     p: {
       fontSize: '14px',
+
+      [mediaQuery[0]]: {
+        fontSize: '13px',
+        lineHeight: 1.5,
+      },
     },
   }),
 }
@@ -131,7 +139,7 @@ const LinkCard = ({
           alt="cover"
           layout="fill"
           css={styles.link_image}
-          loading="lazy"
+          loading="eager"
         />
       </div>
 

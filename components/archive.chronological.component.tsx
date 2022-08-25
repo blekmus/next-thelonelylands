@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import { css } from '@emotion/react'
 import dayjs from 'dayjs'
 import Link from 'next/link'
+import mediaQuery from '../lib/mediaQuery'
 
 
 interface Entry {
@@ -30,23 +31,42 @@ const styles = {
 
     marginTop: '20px',
     paddingBottom: '20px',
+
+    [mediaQuery[0]]: {
+      paddingBottom: '15px',
+      marginTop: '15px',
+    },
   }),
 
   archive_year_header: css({
     fontFamily: 'Oxygen, sans-serif',
     fontSize: '28px',
+
+    [mediaQuery[0]]: {
+      fontSize: '22px',
+    },
   }),
 
   archive_month: css({
     display: 'flex',
     alignItems: 'flex-start',
     padding: '10px 0',
+
+    [mediaQuery[0]]: {
+      padding: '5px 0',
+    },
   }),
 
   archive_month_header: css({
     fontFamily: 'Oxygen, sans-serif',
     margin: '25px 0',
     width: '200px',
+
+    [mediaQuery[0]]: {
+      width: '160px',
+      fontSize: '15px',
+      margin: '15px 0',
+    },
   }),
 
   archive_posts: css({
@@ -59,16 +79,31 @@ const styles = {
     margin: '10px 0',
     display: 'block',
 
+    [mediaQuery[0]]: {
+      margin: '5px 0',
+      paddingBottom: '3px',
+      paddingTop: '3px',
+    },
+
     h3: {
       fontFamily: 'Oxygen, sans-serif',
       margin: '5px 0 0 0',
       fontWeight: '400',
+
+      [mediaQuery[0]]: {
+        fontSize: '15px',
+        lineHeight: 1.4,
+      },
     },
 
     p: {
       color: 'var(--dark-text)',
       fontSize: '14px',
       lineHeight: 1.3,
+
+      [mediaQuery[0]]: {
+        fontSize: '12px',
+      },
     },
   }),
 }

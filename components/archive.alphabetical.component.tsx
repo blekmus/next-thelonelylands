@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import { css } from '@emotion/react'
 import dayjs from 'dayjs'
 import Link from 'next/link'
+import mediaQuery from '../lib/mediaQuery'
 
 interface Entry {
   id: string
@@ -20,6 +21,32 @@ interface AlphabeticalEntries {
 }
 
 const styles = {
+  archive_letter: css({
+    display: 'flex',
+    alignItems: 'flex-start',
+    padding: '10px 0',
+    ':not(:last-of-type)': {
+      borderBottom: '2px solid rgb(51, 51, 51)',
+    },
+
+    [mediaQuery[0]]: {
+      paddingBottom: '20px',
+      marginTop: '10px',
+    },
+  }),
+
+  archive_letter_header: css({
+    fontFamily: 'Oxygen, sans-serif',
+    margin: '25px 0',
+    width: '200px',
+
+    [mediaQuery[0]]: {
+      width: '160px',
+      fontSize: '15px',
+      margin: '15px 0',
+    },
+  }),
+
   archive_posts: css({
     width: '100%',
     fontSize: '16px',
@@ -30,32 +57,30 @@ const styles = {
     margin: '10px 0',
     display: 'block',
 
+    [mediaQuery[0]]: {
+      margin: '5px 0',
+    },
+
     h3: {
       fontFamily: 'Oxygen, sans-serif',
       margin: '5px 0 0 0',
       fontWeight: '400',
+
+      [mediaQuery[0]]: {
+        fontSize: '15px',
+        lineHeight: 1.4
+      },
     },
 
     p: {
       color: 'var(--dark-text)',
       fontSize: '14px',
       lineHeight: 1.3,
-    },
-  }),
 
-  archive_letter: css({
-    display: 'flex',
-    alignItems: 'flex-start',
-    padding: '10px 0',
-    ':not(:last-of-type)': {
-      borderBottom: '2px solid rgb(51, 51, 51)',
+      [mediaQuery[0]]: {
+        fontSize: '12px',
+      },
     },
-  }),
-
-  archive_letter_header: css({
-    fontFamily: 'Oxygen, sans-serif',
-    margin: '25px 0',
-    width: '200px',
   }),
 }
 

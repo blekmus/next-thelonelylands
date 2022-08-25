@@ -38,6 +38,17 @@ const styles = {
       width: '90%',
       marginBottom: '30px',
     },
+
+    [mediaQuery[0]]: {
+      marginBottom: '70px',
+    },
+  }),
+
+  content: css({
+    [mediaQuery[0]]: {
+      fontSize: '15px',
+      lineHeight: 1.5,
+    },
   }),
 
   contact_form: css({}),
@@ -115,23 +126,25 @@ const HomeContact: NextPage = () => {
     <div css={styles.contact}>
       <p css={styles.contact_text}>Don&apos;t be shy. Say Hi!</p>
 
-      <p style={{ lineHeight: 1.6, marginBottom: 20 }}>
-        Have any comments, questions or just want to send me something? The
-        easiest way to reach me is by <strong>filling the form</strong> below.
-        You can also send me an email at <strong>dinil[at]pm.me</strong>
-      </p>
-      <p style={{ lineHeight: 1.6, marginBottom: 20 }}>
-        If you want to have a chat. Hit me up on{' '}
-        <a
-          title="Walker#6140"
-          href="https://discordid.netlify.app/?id=534321754517143553"
-          style={{ borderBottom: 'solid var(--light-text) 1px' }}
-          target="_blank"
-          rel="noreferrer"
-        >
-          <strong>Discord</strong>
-        </a>
-      </p>
+      <div css={styles.content}>
+        <p style={{ lineHeight: 1.6, marginBottom: 20 }}>
+          Have any comments, questions or just want to send me something? The
+          easiest way to reach me is by <strong>filling the form</strong> below.
+          You can also send me an email at <strong>dinil[at]pm.me</strong>
+        </p>
+        <p style={{ lineHeight: 1.6, marginBottom: 20 }}>
+          If you want to have a chat. Hit me up on{' '}
+          <a
+            title="Walker#6140"
+            href="https://discordid.netlify.app/?id=534321754517143553"
+            style={{ borderBottom: 'solid var(--light-text) 1px' }}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <strong>Discord</strong>
+          </a>
+        </p>
+      </div>
 
       <div css={styles.contact_form}>
         <form onSubmit={form.onSubmit(handleSubmit)}>

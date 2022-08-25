@@ -38,10 +38,11 @@ const styles = {
 
     [mediaQuery[2]]: {
       width: '90%',
+      minHeight: 'initial',
       flexDirection: 'column',
       alignItems: 'start',
-      paddingTop: '170px',
-      marginBottom: '50px',
+      paddingTop: '60px',
+      marginBottom: '70px',
       height: 'auto',
       paddingLeft: '0',
       paddingRight: '0',
@@ -52,41 +53,18 @@ const styles = {
   title: css({
     fontSize: '35px',
     marginBottom: '15px',
+
+    [mediaQuery[0]]: {
+      fontSize: '30px',
+    },
   }),
 
   description: css({
     lineHeight: 1.6,
-  }),
 
-  picture: css({
-    justifySelf: 'right',
-    marginRight: '80px',
-    width: '300px',
-    heigh: '300px',
-
-    [mediaQuery[2]]: {
-      margin: '0 0 10px 0',
-      width: '150px',
-      heigh: '150px',
-    },
-  }),
-
-  profile_pic: css({
-    borderRadius: 15,
-
-    [mediaQuery[2]]: {
-      borderRadius: '10px',
-    },
-  }),
-
-  content: css({
-    maxWidth: '760px',
-    margin: '0 auto',
-    padding: '24px',
-
-    [mediaQuery[1]]: {
-      padding: 0,
-      width: '90%',
+    [mediaQuery[0]]: {
+      fontSize: '15px',
+      lineHeight: 1.5,
     },
   }),
 
@@ -98,6 +76,10 @@ const styles = {
       justifyContent: 'center',
       columnGap: '10px',
       flexWrap: 'wrap',
+    },
+
+    [mediaQuery[0]]: {
+      columnGap: '5px',
     },
   }),
 
@@ -114,6 +96,22 @@ const styles = {
     [mediaQuery[2]]: {
       margin: 0,
     },
+
+    [mediaQuery[0]]: {
+      padding: '9px 13px 11px 13px',
+    },
+  }),
+
+  content: css({
+    maxWidth: '760px',
+    margin: '0 auto',
+    padding: '24px',
+    marginBottom: '40px',
+
+    [mediaQuery[1]]: {
+      padding: 0,
+      width: '90%',
+    },
   }),
 
   content_menu_btn_active: css({
@@ -121,72 +119,11 @@ const styles = {
   }),
 
   entry_list: css({}),
-
-  entry: css({
-    position: 'relative',
-    marginBottom: '24px',
-    background: 'var(--foreground)',
-    borderRadius: '8px',
-    border: '1px solid rgb(51, 51, 51)',
-    padding: '24px',
-    cursor: 'pointer',
-
-    [mediaQuery[1]]: {
-      marginBottom: '14px',
-      padding: '14px',
-    },
-  }),
-
-  entry_active: css`
-    &.active .entry-content {
-      color: var(--light-text);
-      -webkit-line-clamp: initial;
-    }
-  `,
-
-  entry_cover: css({
-    marginBottom: '24px',
-    textAlign: 'center',
-    position: 'relative',
-
-    [mediaQuery[1]]: {
-      marginBottom: '14px',
-    },
-  }),
-
-  entry_cover_img: css({
-    borderRadius: '8px',
-    pointerEvents: 'none',
-    width: '100%',
-    height: 'auto',
-    maxHeight: '250px',
-    objectFit: 'cover',
-  }),
-
-  entry_title: css({
+  
+  link_text: css({
+    marginBottom: '50px',
     fontWeight: 700,
-
-    [mediaQuery[0]]: {
-      fontSize: '13px',
-    },
-  }),
-
-  entry_content: css({
-    margin: '8px 0',
-    color: 'var(--dark-text)',
-    fontSize: '14px',
-    lineHeight: 1.6,
-    overflow: 'hidden',
-    WebkitLineClamp: '2',
-    display: '-webkit-box',
-    MozBoxOrient: 'vertical',
-    whiteSpace: 'pre-wrap',
-    WebkitBoxOrient: 'vertical',
-  }),
-
-  entry_footer: css({
-    color: 'var(--dark-text)',
-    fontSize: '13px',
+    textAlign: 'center',
   }),
 }
 
@@ -286,46 +223,46 @@ const Writer: NextPage = () => {
         </div>
       </div>
 
-      <div css={styles.content}>
-        <nav css={styles.content_menu}>
-          <button
-            css={[
-              styles.content_menu_btn,
-              viewType === 'ALL' ? styles.content_menu_btn_active : null,
-            ]}
-            onClick={() => setViewType('ALL')}
-          >
-            <p>All</p>
-          </button>
-          <button
-            css={[
-              styles.content_menu_btn,
-              viewType === 'ESSAY' ? styles.content_menu_btn_active : null,
-            ]}
-            onClick={() => setViewType('ESSAY')}
-          >
-            <p>Essays</p>
-          </button>
-          <button
-            css={[
-              styles.content_menu_btn,
-              viewType === 'POEM' ? styles.content_menu_btn_active : null,
-            ]}
-            onClick={() => setViewType('POEM')}
-          >
-            <p>Poems</p>
-          </button>
-          <button
-            css={[
-              styles.content_menu_btn,
-              viewType === 'STORY' ? styles.content_menu_btn_active : null,
-            ]}
-            onClick={() => setViewType('STORY')}
-          >
-            <p>Stories</p>
-          </button>
-        </nav>
+      <nav css={styles.content_menu}>
+        <button
+          css={[
+            styles.content_menu_btn,
+            viewType === 'ALL' ? styles.content_menu_btn_active : null,
+          ]}
+          onClick={() => setViewType('ALL')}
+        >
+          <p>All</p>
+        </button>
+        <button
+          css={[
+            styles.content_menu_btn,
+            viewType === 'ESSAY' ? styles.content_menu_btn_active : null,
+          ]}
+          onClick={() => setViewType('ESSAY')}
+        >
+          <p>Essays</p>
+        </button>
+        <button
+          css={[
+            styles.content_menu_btn,
+            viewType === 'POEM' ? styles.content_menu_btn_active : null,
+          ]}
+          onClick={() => setViewType('POEM')}
+        >
+          <p>Poems</p>
+        </button>
+        <button
+          css={[
+            styles.content_menu_btn,
+            viewType === 'STORY' ? styles.content_menu_btn_active : null,
+          ]}
+          onClick={() => setViewType('STORY')}
+        >
+          <p>Stories</p>
+        </button>
+      </nav>
 
+      <div css={styles.content}>
         {currentVisibleData.length != 0 ? (
           <div css={styles.entry_list}>
             <InfiniteScroll
@@ -359,6 +296,8 @@ const Writer: NextPage = () => {
           </div>
         )}
       </div>
+
+      <p css={styles.link_text}>You've reached the end</p>
     </div>
   )
 }
