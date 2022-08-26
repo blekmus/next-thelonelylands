@@ -143,18 +143,17 @@ const styles = {
 const Otaku: NextPage = () => {
   const [format, setFormat] = useState('anime')
 
-  const totalEntries = {
+  const [totalWords, setTotalWords] = useState({
     anime: 0,
     manga: 0,
     reviews: 0,
-  }
+  })
 
-  const totalWords = {
+  const [totalEntries, setTotalEntries] = useState({
     anime: 0,
     manga: 0,
     reviews: 0,
-  }
-
+  })
 
   const [animeData, setAnimeData] = useState<Entry[]>([])
   const [mangaData, setMangaData] = useState<Entry[]>([])
@@ -171,8 +170,12 @@ const Otaku: NextPage = () => {
         return acc
       }, 0)
 
-      totalWords.manga = words
-      totalEntries.manga = filteredData.length
+      setTotalWords({ ...totalWords, manga: words })
+
+      setTotalEntries({
+        ...totalEntries,
+        manga: filteredData.length,
+      })
     },
     onError: () => {
       showNotification({
@@ -185,7 +188,6 @@ const Otaku: NextPage = () => {
         color: 'red',
         icon: <IconX />,
       })
-
     },
   })
 
@@ -199,9 +201,13 @@ const Otaku: NextPage = () => {
         return acc
       }, 0)
 
-      totalWords.reviews = words
-      totalEntries.reviews = filteredData.length
-      },
+      setTotalWords({ ...totalWords, reviews: words })
+
+      setTotalEntries({
+        ...totalEntries,
+        reviews: filteredData.length,
+      })
+    },
     onError: () => {
       showNotification({
         disallowClose: true,
@@ -226,8 +232,12 @@ const Otaku: NextPage = () => {
         return acc
       }, 0)
 
-      totalWords.anime = words
-      totalEntries.anime = filteredData.length
+      setTotalWords({ ...totalWords, anime: words })
+
+      setTotalEntries({
+        ...totalEntries,
+        anime: filteredData.length,
+      })
 
       getManga()
       getReviews()

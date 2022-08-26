@@ -1,4 +1,4 @@
-import { MediaList, ReviewList } from '../Types/anilist-filter'
+import { MediaList, ReviewList } from '../types/anilist-filter'
 
 import naturalCompare from 'string-natural-compare'
 
