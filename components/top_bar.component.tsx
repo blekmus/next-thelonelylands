@@ -17,9 +17,12 @@ const styles = {
     left: 0,
     right: 0,
 
+    [mediaQuery[2]]: {
+      position: 'relative',
+    },
+
     [mediaQuery[1]]: {
       flexDirection: 'column',
-      position: 'relative',
     },
   }),
 

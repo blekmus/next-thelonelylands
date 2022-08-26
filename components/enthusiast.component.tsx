@@ -1,7 +1,5 @@
 import type { NextPage } from 'next'
-import { css } from '@emotion/react'
 import TopBar from './top_bar.component'
-import mediaQuery from '../lib/mediaQuery'
 import { useEffect, useState } from 'react'
 import { useQuery, gql } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -9,6 +7,7 @@ import Article from './article.component'
 import { Text } from '@mantine/core'
 import { showNotification } from '@mantine/notifications'
 import { IconX } from '@tabler/icons'
+import styles from '../styles/main_page.css'
 
 interface Entry {
   id: string
@@ -19,74 +18,6 @@ interface Entry {
   updated_at: string
   type: 'MOVIE' | 'SERIES' | 'POEM' | 'ESSAY' | 'STORY' | 'OTHER'
   status: 'PUBLISHED' | 'DRAFT'
-}
-
-const styles = {
-  base: css({
-    backgroundColor: 'var(--background)',
-  }),
-
-  header: css({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100vh',
-    maxWidth: '760px',
-    margin: '0 auto',
-    padding: '24px',
-    minHeight: '70vh',
-
-    [mediaQuery[2]]: {
-      width: '90%',
-      minHeight: 'initial',
-      flexDirection: 'column',
-      alignItems: 'start',
-      paddingTop: '60px',
-      marginBottom: '70px',
-      height: 'auto',
-      paddingLeft: '0',
-      paddingRight: '0',
-      justifyContent: 'flex-start',
-    },
-  }),
-
-  title: css({
-    fontSize: '35px',
-    marginBottom: '15px',
-
-    [mediaQuery[0]]: {
-      fontSize: '30px',
-    },
-  }),
-
-  description: css({
-    lineHeight: 1.6,
-
-    [mediaQuery[0]]: {
-      fontSize: '15px',
-      lineHeight: 1.5,
-    },
-  }),
-  
-  content: css({
-    maxWidth: '760px',
-    margin: '0 auto',
-    padding: '24px',
-    marginBottom: '40px',
-
-    [mediaQuery[1]]: {
-      padding: 0,
-      width: '90%',
-    },
-  }),
-
-  entry_list: css({}),
-
-  link_text: css({
-    marginBottom: '50px',
-    fontWeight: 700,
-    textAlign: 'center',
-  }),
 }
 
 const QUERY = gql`

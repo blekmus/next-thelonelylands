@@ -1,7 +1,6 @@
 import type { NextPage } from 'next'
-import { css } from '@emotion/react'
+
 import TopBar from './top_bar.component'
-import mediaQuery from '../lib/mediaQuery'
 import { useEffect, useState } from 'react'
 import { useQuery, useLazyQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -11,6 +10,7 @@ import queries from '../lib/anilist-query'
 import { Text } from '@mantine/core'
 import { showNotification } from '@mantine/notifications'
 import { IconX } from '@tabler/icons'
+import styles from '../styles/main_page.css'
 
 interface Entry {
   title: string
@@ -21,124 +21,7 @@ interface Entry {
   date: Date | undefined
 }
 
-const styles = {
-  base: css({
-    backgroundColor: 'var(--background)',
-  }),
 
-  header: css({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100vh',
-    maxWidth: '760px',
-    margin: '0 auto',
-    padding: '24px',
-    minHeight: '70vh',
-
-    [mediaQuery[2]]: {
-      width: '90%',
-      minHeight: 'initial',
-      flexDirection: 'column',
-      alignItems: 'start',
-      paddingTop: '60px',
-      marginBottom: '70px',
-      height: 'auto',
-      paddingLeft: '0',
-      paddingRight: '0',
-      justifyContent: 'flex-start',
-    },
-  }),
-
-  title: css({
-    fontSize: '35px',
-    marginBottom: '15px',
-
-    [mediaQuery[0]]: {
-      fontSize: '30px',
-    },
-  }),
-
-  description: css({
-    lineHeight: 1.6,
-
-    [mediaQuery[0]]: {
-      fontSize: '15px',
-      lineHeight: 1.5,
-    },
-  }),
-
-  content_menu: css({
-    marginBottom: '30px',
-
-    [mediaQuery[2]]: {
-      display: 'flex',
-      justifyContent: 'center',
-      columnGap: '10px',
-      flexWrap: 'wrap',
-    },
-
-    [mediaQuery[0]]: {
-      columnGap: '5px',
-    },
-  }),
-
-  content_menu_btn: css({
-    padding: '9px 17px 11px 17px',
-    marginRight: '20px',
-    borderRadius: '6px',
-    color: 'var(--light-text)',
-    cursor: 'pointer',
-    background: 'none',
-    fontWeight: 600,
-    fontSize: '16px',
-
-    [mediaQuery[2]]: {
-      margin: 0,
-    },
-
-    [mediaQuery[0]]: {
-      padding: '9px 13px 11px 13px',
-    },
-  }),
-
-  social: css({
-    display: 'flex',
-    columnGap: '10px',
-    marginTop: '15px',
-
-    [mediaQuery[0]]: {
-      justifyContent: 'center',
-      marginTop: '30px',
-      columnGap: '20px',
-    },
-  }),
-
-  content: css({
-    maxWidth: '760px',
-    margin: '0 auto',
-    padding: '24px',
-    marginBottom: '40px',
-
-    [mediaQuery[1]]: {
-      padding: 0,
-      width: '90%',
-    },
-  }),
-
-  content_menu_btn_active: css({
-    background: 'var(--foreground)',
-  }),
-
-  entry_list: css({}),
-
-  link_text: css({
-    marginBottom: '50px',
-    fontWeight: 700,
-    textAlign: 'center',
-    marginTop: '30px',
-  }),
-}
 
 const Otaku: NextPage = () => {
   const [format, setFormat] = useState('anime')
@@ -348,37 +231,37 @@ const Otaku: NextPage = () => {
         </div>
       </div>
 
-      <div css={styles.content}>
-        <nav css={styles.content_menu}>
-          <button
-            css={[
-              styles.content_menu_btn,
-              format === 'anime' ? styles.content_menu_btn_active : null,
-            ]}
-            onClick={() => setFormat('anime')}
-          >
-            <p>Anime</p>
-          </button>
-          <button
-            css={[
-              styles.content_menu_btn,
-              format === 'manga' ? styles.content_menu_btn_active : null,
-            ]}
-            onClick={() => setFormat('manga')}
-          >
-            <p>Manga</p>
-          </button>
-          <button
-            css={[
-              styles.content_menu_btn,
-              format === 'reviews' ? styles.content_menu_btn_active : null,
-            ]}
-            onClick={() => setFormat('reviews')}
-          >
-            <p>Reviews</p>
-          </button>
-        </nav>
+      <nav css={styles.content_menu}>
+        <button
+          css={[
+            styles.content_menu_btn,
+            format === 'anime' ? styles.content_menu_btn_active : null,
+          ]}
+          onClick={() => setFormat('anime')}
+        >
+          <p>Anime</p>
+        </button>
+        <button
+          css={[
+            styles.content_menu_btn,
+            format === 'manga' ? styles.content_menu_btn_active : null,
+          ]}
+          onClick={() => setFormat('manga')}
+        >
+          <p>Manga</p>
+        </button>
+        <button
+          css={[
+            styles.content_menu_btn,
+            format === 'reviews' ? styles.content_menu_btn_active : null,
+          ]}
+          onClick={() => setFormat('reviews')}
+        >
+          <p>Reviews</p>
+        </button>
+      </nav>
 
+      <div css={styles.content}>
         {currentData.length != 0 ? (
           <div css={styles.entry_list}>
             <InfiniteScroll

@@ -39,6 +39,10 @@ const styles = {
     marginBottom: '50px',
     minHeight: 'calc(100vh - 265px)',
 
+    [mediaQuery[2]]: {
+      paddingTop: '30px',
+    },
+
     [mediaQuery[1]]: {
       padding: 0,
       width: '90%',

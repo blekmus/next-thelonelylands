@@ -31,10 +31,6 @@ const styles = {
   accordian_text: css({
     marginBottom: '30px',
     fontWeight: 700,
-
-    [mediaQuery[2]]: {
-      marginBottom: '20px',
-    },
   }),
 
   accordian_item: css({
