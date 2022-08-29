@@ -8,7 +8,12 @@ const WriterPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Writer - The Lonely Lands</title>
+        <title>Writer | The Lonely Lands</title>
+        <meta
+          name="description"
+          content="A collection of essays, poems and stories I've written over the years"
+        />
+        <meta name="robots" content="all" />
       </Head>
       <ApolloProvider client={client}>
         <Writer />

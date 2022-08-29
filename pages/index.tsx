@@ -2,7 +2,6 @@ import type { GetServerSideProps, NextPage } from 'next'
 import Home from '../components/home.component'
 import client from '../lib/site-client'
 import { ApolloProvider } from '@apollo/client'
-import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
 import Head from 'next/head'
 import prisma from '../lib/prisma'
 
@@ -26,21 +25,23 @@ const HomePage: NextPage<Props> = ({ entries }) => {
     <>
       <Head>
         <title>The Lonely Lands</title>
+        <meta
+          name="description"
+          content="The Lonely Lands is a collection of thoughts, musings, and memories written down over the years by Dinil Fernando (aka. blekmus/walker)"
+        />
+        <meta property="og:title" content="The Lonely Lands" />
+        <meta
+          property="og:description"
+          content="The Lonely Lands is a collection of thoughts, musings, and memories written down over the years by Dinil Fernando (aka. blekmus/walker)"
+        />
+        {/* <meta
+          property="og:image"
+          content="https://example.com/images/cool-page.jpg"
+        /> */}
+        <meta name="robots" content="all" />
       </Head>
       <ApolloProvider client={client}>
-        <GoogleReCaptchaProvider
-          reCaptchaKey="6Le6HHghAAAAAEZFpUolmQBOLJO-84Q0p-qcW7rH"
-          useEnterprise={true}
-          container={{
-            element: 'captcha-placeholder',
-            parameters: {
-              badge: 'inline',
-              theme: 'dark',
-            },
-          }}
-        >
-          <Home entries={entries} />
-        </GoogleReCaptchaProvider>
+        <Home entries={entries} />
       </ApolloProvider>
     </>
   )

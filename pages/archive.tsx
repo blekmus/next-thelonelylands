@@ -3,6 +3,8 @@ import Archive from '../components/archive.component'
 import client from '../lib/site-client'
 import { ApolloProvider } from '@apollo/client'
 import prisma from '../lib/prisma'
+import Head from 'next/head'
+
 
 interface Entry {
   id: string
@@ -17,9 +19,19 @@ interface Props {
 
 const ArchivePage: NextPage<Props> = ({ entries }) => {
   return (
-    <ApolloProvider client={client}>
-      <Archive entries={entries} />
-    </ApolloProvider>
+    <>
+      <Head>
+        <title>Archive | The Lonely Lands</title>
+        <meta name="robots" content="all" />
+        <meta
+          name="description"
+          content="Archive of all posts on The Lonely Lands"
+        />
+      </Head>
+      <ApolloProvider client={client}>
+        <Archive entries={entries} />
+      </ApolloProvider>
+    </>
   )
 }
 

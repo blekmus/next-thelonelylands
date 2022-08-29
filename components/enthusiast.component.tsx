@@ -69,7 +69,7 @@ const Enthusiast: NextPage = () => {
 
   const loadMore = () => {
     setCurrentVisibleData(
-      currentVisibleData.slice(0, currentVisibleData.length + 5)
+      currentData.slice(0, currentVisibleData.length + 5)
     )
   }
 

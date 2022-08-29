@@ -9,7 +9,13 @@ const OtakuPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Otaku - The Lonely Lands</title>
+        <title>Otaku | The Lonely Lands</title>
+        <meta
+          name="description"
+          content="A collection of thoughts I've written about anime, manga and light novels"
+        />
+
+        <meta name="robots" content="all" />
       </Head>
       <ApolloProvider client={client}>
         <Otaku />

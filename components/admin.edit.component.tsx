@@ -276,7 +276,7 @@ const AdminEdit = ({ id }: { id: string }) => {
   return (
     <>
       <Head>
-        <title>Editing {entryTitle} (Admin) - The Lonely Lands</title>
+        <title>Editing {entryTitle} - Admin | The Lonely Lands</title>
       </Head>
 
       <div style={{ minHeight: '100%' }}>

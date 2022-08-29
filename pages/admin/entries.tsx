@@ -22,7 +22,7 @@ const AdminEntryListPage: NextPage = () => {
     return (
       <>
         <Head>
-          <title>Entry List (Admin) - The Lonely Lands</title>
+          <title>Entry List - Admin | The Lonely Lands</title>
         </Head>
 
         <ApolloProvider client={client}>

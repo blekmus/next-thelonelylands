@@ -1,7 +1,6 @@
 import type { NextPage } from 'next'
 import { css } from '@emotion/react'
 import mediaQuery from '../lib/mediaQuery'
-import Head from 'next/head'
 import { useState } from 'react'
 
 import ArchiveChronological from './archive.chronological.component'
@@ -108,11 +107,6 @@ const Archive: NextPage<Props> = ({ entries }) => {
   const [type, setType] = useState<'ALPHA' | 'CHRONO' | 'CATE'>('CHRONO')
 
   return (
-    <>
-      <Head>
-        <title>Archive - The Lonely Lands</title>
-      </Head>
-
       <div css={styles.base}>
         <TopBar />
 
@@ -159,7 +153,6 @@ const Archive: NextPage<Props> = ({ entries }) => {
           </div>
         </div>
       </div>
-    </>
   )
 }
 

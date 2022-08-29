@@ -3,11 +3,11 @@ import { css } from '@emotion/react'
 import mediaQuery from '../lib/mediaQuery'
 import { useForm } from '@mantine/form'
 import { Button, Group, Text, Textarea, TextInput } from '@mantine/core'
-import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
-import { useCallback, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import { gql, useMutation } from '@apollo/client'
 import { showNotification } from '@mantine/notifications'
 import { IconX } from '@tabler/icons'
+import ReCAPTCHA from 'react-google-recaptcha'
 
 const CREATE_COMMENT = gql`
   mutation Mutation($content: CommentCreateContent!) {
@@ -31,7 +31,7 @@ const styles = {
     maxWidth: '760px',
     margin: '0 auto',
     padding: '24px',
-    marginBottom: '140px',
+    marginBottom: '120px',
 
     [mediaQuery[1]]: {
       padding: 0,
@@ -62,7 +62,9 @@ const HomeContact: NextPage = () => {
     },
   })
 
-  const { executeRecaptcha } = useGoogleReCaptcha()
+  const recaptchaRef = useRef<ReCAPTCHA>(null)
+
+  // const { executeRecaptcha } = useGoogleReCaptcha()
   const [submitLoading, setSubmitLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
@@ -90,7 +92,9 @@ const HomeContact: NextPage = () => {
     async ({ name, message }: { name: string; message: string }) => {
       setSubmitLoading(true)
 
-      if (!executeRecaptcha) {
+      const token = await recaptchaRef.current?.executeAsync()
+
+      if (!token) {
         showNotification({
           disallowClose: true,
           message: (
@@ -102,12 +106,9 @@ const HomeContact: NextPage = () => {
           icon: <IconX />,
         })
 
-        console.log('Recaptcha not yet available')
         setSubmitLoading(false)
         return
       }
-
-      const token = await executeRecaptcha('formSubmit')
 
       createComment({
         variables: {
@@ -119,7 +120,7 @@ const HomeContact: NextPage = () => {
         },
       })
     },
-    [executeRecaptcha, createComment]
+    [createComment]
   )
 
   return (
@@ -198,7 +199,15 @@ const HomeContact: NextPage = () => {
             mb={20}
           />
 
-          <div id="captcha-placeholder"></div>
+          <div id="captcha-placeholder" style={{display: 'none'}}>
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              size="invisible"
+              sitekey="6Le6HHghAAAAAEZFpUolmQBOLJO-84Q0p-qcW7rH"
+              badge="inline"
+              theme='dark'
+            />
+          </div>
 
           <Group position="left" mt={20}>
             <Button

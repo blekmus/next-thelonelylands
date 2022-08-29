@@ -8,7 +8,13 @@ const EnthusiastPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Enthusiast - The Lonely Lands</title>
+        <title>Enthusiast | The Lonely Lands</title>
+        <meta
+          name="description"
+          content="A collection of thoughts about the things I love"
+        />
+
+        <meta name="robots" content="all" />
       </Head>
       <ApolloProvider client={client}>
         <Enthusiast />

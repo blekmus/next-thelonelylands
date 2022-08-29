@@ -118,7 +118,8 @@ const Post: NextPage<Props> = ({ entry }) => {
   return (
     <>
       <Head>
-        <title>{entry.title} - The Lonely Lands</title>
+        <title>{entry.title} | The Lonely Lands</title>
+        <meta name="robots" content="all" />
       </Head>
       <div css={styles.base}>
         <TopBar />
@@ -142,8 +143,7 @@ const Post: NextPage<Props> = ({ entry }) => {
             <h1 css={styles.header_title}>{entry.title}</h1>
             <p css={styles.header_sub}>
               <span css={styles.header_type}>
-                {entry.type.charAt(0) +
-                  entry.type.toLocaleLowerCase().slice(1)}
+                {entry.type.charAt(0) + entry.type.toLocaleLowerCase().slice(1)}
               </span>{' '}
               {dayjs(Number(entry.created_at)).fromNow()}
               <strong> · </strong>

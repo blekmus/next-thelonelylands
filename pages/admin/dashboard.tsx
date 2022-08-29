@@ -20,7 +20,7 @@ const AdminDashboardPage: NextPage = () => {
     return (
       <>
         <Head>
-          <title>Dashboard (Admin) - The Lonely Lands</title>
+          <title>Dashboard - Admin | The Lonely Lands</title>
         </Head>
 
         <AdminBase content="dashboard">

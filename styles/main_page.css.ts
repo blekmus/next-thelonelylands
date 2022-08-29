@@ -121,9 +121,11 @@ const styles = {
   entry_list: css({}),
 
   link_text: css({
-    marginBottom: '50px',
+    paddingBottom: '40px',
     fontWeight: 700,
     textAlign: 'center',
+    color: 'var(--dark-text)',
+    fontSize: '15px',
   }),
 }
 

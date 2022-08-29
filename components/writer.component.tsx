@@ -67,9 +67,7 @@ const Writer: NextPage = () => {
   useEffect(() => {
     if (viewType === 'ALL') {
       setCurrentVisibleData(
-        currentData
-          .filter((entry) => ['POEM', 'ESSAY', 'STORY'].includes(entry.type))
-          .slice(0, 5)
+        currentData.slice(0, 5)
       )
       return
     }
@@ -80,8 +78,15 @@ const Writer: NextPage = () => {
   }, [currentData, viewType])
 
   const loadMore = () => {
+    if (viewType === 'ALL') {
+      setCurrentVisibleData(currentData.slice(0, currentVisibleData.length + 5))
+      return
+    }
+
     setCurrentVisibleData(
-      currentVisibleData.slice(0, currentVisibleData.length + 5)
+      currentData
+        .filter((entry) => entry.type === viewType)
+        .slice(0, currentVisibleData.length + 5)
     )
   }
 
@@ -90,17 +95,6 @@ const Writer: NextPage = () => {
       <TopBar />
 
       <div css={styles.header}>
-        {/* <div css={styles.picture}>
-          <Image
-            src={AnilistPfp}
-            alt="profile"
-            width="300px"
-            height="300px"
-            layout="responsive"
-            css={styles.profile_pic}
-          />
-        </div> */}
-
         <div>
           <h1 css={styles.title}>Writer</h1>
 

@@ -64,33 +64,27 @@ const Cinephile: NextPage = () => {
   useEffect(() => {
     if (viewType === 'ALL') {
       setCurrentVisibleData(
-        currentData
-          .filter((entry) => entry.type === 'SERIES' || entry.type === 'MOVIE')
-          .slice(0, 5)
+        currentData.slice(0, 5)
       )
       return
     }
 
-    if (viewType === 'SERIES') {
-      setCurrentVisibleData(
-        currentData.filter((entry) => entry.type === 'SERIES').slice(0, 5)
-      )
-      return
-    }
-
-    if (viewType === 'MOVIE') {
-      setCurrentVisibleData(
-        currentData.filter((entry) => entry.type === 'MOVIE').slice(0, 5)
-      )
-      return
-    }
+    setCurrentVisibleData(
+      currentData.filter((entry) => entry.type === viewType).slice(0, 5)
+    )
   }, [currentData, viewType])
 
   const loadMore = () => {
+    if (viewType === 'ALL') {
+      setCurrentVisibleData(currentData.slice(0, currentVisibleData.length + 5))
+      return
+    }
+
     setCurrentVisibleData(
-      currentVisibleData.slice(0, currentVisibleData.length + 5)
-    )
-  }
+      currentData
+        .filter((entry) => entry.type === viewType)
+        .slice(0, currentVisibleData.length + 5)
+    )  }
 
   return (
     <div css={styles.base}>

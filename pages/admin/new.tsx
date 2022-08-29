@@ -22,7 +22,7 @@ const AdminNewPage: NextPage = () => {
     return (
       <>
         <Head>
-          <title>New Entry (Admin) - The Lonely Lands</title>
+          <title>New Entry - Admin | The Lonely Lands</title>
         </Head>
         <ApolloProvider client={client}>
           <AdminBase content="new">
