@@ -2,8 +2,9 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import {
   startNavigationProgress,
-  resetNavigationProgress,
+  setNavigationProgress,
   NavigationProgress,
+  resetNavigationProgress,
 } from '@mantine/nprogress'
 
 export function RouterTransition() {
@@ -12,16 +13,22 @@ export function RouterTransition() {
   useEffect(() => {
     const handleStart = (url: string) =>
       url !== router.asPath && startNavigationProgress()
-    const handleComplete = () => resetNavigationProgress()
+    const handleComplete = () => {
+      setNavigationProgress(100)
+      resetNavigationProgress()
+    }
+    const handleError = () => {
+      resetNavigationProgress()
+    }
 
     router.events.on('routeChangeStart', handleStart)
     router.events.on('routeChangeComplete', handleComplete)
-    router.events.on('routeChangeError', handleComplete)
+    router.events.on('routeChangeError', handleError)
 
     return () => {
       router.events.off('routeChangeStart', handleStart)
       router.events.off('routeChangeComplete', handleComplete)
-      router.events.off('routeChangeError', handleComplete)
+      router.events.off('routeChangeError', handleError)
     }
 
   }, [router.asPath, router.events])
