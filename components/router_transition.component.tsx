@@ -11,11 +11,17 @@ export function RouterTransition() {
   const router = useRouter()
 
   useEffect(() => {
-    const handleStart = (url: string) =>
-      url !== router.asPath && startNavigationProgress()
+    const handleStart = (url: string) => {
+      if (url !== router.asPath) {
+        resetNavigationProgress()
+        startNavigationProgress()
+      }
+    }
+    
     const handleComplete = () => {
       setNavigationProgress(100)
     }
+
     const handleError = () => {
       resetNavigationProgress()
     }
