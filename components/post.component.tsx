@@ -74,7 +74,11 @@ const styles = {
   }),
 
   header: css({
-    marginBottom: '20px',
+    marginBottom: '40px',
+
+    [mediaQuery[0]]: {
+      marginBottom: '20px',
+    }
   }),
 
   header_title: css({

@@ -4,6 +4,7 @@ import { SessionProvider } from "next-auth/react";
 import { MantineProvider } from '@mantine/core'
 import type { MantineThemeOverride } from '@mantine/core'
 import { NotificationsProvider } from '@mantine/notifications'
+import { RouterTransition } from '../components/router_transition.component'
 
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
@@ -23,6 +24,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     <SessionProvider session={session}>
       <MantineProvider theme={theme} withGlobalStyles withNormalizeCSS>
         <NotificationsProvider>
+          <RouterTransition />
           <Component {...pageProps} />
         </NotificationsProvider>
       </MantineProvider>

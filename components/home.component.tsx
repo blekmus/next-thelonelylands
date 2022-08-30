@@ -9,6 +9,7 @@ import HomeContact from './home.contact.component'
 import HomeLinks from './home.links.component'
 import HomeAccordian from './home.accordian.component'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 interface Entry {
   id: string
@@ -136,6 +137,12 @@ const styles = {
 }
 
 const Home: NextPage<Props> = ({ entries }) => {
+  const [entryList, setEntryList] = useState<Entry[]>([])
+
+  useEffect(() => {
+    setEntryList(entries)
+  }, [entries])
+
   return (
     <div css={styles.base}>
       <TopBar />
@@ -258,7 +265,7 @@ const Home: NextPage<Props> = ({ entries }) => {
         <div css={styles.content_recent}>
           <p css={styles.content_text}>Recent Posts</p>
           <div>
-            {entries.map((entry) => (
+            {entryList.map((entry) => (
               <Article
                 key={entry.id}
                 cover={entry.cover}

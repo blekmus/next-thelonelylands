@@ -43,7 +43,6 @@ const styles = {
     display: 'flex',
 
     [mediaQuery[2]]: {
-      // display: 'block',
       transition: 'none',
       height: '190px',
     },
@@ -91,7 +90,7 @@ const HomeAccordian: NextPage = () => {
       </p>
       <div css={styles.accordian}>
         <Link href="/writer">
-          <a css={styles.accordian_item}>
+          <div css={styles.accordian_item}>
             <div css={styles.accordian_content}>
               <h2>Writer</h2>
               <p>
@@ -105,11 +104,11 @@ const HomeAccordian: NextPage = () => {
               alt="accordian image"
               loading="eager"
             />
-          </a>
+          </div>
         </Link>
 
         <Link href="/enthusiast">
-          <a css={styles.accordian_item}>
+          <div css={styles.accordian_item}>
             <div css={styles.accordian_content}>
               <h2>Enthusiast</h2>
               <p>
@@ -123,11 +122,11 @@ const HomeAccordian: NextPage = () => {
               alt="accordian image"
               loading="eager"
             />
-          </a>
+          </div>
         </Link>
 
         <Link href="/cinephile">
-          <a css={styles.accordian_item}>
+          <div css={styles.accordian_item}>
             <div css={styles.accordian_content}>
               <h2>Cinephile</h2>
               <p>
@@ -140,11 +139,11 @@ const HomeAccordian: NextPage = () => {
               alt="accordian image"
               loading="eager"
             />
-          </a>
+          </div>
         </Link>
 
         <Link href="/otaku">
-          <a css={styles.accordian_item}>
+          <div css={styles.accordian_item}>
             <div css={styles.accordian_content}>
               <h2>Otaku</h2>
               <p>
@@ -158,7 +157,7 @@ const HomeAccordian: NextPage = () => {
               alt="accordian image"
               loading="eager"
             />
-          </a>
+          </div>
         </Link>
       </div>
     </div>
