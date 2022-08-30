@@ -15,7 +15,6 @@ export function RouterTransition() {
       url !== router.asPath && startNavigationProgress()
     const handleComplete = () => {
       setNavigationProgress(100)
-      resetNavigationProgress()
     }
     const handleError = () => {
       resetNavigationProgress()
@@ -33,5 +32,5 @@ export function RouterTransition() {
 
   }, [router.asPath, router.events])
 
-  return <NavigationProgress />
+  return <NavigationProgress color="gray" />
 }
