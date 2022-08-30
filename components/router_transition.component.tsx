@@ -23,7 +23,8 @@ export function RouterTransition() {
       router.events.off('routeChangeComplete', handleComplete)
       router.events.off('routeChangeError', handleComplete)
     }
-  }, [router.asPath])
+
+  }, [router.asPath, router.events])
 
   return <NavigationProgress />
 }
