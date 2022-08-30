@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import { css } from '@emotion/react'
 import mediaQuery from '../lib/mediaQuery'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import ArchiveChronological from './archive.chronological.component'
 import TopBar from './top_bar.component'
@@ -106,53 +106,59 @@ const styles = {
 const Archive: NextPage<Props> = ({ entries }) => {
   const [type, setType] = useState<'ALPHA' | 'CHRONO' | 'CATE'>('CHRONO')
 
+  const [entryList, setEntryList] = useState<Entry[]>([])
+
+  useEffect(() => {
+    setEntryList(entries)
+  }, [entries])
+
   return (
-      <div css={styles.base}>
-        <TopBar />
+    <div css={styles.base}>
+      <TopBar />
 
-        <div css={styles.cont}>
-          <header css={styles.header}>
-            <h1 css={styles.header_title}>Archive</h1>
-          </header>
+      <div css={styles.cont}>
+        <header css={styles.header}>
+          <h1 css={styles.header_title}>Archive</h1>
+        </header>
 
-          <nav css={styles.content_menu}>
-            <button
-              css={[
-                styles.content_menu_btn,
-                type === 'CHRONO' ? styles.content_menu_btn_active : null,
-              ]}
-              onClick={() => setType('CHRONO')}
-            >
-              <p>Chronological</p>
-            </button>
-            <button
-              css={[
-                styles.content_menu_btn,
-                type === 'ALPHA' ? styles.content_menu_btn_active : null,
-              ]}
-              onClick={() => setType('ALPHA')}
-            >
-              <p>Alphabetical</p>
-            </button>
+        <nav css={styles.content_menu}>
+          <button
+            css={[
+              styles.content_menu_btn,
+              type === 'CHRONO' ? styles.content_menu_btn_active : null,
+            ]}
+            onClick={() => setType('CHRONO')}
+          >
+            <p>Chronological</p>
+          </button>
+          <button
+            css={[
+              styles.content_menu_btn,
+              type === 'ALPHA' ? styles.content_menu_btn_active : null,
+            ]}
+            onClick={() => setType('ALPHA')}
+          >
+            <p>Alphabetical</p>
+          </button>
 
-            <button
-              css={[
-                styles.content_menu_btn,
-                type === 'CATE' ? styles.content_menu_btn_active : null,
-              ]}
-              onClick={() => setType('CATE')}
-            >
-              <p>Categorical</p>
-            </button>
-          </nav>
+          <button
+            css={[
+              styles.content_menu_btn,
+              type === 'CATE' ? styles.content_menu_btn_active : null,
+            ]}
+            onClick={() => setType('CATE')}
+          >
+            <p>Categorical</p>
+          </button>
+        </nav>
 
-          <div css={styles.content}>
-            {type === 'ALPHA' && <ArchiveAlphabetical entries={entries} />}
-            {type === 'CHRONO' && <ArchiveChronological entries={entries} />}
-            {type === 'CATE' && <ArchiveCategorical entries={entries} />}
-          </div>
+        <div css={styles.content}>
+          {type === 'ALPHA' && <ArchiveAlphabetical entries={entryList} />}
+          {type === 'CHRONO' && <ArchiveChronological entries={entryList} />}
+          {type === 'CATE' && <ArchiveCategorical entries={entryList} />}
         </div>
       </div>
+    </div>
   )
 }
 
