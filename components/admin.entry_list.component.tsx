@@ -345,8 +345,7 @@ const AdminEntryList = () => {
                       {entry.type.charAt(0) +
                         entry.type.toLocaleLowerCase().slice(1)}{' '}
                       <strong> · </strong>{' '}
-                      {entry.status.charAt(0) +
-                        entry.status.toLocaleLowerCase().slice(1)}
+                      {entry.status === 'PUBLISHED' ? 'Published' : <span style={{fontStyle: 'italic'}}>Draft</span>}
                       <strong> · </strong>
                       {
                         entry.notes
@@ -367,9 +366,9 @@ const AdminEntryList = () => {
             <Center mt={20}>
               <Pagination
                 size="lg"
-                siblings={1}
                 page={viewPage}
                 onChange={setViewPage}
+                withControls={false}
                 total={Math.trunc((currentEntries.length - 1) / perPage) + 1}
                 styles={(theme) => ({
                   item: {
