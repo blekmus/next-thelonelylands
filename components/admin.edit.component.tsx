@@ -328,7 +328,7 @@ const AdminEdit = ({ id }: { id: string }) => {
             </Center>
 
             <Center>
-              <Text size="sm">Deleting is permenant</Text>
+              <Text size="sm">Deleting is permanent</Text>
             </Center>
 
             <SimpleGrid spacing={'xl'} cols={2} mt={30}>

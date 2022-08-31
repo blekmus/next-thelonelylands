@@ -191,7 +191,7 @@ const AdminEntryList = () => {
         </Center>
 
         <Center>
-          <Text size="sm">Deleting is permenant</Text>
+          <Text size="sm">Deleting is permanent</Text>
         </Center>
 
         <SimpleGrid spacing={'xl'} cols={2} mt={30}>
@@ -284,9 +284,9 @@ const AdminEntryList = () => {
           <Center mt={20}>
             <Pagination
               size="lg"
-              siblings={1}
               page={viewPage}
               onChange={setViewPage}
+              withControls={false}
               total={Math.trunc((currentComments.length - 1) / perPage) + 1}
               styles={(theme) => ({
                 item: {

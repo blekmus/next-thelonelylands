@@ -313,7 +313,7 @@ const AdminNew = () => {
           </Center>
 
           <Center>
-            <Text size="sm">Resetting is permenant</Text>
+            <Text size="sm">Resetting is permanent</Text>
           </Center>
 
           <SimpleGrid spacing={'xl'} cols={2} mt={30}>
@@ -371,7 +371,11 @@ const AdminNew = () => {
               </Menu.Dropdown>
             </Menu>
 
-            <Button color={'gray'} onClick={handleSaveBtn} loading={saveLoading}>
+            <Button
+              color={'gray'}
+              onClick={handleSaveBtn}
+              loading={saveLoading}
+            >
               <Text>Save</Text>
             </Button>
           </Group>
