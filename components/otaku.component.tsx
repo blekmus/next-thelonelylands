@@ -1,8 +1,8 @@
 import type { NextPage } from 'next'
 
 import TopBar from './top_bar.component'
-import { useEffect, useState } from 'react'
-import { useQuery, useLazyQuery } from '@apollo/client'
+import { useEffect, useMemo, useState } from 'react'
+import { useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Article from './article.component'
 import AnilistFilter from '../lib/anilist-filter'
@@ -21,109 +21,56 @@ interface Entry {
   date: Date | undefined
 }
 
-
-
 const Otaku: NextPage = () => {
   const [format, setFormat] = useState('anime')
-
-  const [totalWords, setTotalWords] = useState({
-    anime: 0,
-    manga: 0,
-    reviews: 0,
-  })
-
-  const [totalEntries, setTotalEntries] = useState({
-    anime: 0,
-    manga: 0,
-    reviews: 0,
-  })
 
   const [animeData, setAnimeData] = useState<Entry[]>([])
   const [mangaData, setMangaData] = useState<Entry[]>([])
   const [reviewData, setReviewData] = useState<Entry[]>([])
   const [currentData, setCurrentData] = useState<Entry[]>([])
 
-  const [getManga] = useLazyQuery(queries.MANGAQUERY, {
-    onCompleted: (data) => {
-      const filteredData = AnilistFilter.filterMangaData(data)
-      setMangaData(filteredData)
-
-      const words = filteredData.reduce((acc, entry) => {
-        acc = acc + entry.note_words
-        return acc
-      }, 0)
-
-      setTotalWords({ ...totalWords, manga: words })
-
-      setTotalEntries({
-        ...totalEntries,
-        manga: filteredData.length,
-      })
-    },
-    onError: () => {
-      showNotification({
-        disallowClose: true,
-        message: (
-          <Text weight={700} size="md">
-            Failed to load entries
-          </Text>
-        ),
-        color: 'red',
-        icon: <IconX />,
-      })
-    },
-  })
-
-  const [getReviews] = useLazyQuery(queries.REVIEWQUERY, {
-    onCompleted: (data) => {
-      const filteredData = AnilistFilter.filterReviewData(data)
-      setReviewData(filteredData)
-
-      const words = filteredData.reduce((acc, entry) => {
-        acc = acc + entry.note_words
-        return acc
-      }, 0)
-
-      setTotalWords({ ...totalWords, reviews: words })
-
-      setTotalEntries({
-        ...totalEntries,
-        reviews: filteredData.length,
-      })
-    },
-    onError: () => {
-      showNotification({
-        disallowClose: true,
-        message: (
-          <Text weight={700} size="md">
-            Failed to load entries
-          </Text>
-        ),
-        color: 'red',
-        icon: <IconX />,
-      })
-    },
-  })
-
   useQuery(queries.ANIMEQUERY, {
     onCompleted: (data) => {
       const filteredData = AnilistFilter.filterAnimeData(data)
       setAnimeData(filteredData)
-
-      const words = filteredData.reduce((acc, entry) => {
-        acc = acc + entry.note_words
-        return acc
-      }, 0)
-
-      setTotalWords({ ...totalWords, anime: words })
-
-      setTotalEntries({
-        ...totalEntries,
-        anime: filteredData.length,
+    },
+    onError: () => {
+      showNotification({
+        disallowClose: true,
+        message: (
+          <Text weight={700} size="md">
+            Failed to load entries
+          </Text>
+        ),
+        color: 'red',
+        icon: <IconX />,
       })
+    },
+  })
 
-      getManga()
-      getReviews()
+  useQuery(queries.MANGAQUERY, {
+    onCompleted: (data) => {
+      const filteredData = AnilistFilter.filterMangaData(data)
+      setMangaData(filteredData)
+    },
+    onError: () => {
+      showNotification({
+        disallowClose: true,
+        message: (
+          <Text weight={700} size="md">
+            Failed to load entries
+          </Text>
+        ),
+        color: 'red',
+        icon: <IconX />,
+      })
+    },
+  })
+
+  useQuery(queries.REVIEWQUERY, {
+    onCompleted: (data) => {
+      const filteredData = AnilistFilter.filterReviewData(data)
+      setReviewData(filteredData)
     },
     onError: () => {
       showNotification({
@@ -152,6 +99,33 @@ const Otaku: NextPage = () => {
       setCurrentData(reviewData.slice(0, 5))
     }
   }, [format, animeData, mangaData, reviewData])
+
+  const totalWords = useMemo(() => {
+    const animeWords = animeData.reduce((acc, entry) => {
+      acc = acc + entry.note_words
+      return acc
+    }, 0)
+
+    const mangaWords = mangaData.reduce((acc, entry) => {
+      acc = acc + entry.note_words
+      return acc
+    }, 0)
+
+    const reviewWords = reviewData.reduce((acc, entry) => {
+      acc = acc + entry.note_words
+      return acc
+    }, 0)
+
+    return animeWords + mangaWords + reviewWords
+  }, [animeData, mangaData, reviewData])
+
+  const totalEntries = useMemo(() => {
+    const animeEntries = animeData.length
+    const mangaEntries = mangaData.length
+    const reviewEntries = reviewData.length
+
+    return animeEntries + mangaEntries + reviewEntries
+  }, [animeData, mangaData, reviewData])
 
   const loadMore = () => {
     if (format === 'anime') {
@@ -193,11 +167,7 @@ const Otaku: NextPage = () => {
             </a>
             . <br />
             <br />
-            {totalWords.anime +
-              totalWords.manga +
-              totalWords.reviews} words <strong>·</strong>{' '}
-            {totalEntries.anime + totalEntries.manga + totalEntries.reviews}{' '}
-            entries
+            {totalWords} words <strong>·</strong> {totalEntries} entries
           </p>
 
           <div css={styles.social}>
