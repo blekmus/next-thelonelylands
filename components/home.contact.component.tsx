@@ -199,13 +199,13 @@ const HomeContact: NextPage = () => {
             mb={20}
           />
 
-          <div id="captcha-placeholder" style={{display: 'none'}}>
+          <div id="captcha-placeholder" style={{ display: 'none' }}>
             <ReCAPTCHA
               ref={recaptchaRef}
               size="invisible"
-              sitekey="6Le6HHghAAAAAEZFpUolmQBOLJO-84Q0p-qcW7rH"
+              sitekey="6Lfb5M0hAAAAAA-3aDqeeFTAR60p-BXmXz15Eg5P"
               badge="inline"
-              theme='dark'
+              theme="dark"
             />
           </div>
 
