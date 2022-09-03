@@ -88,7 +88,7 @@ export const resolvers = {
       if (!context.session)
         throw new ForbiddenError("Hm. What do you think you're doing?")
 
-      let data = args.content
+      const data = args.content
       data.updated_at = String(new Date().getTime())
 
       try {
@@ -108,7 +108,7 @@ export const resolvers = {
       if (!context.session)
         throw new ForbiddenError("Hm. What do you think you're doing?")
 
-      let data = args.content
+      const data = args.content
       data.updated_at = String(new Date().getTime())
 
       try {
@@ -145,7 +145,7 @@ export const resolvers = {
     },
 
     async createComment(_: any, args: any, context: any) {
-      let data = args.content
+      const data = args.content
 
       const captchaResult = await (
         await fetch('https://www.google.com/recaptcha/api/siteverify', {
@@ -153,7 +153,7 @@ export const resolvers = {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
-          body: `secret=6Le6HHghAAAAAN-Q_DJRnkNNvaLBUp9pxjn6NCLl&response=${data.token}`,
+          body: `secret=${process.env.RECAPTCHA_SECRET}&response=${data.token}`,
         })
       ).json()
 
