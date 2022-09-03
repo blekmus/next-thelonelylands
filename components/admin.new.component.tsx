@@ -496,7 +496,7 @@ const AdminNew = () => {
 
             <Textarea
               ref={entryContentRef}
-              onChange={(e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+              onChange={(e) => {
                 setEntryContent(e.target.value)
               }}
               placeholder="Content"
