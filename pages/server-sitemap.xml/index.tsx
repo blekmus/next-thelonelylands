@@ -19,9 +19,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   })
 
   const fields = entries.map((entry) => ({
-    loc: `${process.env.VERCEL_URL || 'http://localhost:3000'}/post/${
-      entry.id
-    }`,
+    loc: `${
+      'https://' + process.env.VERCEL_URL || 'http://localhost:3000'
+    }/post/${entry.id}`,
     lastmod: dayjs(Number(entry.updated_at)).toISOString(),
   }))
 
