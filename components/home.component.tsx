@@ -178,9 +178,7 @@ const Home: NextPage<Props> = ({ entries }) => {
             Visit the{' '}
             <Link href="/archive">
               <a
-                href="/archive"
                 style={{ borderBottom: 'solid var(--light-text) 1px' }}
-                target="_blank"
               >
                 <strong>Archive</strong>
               </a>
