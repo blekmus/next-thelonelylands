@@ -2,10 +2,10 @@ import { ApolloServer } from 'apollo-server-micro'
 import typeDefs from '../../graphql/schema'
 import { resolvers } from '../../graphql/resolvers'
 import Cors from 'micro-cors'
-import {
-  ApolloServerPluginLandingPageLocalDefault,
-  // ApolloServerPluginLandingPageGraphQLPlayground,
-} from 'apollo-server-core'
+// import {
+//   ApolloServerPluginLandingPageLocalDefault,
+//   ApolloServerPluginLandingPageGraphQLPlayground,
+// } from 'apollo-server-core'
 import { MicroRequest } from 'apollo-server-micro/dist/types'
 import { getSession } from 'next-auth/react'
 import prisma from '../../lib/prisma'
@@ -27,7 +27,7 @@ const apolloServer = new ApolloServer({
     //     'request.credentials': 'include',
     //   },
     // }),
-    ApolloServerPluginLandingPageLocalDefault({ embed: true }),
+    // ApolloServerPluginLandingPageLocalDefault({ embed: true }),
   ],
 })
 
