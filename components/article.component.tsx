@@ -16,6 +16,7 @@ interface Props {
   type?: string | null
   cover?: string
   link?: string
+  link_target?: string
 }
 
 const styles = {
@@ -150,7 +151,8 @@ const Article: NextPage<Props> = ({
   note_words,
   date,
   type,
-  link
+  link,
+  link_target
 }) => {
   let coverSection
   const entryEl = useRef<HTMLDivElement>(null)
@@ -183,8 +185,13 @@ const Article: NextPage<Props> = ({
   // header section
   const headerSection = link ? (
     <header css={styles.entry_title_link}>
-      <Link href={`/post/${link}`}>
-        <a href={`/post/${link}`} title="Fullpage">
+      <Link href={`/post/${link}`} passHref>
+        <a
+          href={`/post/${link}`}
+          title="Fullpage"
+          target={link_target || '_self'}
+          rel="noopener noreferrer"
+        >
           <h2>{title}</h2>
         </a>
       </Link>
