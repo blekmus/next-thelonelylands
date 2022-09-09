@@ -345,7 +345,11 @@ const AdminEntryList = () => {
                       {entry.type.charAt(0) +
                         entry.type.toLocaleLowerCase().slice(1)}{' '}
                       <strong> · </strong>{' '}
-                      {entry.status === 'PUBLISHED' ? 'Published' : <span style={{fontStyle: 'italic'}}>Draft</span>}
+                      {entry.status === 'PUBLISHED' ? (
+                        'Published'
+                      ) : (
+                        <span style={{ fontStyle: 'italic' }}>Draft</span>
+                      )}
                       <strong> · </strong>
                       {
                         entry.notes
@@ -411,8 +415,9 @@ const AdminEntryList = () => {
               <Article
                 title={selectedEntry.title}
                 notes={selectedEntry.notes}
-                // date={Number(selectedEntry.created_at)}
                 cover={selectedEntry.cover}
+                link={selectedEntry.id}
+                link_target="_blank"
               />
             )}
           </Container>

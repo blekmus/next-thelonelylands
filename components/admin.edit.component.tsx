@@ -33,12 +33,18 @@ import { useRouter } from 'next/router'
 import { showNotification } from '@mantine/notifications'
 import mediaQuery from '../lib/mediaQuery'
 import Head from 'next/head'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+
+dayjs.extend(relativeTime)
+
 
 interface Entry {
   title: string
   notes: string
   cover: string
   created_at: string
+  updated_at: string
   type: 'MOVIE' | 'SERIES' | 'POEM' | 'ESSAY' | 'STORY' | 'OTHER' | string
   status: 'PUBLISHED' | 'DRAFT'
 }
@@ -50,6 +56,7 @@ const QUERY = gql`
       title
       notes
       created_at
+      updated_at
       type
       cover
       status
@@ -165,6 +172,7 @@ const AdminEdit = ({ id }: { id: string }) => {
 
   const [saveType, setSaveType] = useState<'DRAFT' | 'PUBLISHED'>('DRAFT')
 
+  const [entryLastUpdated, setEntryLastUpdated] = useState<string>()
   const [entryCover, setEntryCover] = useState<string | null>(null)
   const [entryTitle, setEntryTitle] = useState<string | null>(null)
   const [entryContent, setEntryContent] = useState<string | null>(null)
@@ -182,6 +190,7 @@ const AdminEdit = ({ id }: { id: string }) => {
       setEntryType(data.entry.type)
       setEntryContent(data.entry.notes)
       setSaveType(data.entry.status)
+      setEntryLastUpdated(data.entry.updated_at)
     },
     onError: () => {
       router.push('/admin/dashboard')
@@ -439,6 +448,12 @@ const AdminEdit = ({ id }: { id: string }) => {
                 </Text>
               </div>
             </Dropzone> */}
+
+              <Text size="sm" mb={20} weight={600}>
+                Last updated:{' '}
+                {dayjs(Number(entryLastUpdated)).format('D MMM, YYYY')}{' '}
+                ({dayjs(Number(entryLastUpdated)).fromNow()})
+              </Text>
 
               <Input
                 icon={<IconHeading size={18} />}

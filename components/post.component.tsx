@@ -149,9 +149,9 @@ const Post: NextPage<Props> = ({ entry }) => {
               <span css={styles.header_type}>
                 {entry.type.charAt(0) + entry.type.toLocaleLowerCase().slice(1)}
               </span>{' '}
-              {dayjs(Number(entry.created_at)).fromNow()}
+              Published {dayjs(Number(entry.created_at)).format('D MMM, YYYY')}
               <strong> · </strong>
-              {dayjs(Number(entry.created_at)).format('D MMMM, YYYY')}
+              Updated {dayjs(Number(entry.updated_at)).format('D MMM, YYYY')}
               <strong> · </strong>
               {
                 entry.notes.split(' ').filter((item) => item.trim() !== '')

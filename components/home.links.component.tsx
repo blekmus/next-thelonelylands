@@ -158,21 +158,21 @@ const HomeLinks: NextPage = () => {
       <div css={styles.links}>
         <LinkCard
           title="Time Pieces"
-          description="Don't you just love it when things are needlessly complicated? It's like a work of art! A collection of automatic, mechanical and quartz watches I appreciate."
+          description="Don't you just love it when things are needlessly complicated? It's like a work of art! A collection of watches I appreciate."
           image={LinkWatch}
           url="https://dinil.notion.site/087bf556c2aa48d58fe97183b40b3ea5?v=f29ad37abc07438f939e7c84b8758dc0"
         />
 
         <LinkCard
           title="Alcohol"
-          description="I've always had an interest in documenting what I drink. So in way of my love for spirits, I've put together a catalogue of drinks that I am satisfied enough to tell the tales of."
+          description="I've always had an interest in documenting what I drink. A catalogue of drinks that I am satisfied enough to tell the tales of."
           image={LinkAlcohol}
           url="https://dinil.notion.site/192adf11e1f942299d15f14817781233?v=11f81b80090146c299aa02a9c9c7ba69"
         />
 
         <LinkCard
           title="AniTracker"
-          description="A site based on Anilist's API and design. This is what I show my peers when they ask me what kind of anime or manga I consume."
+          description="A site based on Anilist's API and design. This is what I show my peers when they ask me what kind of anime and manga I consume."
           image={LinkAnitracker}
           url="https://anime.thelonelylands.com"
         />
@@ -186,14 +186,14 @@ const HomeLinks: NextPage = () => {
 
         <LinkCard
           title="Books"
-          description="I read books occasionally, with more emphasis on novels than non-fiction. This includes nearly all of the books I've read so far, excluding light novels."
+          description="I read books occasionally, with more emphasis on novels than non-fiction. A list of all of the books I've read."
           image={LinkBooks}
           url="https://www.libib.com/u/blekmus"
         />
 
         <LinkCard
           title="Podcasts"
-          description="There was a time when I was burned out by all of the movies and shows available. I was bored and desperately wanted something new. Audio dramas revitalized me."
+          description="There was a time when I was burned out by everything. I was bored and desperately wanted something new. Audio dramas revitalized me."
           image={LinkPodcasts}
           url="https://dinil.notion.site/5542c932c46146138666a1617f2eb177?v=936ae363a7854116b4f927dcf507dc6c"
         />
