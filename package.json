@@ -19,7 +19,7 @@
     "@mantine/hooks": "^5.2.5",
     "@mantine/notifications": "^5.2.5",
     "@mantine/nprogress": "^5.2.5",
-    "@next-auth/prisma-adapter": "^1.0.3",
+    "@next-auth/prisma-adapter": "^1.0.4",
     "@prisma/client": "^4.3.1",
     "@tabler/icons": "^1.78.1",
     "apollo-server-micro": "^3.10.0",
