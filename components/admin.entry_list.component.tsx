@@ -12,14 +12,10 @@ import {
   Stack,
   Paper,
   Pagination,
-  Center
+  Center,
 } from '@mantine/core'
 import { useEffect, useState } from 'react'
-import {
-  IconNorthStar,
-  IconX,
-  IconEye
-} from '@tabler/icons'
+import { IconNorthStar, IconX, IconEye } from '@tabler/icons'
 import { gql } from '@apollo/client'
 import { useQuery } from '@apollo/client'
 import dayjs from 'dayjs'
@@ -27,7 +23,6 @@ import Article from './article.component'
 import { useRouter } from 'next/router'
 import { showNotification } from '@mantine/notifications'
 import mediaQuery from '../lib/mediaQuery'
-
 
 const useStyles = createStyles((theme) => ({
   topbar: {
@@ -117,17 +112,18 @@ interface Entry {
   cover: string
   created_at: string
   updated_at: string
-  type: "MOVIE" | "SERIES" | "POEM" | "ESSAY" | "STORY" | 'OTHER'
-  status: "PUBLISHED" | "DRAFT"
+  type: 'MOVIE' | 'SERIES' | 'POEM' | 'ESSAY' | 'STORY' | 'OTHER'
+  status: 'PUBLISHED' | 'DRAFT'
 }
-
 
 const AdminEntryList = () => {
   const router = useRouter()
 
   const perPage = 5
   const [viewPage, setViewPage] = useState<number>(1)
-  const [viewStatus, setViewStatus] = useState<'ALL' | 'PUBLISHED' | 'DRAFT' | string | null>('ALL')
+  const [viewStatus, setViewStatus] = useState<
+    'ALL' | 'PUBLISHED' | 'DRAFT' | string | null
+  >('ALL')
   const [viewType, setViewType] = useState<string | null>('ALL')
   // const [viewQuery, setViewQuery] = useState<string>('')
 
@@ -135,7 +131,9 @@ const AdminEntryList = () => {
 
   const [allEntries, setAllEntries] = useState<Entry[]>([])
   const [currentEntries, setCurrentEntries] = useState<Entry[]>([])
-  const [currentVisibleEntries, setCurrentVisibleEntries] = useState<Entry[]>([])
+  const [currentVisibleEntries, setCurrentVisibleEntries] = useState<Entry[]>(
+    []
+  )
   const [selectedEntryId, setSelectedEntryId] = useState<string>()
   const [selectedEntry, setSelectedEntry] = useState<Entry>()
 
@@ -156,7 +154,6 @@ const AdminEntryList = () => {
         color: 'red',
         icon: <IconX />,
       })
-
     },
   })
 
@@ -166,8 +163,10 @@ const AdminEntryList = () => {
     if (!selectedEntryId) {
       return
     }
-    
-    const selectedEntry = allEntries.filter((entry) => entry.id === selectedEntryId)
+
+    const selectedEntry = allEntries.filter(
+      (entry) => entry.id === selectedEntryId
+    )
     setSelectedEntry(selectedEntry[0])
   }, [selectedEntryId, allEntries])
 
@@ -184,13 +183,16 @@ const AdminEntryList = () => {
       entries = entries.filter((entry) => entry.status === viewStatus)
     }
 
-    // filter by viewQuery
-
-
+    setViewPage(1)
     setCurrentEntries(entries)
-    setCurrentVisibleEntries(entries.slice((viewPage - 1) * perPage, viewPage * perPage))
+    setCurrentVisibleEntries(entries.slice(0, 1 * perPage))
+  }, [allEntries, viewType, viewStatus])
 
-  }, [allEntries, viewType, viewStatus, viewPage])
+  useEffect(() => {
+    setCurrentVisibleEntries(
+      currentEntries.slice((viewPage - 1) * perPage, viewPage * perPage)
+    )
+  }, [viewPage, currentEntries])
 
   return (
     <div style={{ minHeight: '100%' }}>

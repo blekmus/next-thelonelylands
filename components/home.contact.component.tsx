@@ -63,8 +63,6 @@ const HomeContact: NextPage = () => {
   })
 
   const recaptchaRef = useRef<ReCAPTCHA>(null)
-
-  // const { executeRecaptcha } = useGoogleReCaptcha()
   const [submitLoading, setSubmitLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
@@ -73,7 +71,8 @@ const HomeContact: NextPage = () => {
       setSubmitLoading(false)
       setSubmitted(true)
     },
-    onError: () => {
+    onError: (e) => {
+      console.log(e)
       setSubmitLoading(false)
       showNotification({
         disallowClose: true,
