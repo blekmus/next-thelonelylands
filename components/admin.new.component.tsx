@@ -16,7 +16,7 @@ import {
   Center,
 } from '@mantine/core'
 import { DatePicker } from '@mantine/dates'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import {
   IconCalendar,
   IconNorthStar,
@@ -143,53 +143,53 @@ const AdminNew = () => {
 
   const [saveType, setSaveType] = useState<'DRAFT' | 'PUBLISHED'>('DRAFT')
 
-  const [entryCoverLocal, setEntryCoverLocal] = useLocalStorage({
+  const [entryCover, setEntryCover] = useLocalStorage({
     key: 'new-entry-cover',
     defaultValue: ''
   })
-  const [entryTitleLocal, setEntryTitleLocal] = useLocalStorage({
+  const [entryTitle, setEntryTitle] = useLocalStorage({
     key: 'new-entry-title',
     defaultValue: ''
   })
-  const [entryContentLocal, setEntryContentLocal] = useLocalStorage({
+  const [entryContent, setEntryContent] = useLocalStorage({
     key: 'new-entry-content',
     defaultValue: ''
   })
-  const [entryDateLocal, setEntryDateLocal] = useLocalStorage<
+  const [entryDate, setEntryDate] = useLocalStorage<
     number
   >({
     key: 'new-entry-date',
     defaultValue: new Date().getTime(),
   })
-  const [entryTypeLocal, setEntryTypeLocal] = useLocalStorage({ key: 'new-entry-type' })
+  const [entryType, setEntryType] = useLocalStorage({ key: 'new-entry-type' })
 
 
-  const [entryCover, setEntryCover] = useState<string>('')
-  const [entryTitle, setEntryTitle] = useState<string>('')
-  const [entryContent, setEntryContent] = useState<string>('')
-  const [entryDate, setEntryDate] = useState<number>(
-    new Date().getTime()
-  )
-  const [entryType, setEntryType] = useState<string>('')
+  // const [entryCover, setEntryCover] = useState<string>('')
+  // const [entryTitle, setEntryTitle] = useState<string>('')
+  // const [entryContent, setEntryContent] = useState<string>('')
+  // const [entryDate, setEntryDate] = useState<number>(
+  //   new Date().getTime()
+  // )
+  // const [entryType, setEntryType] = useState<string>('')
 
 
-  useEffect(() => {
-    setEntryCover(entryCoverLocal)
-    setEntryTitle(entryTitleLocal)
-    setEntryContent(entryContentLocal)
-    setEntryDate(entryDateLocal)
-    setEntryType(entryTypeLocal)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  // useEffect(() => {
+  //   setEntryCover(entryCoverLocal)
+  //   setEntryTitle(entryTitleLocal)
+  //   setEntryContent(entryContentLocal)
+  //   setEntryDate(entryDateLocal)
+  //   setEntryType(entryTypeLocal)
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [])
 
-  useEffect(() => {
-    setEntryCoverLocal(entryCover)
-    setEntryTitleLocal(entryTitle)
-    setEntryContentLocal(entryContent)
-    setEntryDateLocal(entryDate)
-    setEntryTypeLocal(entryType)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [entryCover, entryTitle, entryContent, entryDate, entryType])
+  // useEffect(() => {
+  //   setEntryCoverLocal(entryCover)
+  //   setEntryTitleLocal(entryTitle)
+  //   setEntryContentLocal(entryContent)
+  //   setEntryDateLocal(entryDate)
+  //   setEntryTypeLocal(entryType)
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [entryCover, entryTitle, entryContent, entryDate, entryType])
 
 
   const { classes, theme } = useStyles({ saveTypeOpened })
