@@ -4,7 +4,6 @@ import TopBar from './top_bar.component'
 import Image from 'next/image'
 import mediaQuery from '../lib/mediaQuery'
 import Article from './article.component'
-import AnilistPfp from '../public/images/anilist_pfp.jpeg'
 import HomeContact from './home.contact.component'
 import HomeLinks from './home.links.component'
 import HomeAccordian from './home.accordian.component'
@@ -150,7 +149,7 @@ const Home: NextPage<Props> = ({ entries }) => {
       <div css={styles.header}>
         <div css={styles.picture}>
           <Image
-            src={AnilistPfp}
+            src="https://avatars.githubusercontent.com/u/47277246"
             alt="profile"
             width="300px"
             height="300px"
@@ -177,9 +176,7 @@ const Home: NextPage<Props> = ({ entries }) => {
             <br />
             Visit the{' '}
             <Link href="/archive">
-              <a
-                style={{ borderBottom: 'solid var(--light-text) 1px' }}
-              >
+              <a style={{ borderBottom: 'solid var(--light-text) 1px' }}>
                 <strong>Archive</strong>
               </a>
             </Link>{' '}
@@ -251,6 +248,23 @@ const Home: NextPage<Props> = ({ entries }) => {
                 <path d="M19.178 18.464c1.541-1.71 2.484-3.99 2.484-6.466 0-3.885-2.287-7.215-5.568-8.76l-6.089 6.076L19.178 18.464zM12.348 11.071v-.008l-.678-.676 4.788-4.79.679.689L12.348 11.071zM16.211 3.806l.677.682-5.517 5.517-.68-.679L16.211 3.806zM4.89 18.531c1.756 1.92 4.294 3.113 7.11 3.113 1.439 0 2.801-.313 4.027-.876l-6.697-6.68L4.89 18.531z" />
                 <path d="M12,24c6.615,0,12-5.385,12-12S18.615,0,12,0S0,5.385,0,12S5.385,24,12,24z M12,1.211c5.95,0,10.79,4.839,10.79,10.789S17.95,22.79,12,22.79S1.211,17.95,1.211,12S6.05,1.211,12,1.211z" />
                 <path d="M4.276,17.801l5.056-5.055l0.359,0.329l7.245,7.245c0.15-0.082,0.285-0.164,0.42-0.266L9.33,12.05l-4.854,4.855l-0.679-0.679l5.535-5.535l0.359,0.331l8.46,8.437c0.135-0.1,0.255-0.215,0.375-0.316L9.39,10.027l-0.083,0.015l-0.006-0.007L4.227,15.09l-0.679-0.68L15.115,2.849C14.137,2.521,13.095,2.34,12,2.34C6.663,2.337,2.337,6.663,2.337,12C2.337,14.172,3.05,16.178,4.276,17.801z" />
+              </svg>
+            </a>
+
+            <a
+              href="https://stats.fm/blekmus/"
+              target="_blank"
+              rel="noreferrer"
+              title="Spotify: dinilfrod"
+              style={{ display: 'contents' }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 17 17"
+                style={{ width: '29px' }}
+                fill="currentcolor"
+              >
+                <path d="M8 0C3.589 0 0 3.589 0 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8zm3.67 11.548a.499.499 0 0 1-.696.122c-1.875-1.318-4.994-1.391-7.1-.9a.5.5 0 0 1-.226-.975c2.315-.536 5.775-.438 7.9 1.057a.5.5 0 0 1 .122.696zm.976-1.951a.5.5 0 0 1-.698.114C9.773 8.15 7.101 7.762 3.535 8.49a.5.5 0 1 1-.201-.98c3.857-.787 6.779-.347 9.197 1.388a.502.502 0 0 1 .115.699zm.986-2.62a.5.5 0 0 1-.695.133c-2.757-1.871-6.948-1.88-9.661-.92a.5.5 0 1 1-.333-.944C5.894 4.203 10.467 4.225 13.5 6.282a.502.502 0 0 1 .132.695z" />
               </svg>
             </a>
           </div>
