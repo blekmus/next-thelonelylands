@@ -3,7 +3,7 @@ import { css } from '@emotion/react'
 import Image, { StaticImageData } from 'next/image'
 import mediaQuery from '../lib/mediaQuery'
 
-import LinkBooks from '../public/images/books.webp'
+import LinkCommicasa from '../public/images/commicasa.jpg'
 import LinkAlcohol from '../public/images/alcohol.webp'
 import LinkAnitracker from '../public/images/anime.webp'
 import LinkDocs from '../public/images/docs.webp'
@@ -172,9 +172,16 @@ const HomeLinks: NextPage = () => {
 
         <LinkCard
           title="AniTracker"
-          description="A site based on Anilist's API and design. This is what I show my peers when they ask me what kind of anime and manga I consume."
+          description="What anime do I watch? What manga do I read? Find out here"
           image={LinkAnitracker}
           url="https://anime.thelonelylands.com"
+        />
+
+        <LinkCard
+          title="Commicasa"
+          description="Where code, communism and fair development meet."
+          image={LinkCommicasa}
+          url="https://commicasa.thelonelylands.com:13333"
         />
 
         <LinkCard
@@ -182,13 +189,6 @@ const HomeLinks: NextPage = () => {
           description="Basically my Unix and everything techy knowledge base. I made it to help lessen the blow from my retarded memory retention abilities."
           image={LinkDocs}
           url="https://docs.thelonelylands.com"
-        />
-
-        <LinkCard
-          title="Books"
-          description="I read books occasionally, with more emphasis on novels than non-fiction. A list of all of the books I've read."
-          image={LinkBooks}
-          url="https://www.libib.com/u/blekmus"
         />
 
         <LinkCard

@@ -233,27 +233,29 @@ const Otaku: NextPage = () => {
 
       <div css={styles.content}>
         {currentData.length != 0 ? (
-          <div css={styles.entry_list}>
-            <InfiniteScroll
-              dataLength={currentData.length}
-              hasMore={true}
-              next={loadMore}
-              loader={''}
-              scrollThreshold={'100px'}
-            >
-              {currentData.map((entry) => (
-                <Article
-                  key={entry.id}
-                  cover={entry.cover}
-                  title={entry.title}
-                  notes={entry.notes}
-                  note_words={entry.note_words}
-                  date={entry.date}
-                />
-              ))}
-            </InfiniteScroll>
+          <>
+            <div css={styles.entry_list}>
+              <InfiniteScroll
+                dataLength={currentData.length}
+                hasMore={true}
+                next={loadMore}
+                loader={''}
+                scrollThreshold={'100px'}
+              >
+                {currentData.map((entry) => (
+                  <Article
+                    key={entry.id}
+                    cover={entry.cover}
+                    title={entry.title}
+                    notes={entry.notes}
+                    note_words={entry.note_words}
+                    date={entry.date}
+                  />
+                ))}
+              </InfiniteScroll>
+            </div>
             <p css={styles.link_text}>{"You've reached the end"}</p>
-          </div>
+          </>
         ) : (
           <div>
             <p>Syncing data from Anilist...</p>

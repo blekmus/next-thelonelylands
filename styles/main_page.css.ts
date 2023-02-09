@@ -78,7 +78,7 @@ const styles = {
       display: 'flex',
       justifyContent: 'center',
       flexWrap: 'wrap',
-        columnGap: '5px',
+      columnGap: '5px',
       marginBottom: '30px',
     },
   }),
@@ -121,11 +121,16 @@ const styles = {
   entry_list: css({}),
 
   link_text: css({
-    paddingBottom: '40px',
+    paddingTop: '20px',
+    paddingBottom: '20px',
     fontWeight: 700,
     textAlign: 'center',
     color: 'var(--dark-text)',
     fontSize: '15px',
+
+    [mediaQuery[1]]: {
+      paddingBottom: 0,
+    },
   }),
 }
 

@@ -71,12 +71,6 @@ const TopBar: NextPage = () => {
         </p>
 
         <p>
-          <Link href="/enthusiast">
-            <a>Enthusiast</a>
-          </Link>
-        </p>
-
-        <p>
           <Link href="/cinephile">
             <a>Cinephile</a>
           </Link>

@@ -1,47 +1,24 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient();
 
-const entries = [
-  {
-    title: 'This is the title of this',
-    notes:
-      'slkfj salfk saf safsf sd s sd fasd f sfd s fds df sd sdf sd df g sdf fdgh est er d ',
-    created_at: new Date(),
-    updated_at: new Date(),
-    type: 'SERIES',
-    cover: 'https://imgur.com',
-    status: 'published',
-  },
-  {
-    title: 'This of this',
-    notes:
-      'slkfj salfk saf safsf sd s sd fasd f sfd s fds df sd sdf sd df g sdf fdgh est er d ',
-    created_at: new Date(),
-    updated_at: new Date(),
-    type: 'MOVIE',
-    cover: 'https://imgur.com',
-    status: 'draft',
-  },
-  {
-    title: 'This is thefs dfs dsd',
-    notes:
-      'slkfj salfk saf safsf sd s sd fasd f sfd s fds df sd sdf sd df g sdf fdgh est er d ',
-    created_at: new Date(),
-    updated_at: new Date(),
-    type: 'MOVIE',
-    cover: 'https://imgur.com',
-    status: 'published',
-  },
-]
 
 async function main() {
+  // get data.json file data
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const entries = require('./data.json')
+
   console.log(`Start seeding ...`)
+
+  // delete all existing entries
+  await prisma.entry.deleteMany()
+
   for (const u of entries) {
-    const user = await prisma.entry.create({
+    const entry = await prisma.entry.create({
       data: u,
     })
-    console.log(`Created user with id: ${user.id}`)
+    console.log(`Created entry with title: ${entry.title}`)
   }
+
   console.log(`Seeding finished.`)
 }
 

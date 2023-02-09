@@ -37,7 +37,7 @@ const QUERY = gql`
 `
 
 const Writer: NextPage = () => {
-  const [viewType, setViewType] = useState<'ALL' | 'POEM' | 'ESSAY' | 'STORY'>(
+  const [viewType, setViewType] = useState<'ALL' | 'POEM' | 'ESSAY' | 'STORY' | 'OTHER'>(
     'ALL'
   )
   const [currentData, setCurrentData] = useState<Entry[]>([])
@@ -45,7 +45,7 @@ const Writer: NextPage = () => {
 
   useQuery(QUERY, {
     variables: {
-      types: ['POEM', 'ESSAY', 'STORY'],
+      types: ['POEM', 'ESSAY', 'STORY', 'OTHER'],
     },
     onCompleted: (data) => {
       setCurrentData(data.entries)
@@ -149,44 +149,55 @@ const Writer: NextPage = () => {
         >
           <p>Stories</p>
         </button>
+        <button
+          css={[
+            styles.content_menu_btn,
+            viewType === 'OTHER' ? styles.content_menu_btn_active : null,
+          ]}
+          onClick={() => setViewType('OTHER')}
+        >
+          <p>Other</p>
+        </button>
       </nav>
 
       <div css={styles.content}>
         {currentVisibleData.length != 0 ? (
-          <div css={styles.entry_list}>
-            <InfiniteScroll
-              dataLength={currentVisibleData.length}
-              hasMore={true}
-              next={loadMore}
-              loader={''}
-              scrollThreshold={'100px'}
-            >
-              {currentVisibleData.map((entry) => (
-                <Article
-                  key={entry.id}
-                  cover={entry.cover}
-                  title={entry.title}
-                  notes={entry.notes}
-                  link={entry.id}
-                  type={
-                    viewType === 'ALL'
-                      ? entry.type.charAt(0) +
-                        entry.type.toLocaleLowerCase().slice(1)
-                      : null
-                  }
-                  date={Number(entry.created_at)}
-                />
-              ))}
-            </InfiniteScroll>
-          </div>
+          <>
+            <div css={styles.entry_list}>
+              <InfiniteScroll
+                dataLength={currentVisibleData.length}
+                hasMore={true}
+                next={loadMore}
+                loader={''}
+                scrollThreshold={'100px'}
+              >
+                {currentVisibleData.map((entry) => (
+                  <Article
+                    key={entry.id}
+                    cover={entry.cover}
+                    title={entry.title}
+                    notes={entry.notes}
+                    link={entry.id}
+                    type={
+                      viewType === 'ALL'
+                        ? entry.type.charAt(0) +
+                          entry.type.toLocaleLowerCase().slice(1)
+                        : null
+                    }
+                    date={Number(entry.created_at)}
+                  />
+                ))}
+              </InfiniteScroll>
+            </div>
+
+            <p css={styles.link_text}>{"You've reached the end"}</p>
+          </>
         ) : (
           <div>
             <p>Loading...</p>
           </div>
         )}
       </div>
-
-      <p css={styles.link_text}>{"You've reached the end"}</p>
     </div>
   )
 }

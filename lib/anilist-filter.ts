@@ -57,9 +57,19 @@ const filterAnimeData = (data: MediaList): NewEntry[] => {
     (value, index, self) => self.findIndex((v2) => v2.id === value.id) === index
   )
 
-  reduced = reduced.sort((a, b) =>
-    naturalCompare(a.title, b.title, { caseInsensitive: true })
-  )
+  // sort by title
+  // reduced = reduced.sort((a, b) =>
+  //   naturalCompare(a.title, b.title, { caseInsensitive: true })
+  // )
+
+  // sort by date
+  reduced = reduced.sort((a, b) => {
+    if (a.date && b.date) {
+      return b.date.getTime() - a.date.getTime()
+    } else {
+      return 0
+    }
+  })
 
   return reduced
 }
@@ -110,9 +120,14 @@ const filterMangaData = (data: MediaList): NewEntry[] => {
     (value, index, self) => self.findIndex((v2) => v2.id === value.id) === index
   )
 
-  reduced = reduced.sort((a, b) =>
-    naturalCompare(a.title, b.title, { caseInsensitive: true })
-  )
+  // sort by date
+  reduced = reduced.sort((a, b) => {
+    if (a.date && b.date) {
+      return b.date.getTime() - a.date.getTime()
+    } else {
+      return 0
+    }
+  })
 
   return reduced
 }
@@ -143,9 +158,14 @@ const filterReviewData = (data: ReviewList): NewEntry[] => {
     return newEntry
   })
 
-  reduced = reduced.sort((a, b) =>
-    naturalCompare(a.title, b.title, { caseInsensitive: true })
-  )
+  // sort by date
+  reduced = reduced.sort((a, b) => {
+    if (a.date && b.date) {
+      return b.date.getTime() - a.date.getTime()
+    } else {
+      return 0
+    }
+  })
 
   return reduced
 }

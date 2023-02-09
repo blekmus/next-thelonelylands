@@ -160,40 +160,41 @@ const Cinephile: NextPage = () => {
 
       <div css={styles.content}>
         {currentVisibleData.length != 0 ? (
-          <div css={styles.entry_list}>
-            <InfiniteScroll
-              dataLength={currentVisibleData.length}
-              hasMore={true}
-              next={loadMore}
-              loader={''}
-              scrollThreshold={'100px'}
-            >
-              {currentVisibleData.map((entry) => (
-                <Article
-                  key={entry.id}
-                  cover={entry.cover}
-                  title={entry.title}
-                  notes={entry.notes}
-                  link={entry.id}
-                  type={
-                    viewType === 'ALL'
-                      ? entry.type.charAt(0) +
-                        entry.type.toLocaleLowerCase().slice(1)
-                      : null
-                  }
-                  date={Number(entry.created_at)}
-                />
-              ))}
-            </InfiniteScroll>
-          </div>
+          <>
+            <div css={styles.entry_list}>
+              <InfiniteScroll
+                dataLength={currentVisibleData.length}
+                hasMore={true}
+                next={loadMore}
+                loader={''}
+                scrollThreshold={'100px'}
+              >
+                {currentVisibleData.map((entry) => (
+                  <Article
+                    key={entry.id}
+                    cover={entry.cover}
+                    title={entry.title}
+                    notes={entry.notes}
+                    link={entry.id}
+                    type={
+                      viewType === 'ALL'
+                        ? entry.type.charAt(0) +
+                          entry.type.toLocaleLowerCase().slice(1)
+                        : null
+                    }
+                    date={Number(entry.created_at)}
+                  />
+                ))}
+              </InfiniteScroll>
+            </div>
+            <p css={styles.link_text}>{"You've reached the end"}</p>
+          </>
         ) : (
           <div>
             <p>Loading...</p>
           </div>
         )}
       </div>
-
-      <p css={styles.link_text}>{"You've reached the end"}</p>
     </div>
   )
 }
