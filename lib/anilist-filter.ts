@@ -1,7 +1,5 @@
 import { MediaList, ReviewList } from '../types/anilist-filter'
 
-import naturalCompare from 'string-natural-compare'
-
 interface NewEntry {
   title: string
   notes: string

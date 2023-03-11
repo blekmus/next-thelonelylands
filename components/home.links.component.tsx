@@ -181,14 +181,14 @@ const HomeLinks: NextPage = () => {
           title="Commicasa"
           description="Where code, communism and fair development meet."
           image={LinkCommicasa}
-          url="https://commicasa.thelonelylands.com:13333"
+          url="https://commicasa.thelonelylands.com"
         />
 
         <LinkCard
-          title="Docs"
+          title="Archive"
           description="Basically my Unix and everything techy knowledge base. I made it to help lessen the blow from my retarded memory retention abilities."
           image={LinkDocs}
-          url="https://docs.thelonelylands.com"
+          url="https://archive.thelonelylands.com"
         />
 
         <LinkCard
