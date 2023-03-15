@@ -1,21 +1,21 @@
 import type { NextPage } from 'next'
 import { css } from '@emotion/react'
 import mediaQuery from '../lib/mediaQuery'
-import { useForm } from '@mantine/form'
-import { Button, Group, Text, Textarea, TextInput } from '@mantine/core'
-import { useCallback, useRef, useState } from 'react'
-import { gql, useMutation } from '@apollo/client'
-import { showNotification } from '@mantine/notifications'
-import { IconX } from '@tabler/icons'
-import ReCAPTCHA from 'react-google-recaptcha'
+// import { useForm } from '@mantine/form'
+// import { Button, Group, Text, Textarea, TextInput } from '@mantine/core'
+// import { useCallback, useRef, useState } from 'react'
+// import { gql, useMutation } from '@apollo/client'
+// import { showNotification } from '@mantine/notifications'
+// import { IconX } from '@tabler/icons'
+// import ReCAPTCHA from 'react-google-recaptcha'
 
-const CREATE_COMMENT = gql`
-  mutation Mutation($content: CommentCreateContent!) {
-    createComment(content: $content) {
-      id
-    }
-  }
-`
+// const CREATE_COMMENT = gql`
+//   mutation Mutation($content: CommentCreateContent!) {
+//     createComment(content: $content) {
+//       id
+//     }
+//   }
+// `
 
 const styles = {
   contact_text: css({
@@ -55,72 +55,72 @@ const styles = {
 }
 
 const HomeContact: NextPage = () => {
-  const form = useForm({
-    initialValues: {
-      name: '',
-      message: '',
-    },
-  })
+  // const form = useForm({
+  //   initialValues: {
+  //     name: '',
+  //     message: '',
+  //   },
+  // })
 
-  const recaptchaRef = useRef<ReCAPTCHA>(null)
-  const [submitLoading, setSubmitLoading] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
+  // const recaptchaRef = useRef<ReCAPTCHA>(null)
+  // const [submitLoading, setSubmitLoading] = useState(false)
+  // const [submitted, setSubmitted] = useState(false)
 
-  const [createComment] = useMutation(CREATE_COMMENT, {
-    onCompleted: () => {
-      setSubmitLoading(false)
-      setSubmitted(true)
-    },
-    onError: (e) => {
-      console.log(e)
-      setSubmitLoading(false)
-      showNotification({
-        disallowClose: true,
-        message: (
-          <Text weight={700} size="md">
-            Failed to save
-          </Text>
-        ),
-        color: 'red',
-        icon: <IconX />,
-      })
-    },
-  })
+  // const [createComment] = useMutation(CREATE_COMMENT, {
+  //   onCompleted: () => {
+  //     setSubmitLoading(false)
+  //     setSubmitted(true)
+  //   },
+  //   onError: (e) => {
+  //     console.log(e)
+  //     setSubmitLoading(false)
+  //     showNotification({
+  //       disallowClose: true,
+  //       message: (
+  //         <Text weight={700} size="md">
+  //           Failed to save
+  //         </Text>
+  //       ),
+  //       color: 'red',
+  //       icon: <IconX />,
+  //     })
+  //   },
+  // })
 
-  const handleSubmit = useCallback(
-    async ({ name, message }: { name: string; message: string }) => {
-      setSubmitLoading(true)
+  // const handleSubmit = useCallback(
+  //   async ({ name, message }: { name: string; message: string }) => {
+  //     setSubmitLoading(true)
 
-      const token = await recaptchaRef.current?.executeAsync()
+  //     const token = await recaptchaRef.current?.executeAsync()
 
-      if (!token) {
-        showNotification({
-          disallowClose: true,
-          message: (
-            <Text weight={700} size="md">
-              Captcha error. Please refresh page and try again
-            </Text>
-          ),
-          color: 'red',
-          icon: <IconX />,
-        })
+  //     if (!token) {
+  //       showNotification({
+  //         disallowClose: true,
+  //         message: (
+  //           <Text weight={700} size="md">
+  //             Captcha error. Please refresh page and try again
+  //           </Text>
+  //         ),
+  //         color: 'red',
+  //         icon: <IconX />,
+  //       })
 
-        setSubmitLoading(false)
-        return
-      }
+  //       setSubmitLoading(false)
+  //       return
+  //     }
 
-      createComment({
-        variables: {
-          content: {
-            token,
-            name,
-            message,
-          },
-        },
-      })
-    },
-    [createComment]
-  )
+  //     createComment({
+  //       variables: {
+  //         content: {
+  //           token,
+  //           name,
+  //           message,
+  //         },
+  //       },
+  //     })
+  //   },
+  //   [createComment]
+  // )
 
   return (
     <div css={styles.contact}>
@@ -129,8 +129,7 @@ const HomeContact: NextPage = () => {
       <div css={styles.content}>
         <p style={{ lineHeight: 1.6, marginBottom: 20 }}>
           Have any comments, questions or just want to send me something? The
-          easiest way to reach me is by <strong>filling the form</strong> below.
-          You can also send me an email at <strong>dinil[at]pm.me</strong>
+          easiest way to reach me is by sending me an mail at <strong>dinil[at]pm.me</strong>
         </p>
         <p style={{ lineHeight: 1.6, marginBottom: 20 }}>
           If you want to have a chat. Hit me up on{' '}
@@ -146,7 +145,7 @@ const HomeContact: NextPage = () => {
         </p>
       </div>
 
-      <div css={styles.contact_form}>
+      {/* <div css={styles.contact_form}>
         <form onSubmit={form.onSubmit(handleSubmit)}>
           <TextInput
             disabled={submitted ? true : false}
@@ -231,7 +230,7 @@ const HomeContact: NextPage = () => {
             )}
           </Group>
         </form>
-      </div>
+      </div> */}
     </div>
   )
 }
