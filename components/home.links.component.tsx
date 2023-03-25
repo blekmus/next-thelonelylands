@@ -5,10 +5,11 @@ import mediaQuery from '../lib/mediaQuery'
 
 import LinkCommicasa from '../public/images/commicasa.jpg'
 import LinkAlcohol from '../public/images/alcohol.webp'
-import LinkAnitracker from '../public/images/anime.webp'
+// import LinkAnitracker from '../public/images/anime.webp'
 import LinkDocs from '../public/images/docs.webp'
 import LinkWatch from '../public/images/watch.webp'
 import LinkPodcasts from '../public/images/podcasts.webp'
+import LinkTools from '../public/images/tools.jpg'
 
 
 const styles = {
@@ -158,44 +159,51 @@ const HomeLinks: NextPage = () => {
       <div css={styles.links}>
         <LinkCard
           title="Time Pieces"
-          description="Don't you just love it when things are needlessly complicated? It's like a work of art! A collection of watches I appreciate."
+          description="Don't you just love it when things are needlessly complicated. It's like a work of art!"
           image={LinkWatch}
           url="https://dinil.notion.site/087bf556c2aa48d58fe97183b40b3ea5?v=f29ad37abc07438f939e7c84b8758dc0"
         />
 
         <LinkCard
           title="Alcohol"
-          description="I've always had an interest in documenting what I drink. A catalogue of drinks that I am satisfied enough to tell the tales of."
+          description="Celebrating the art of drinking with my curated catalogue of bottles I've savoured"
           image={LinkAlcohol}
           url="https://dinil.notion.site/192adf11e1f942299d15f14817781233?v=11f81b80090146c299aa02a9c9c7ba69"
         />
 
-        <LinkCard
+        {/* <LinkCard
           title="AniTracker"
           description="What anime do I watch? What manga do I read? Find out here"
           image={LinkAnitracker}
           url="https://anime.thelonelylands.com"
-        />
+        /> */}
 
         <LinkCard
           title="Commicasa"
-          description="Where code, communism and fair development meet."
+          description="Where code, communism and fair development meet"
           image={LinkCommicasa}
           url="https://commicasa.thelonelylands.com"
         />
 
         <LinkCard
           title="Archive"
-          description="Basically my Unix and everything techy knowledge base. I made it to help lessen the blow from my retarded memory retention abilities."
+          description="A techy encyclopedia for the mentally retarded and easily forgetful"
           image={LinkDocs}
           url="https://archive.thelonelylands.com"
         />
 
         <LinkCard
           title="Podcasts"
-          description="There was a time when I was burned out by everything. I was bored and desperately wanted something new. Audio dramas revitalized me."
+          description="The podcasts (mostly fictional) that stole my heart and made me a devoted fan"
           image={LinkPodcasts}
           url="https://dinil.notion.site/5542c932c46146138666a1617f2eb177?v=936ae363a7854116b4f927dcf507dc6c"
+        />
+
+        <LinkCard
+          title="Tools"
+          description=" A collection of very specialized tools that are better off having a web interface "
+          image={LinkTools}
+          url="https://tools.thelonelylands.com"
         />
       </div>
     </div>
