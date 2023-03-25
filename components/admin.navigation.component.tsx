@@ -17,7 +17,7 @@ import {
   IconLogout,
   IconLayoutList,
   IconEdit,
-  IconQuote,
+  // IconQuote,
 } from '@tabler/icons'
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/router'
@@ -127,7 +127,7 @@ const NavbarMinimal = ({ active }: Props) => {
             }}
             active={currentActive === 'entry_list'}
           />
-          <NavbarLink
+          {/* <NavbarLink
             icon={IconQuote}
             label="Comments"
             onClick={() => {
@@ -135,7 +135,7 @@ const NavbarMinimal = ({ active }: Props) => {
               router.push('/admin/comments')
             }}
             active={currentActive === 'comments'}
-          />
+          /> */}
 
           <NavbarLink
             icon={IconPlus}
