@@ -9,6 +9,7 @@ interface Entry {
   title: string
   notes: string
   cover: string
+  cover_type: 'LINK' | 'FILE'
   created_at: string
   updated_at: string
   type: 'MOVIE' | 'SERIES' | 'POEM' | 'ESSAY' | 'STORY' | 'OTHER'

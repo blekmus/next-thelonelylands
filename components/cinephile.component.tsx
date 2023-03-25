@@ -14,6 +14,7 @@ interface Entry {
   title: string
   notes: string
   cover: string
+  cover_type: 'FILE' | 'LINK'
   created_at: string
   updated_at: string
   type: 'MOVIE' | 'SERIES' | 'POEM' | 'ESSAY' | 'STORY'
@@ -31,6 +32,7 @@ const QUERY = gql`
       type
       cover
       status
+      cover_type
     }
   }
 `
@@ -173,6 +175,7 @@ const Cinephile: NextPage = () => {
                   <Article
                     key={entry.id}
                     cover={entry.cover}
+                    cover_type={entry.cover_type}
                     title={entry.title}
                     notes={entry.notes}
                     link={entry.id}

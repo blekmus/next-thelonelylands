@@ -246,6 +246,7 @@ const Otaku: NextPage = () => {
                   <Article
                     key={entry.id}
                     cover={entry.cover}
+                    cover_type='LINK'
                     title={entry.title}
                     notes={entry.notes}
                     note_words={entry.note_words}

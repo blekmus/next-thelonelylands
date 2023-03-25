@@ -12,7 +12,7 @@ import {
 } from '@mantine/core'
 import {
   TablerIcon,
-  IconHome2,
+  // IconHome2,
   IconPlus,
   IconLogout,
   IconLayoutList,
@@ -109,7 +109,7 @@ const NavbarMinimal = ({ active }: Props) => {
     >
       <Navbar.Section grow>
         <Stack justify="center" spacing={10} className={classes.icon_cont}>
-          <NavbarLink
+          {/* <NavbarLink
             icon={IconHome2}
             label="Dashboard"
             onClick={() => {
@@ -117,7 +117,7 @@ const NavbarMinimal = ({ active }: Props) => {
               router.push('/admin/dashboard')
             }}
             active={currentActive === 'dashboard'}
-          />
+          /> */}
           <NavbarLink
             icon={IconLayoutList}
             label="Entries"

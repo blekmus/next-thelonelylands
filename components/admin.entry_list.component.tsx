@@ -101,6 +101,7 @@ const QUERY = gql`
       type
       cover
       status
+      cover_type
     }
   }
 `
@@ -112,6 +113,7 @@ interface Entry {
   cover: string
   created_at: string
   updated_at: string
+  cover_type: 'FILE' | 'LINK'
   type: 'MOVIE' | 'SERIES' | 'POEM' | 'ESSAY' | 'STORY' | 'OTHER'
   status: 'PUBLISHED' | 'DRAFT'
 }
@@ -348,7 +350,7 @@ const AdminEntryList = () => {
                         entry.type.toLocaleLowerCase().slice(1)}{' '}
                       <strong> · </strong>{' '}
                       {entry.status === 'PUBLISHED' ? (
-                        'Published'
+                        <span style={{ color: '#9cc2ff' }}>Published</span>
                       ) : (
                         <span style={{ fontStyle: 'italic' }}>Draft</span>
                       )}
@@ -418,6 +420,7 @@ const AdminEntryList = () => {
                 title={selectedEntry.title}
                 notes={selectedEntry.notes}
                 cover={selectedEntry.cover}
+                cover_type={selectedEntry.cover_type}
                 link={selectedEntry.id}
                 link_target="_blank"
               />

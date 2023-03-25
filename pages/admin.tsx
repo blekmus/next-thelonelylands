@@ -11,7 +11,8 @@ const Admin: NextPage = () => {
 
   
   if (status === 'authenticated') {
-    router.push('/admin/dashboard')
+    // router.push('/admin/dashboard')
+    router.push('/admin/entries')
   }
 
   if (status === 'unauthenticated') {

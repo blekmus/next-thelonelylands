@@ -25,7 +25,7 @@ import {
   IconHeading,
   IconX,
 } from '@tabler/icons'
-// import { Dropzone, MIME_TYPES } from '@mantine/dropzone'
+import { Dropzone, MIME_TYPES } from '@mantine/dropzone'
 import Article from './article.component'
 import { gql, useMutation } from '@apollo/client'
 import { useQuery } from '@apollo/client'
@@ -38,11 +38,11 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 
 dayjs.extend(relativeTime)
 
-
 interface Entry {
   title: string
   notes: string
   cover: string
+  cover_type: 'LINK' | 'FILE'
   created_at: string
   updated_at: string
   type: 'MOVIE' | 'SERIES' | 'POEM' | 'ESSAY' | 'STORY' | 'OTHER' | string
@@ -60,6 +60,7 @@ const QUERY = gql`
       type
       cover
       status
+      cover_type
     }
   }
 `
@@ -174,6 +175,9 @@ const AdminEdit = ({ id }: { id: string }) => {
 
   const [entryLastUpdated, setEntryLastUpdated] = useState<string>()
   const [entryCover, setEntryCover] = useState<string | null>(null)
+  const [entryCoverFilename, setEntryCoverFilename] = useState<string | null>(
+    null
+  )
   const [entryTitle, setEntryTitle] = useState<string | null>(null)
   const [entryContent, setEntryContent] = useState<string | null>(null)
   const [entryDate, setEntryDate] = useState<number | null>(null)
@@ -185,12 +189,18 @@ const AdminEdit = ({ id }: { id: string }) => {
     },
     onCompleted: (data) => {
       setEntryTitle(data.entry.title)
-      setEntryCover(data.entry.cover)
       setEntryDate(Number(data.entry.created_at))
       setEntryType(data.entry.type)
       setEntryContent(data.entry.notes)
       setSaveType(data.entry.status)
       setEntryLastUpdated(data.entry.updated_at)
+
+      if (data.entry.cover_type === 'FILE') {
+        setEntryCover(`/images/uploads/${data.entry.cover}`)
+        setEntryCoverFilename(data.entry.cover)
+      } else {
+        setEntryCover(data.entry.cover)
+      }
     },
     onError: () => {
       router.push('/admin/dashboard')
@@ -239,7 +249,7 @@ const AdminEdit = ({ id }: { id: string }) => {
     },
   })
 
-  const saveEntry = () => {
+  const saveEntry = async () => {
     setPublishModalOpened(false)
 
     const entry = {} as Entry
@@ -262,7 +272,53 @@ const AdminEdit = ({ id }: { id: string }) => {
     entry.status = saveType
 
     if (entryCover && entryCover !== '') {
-      entry.cover = entryCover
+      if (
+        entryCoverFilename &&
+        entryCover === `/images/uploads/${entryCoverFilename}`
+      ) {
+        entry.cover_type = 'FILE'
+        entry.cover = entryCoverFilename
+      } else if (entryCover.startsWith('blob:')) {
+        // delete last image
+        if (entryCoverFilename) {
+          await fetch('/api/upload/delete_image', {
+            method: 'POST',
+            body: JSON.stringify({
+              filename: entryCoverFilename,
+            }),
+          })
+        }
+
+        const coverFile: File = (await fetch(entryCover).then((r) =>
+          r.blob()
+        )) as File
+
+        const formData = new FormData()
+        formData.append('file', coverFile)
+
+        const resp = await fetch('/api/upload/image', {
+          method: 'POST',
+          body: formData,
+        })
+
+        const data = await resp.json()
+
+        entry.cover_type = 'FILE'
+        entry.cover = data.url
+      } else {
+        // delete last image
+        if (entryCoverFilename) {
+          await fetch('/api/upload/delete_image', {
+            method: 'POST',
+            body: JSON.stringify({
+              filename: entryCoverFilename,
+            }),
+          })
+        }
+
+        entry.cover_type = 'LINK'
+        entry.cover = entryCover
+      }
     }
 
     updateEntry({ variables: { updateEntryId: id, content: entry } })
@@ -278,7 +334,16 @@ const AdminEdit = ({ id }: { id: string }) => {
     }
   }
 
-  const handleDeleteBtn = () => {
+  const handleDeleteBtn = async () => {
+    if (entryCoverFilename) {
+      await fetch('/api/upload/delete_image', {
+        method: 'POST',
+        body: JSON.stringify({
+          filename: entryCoverFilename,
+        }),
+      })
+    }
+
     deleteEntry({ variables: { entryId: id } })
   }
 
@@ -363,7 +428,7 @@ const AdminEdit = ({ id }: { id: string }) => {
 
           <Container className={classes.topbar_header} size={2000}>
             <Group>
-              <Title order={3}>New Entry</Title>
+              <Title order={3}>Edit Entry</Title>
             </Group>
 
             <Group>
@@ -431,29 +496,35 @@ const AdminEdit = ({ id }: { id: string }) => {
             className={classes.grid_left}
           >
             <Container pt={30} mb={20}>
-              {/* <Dropzone
-              mb={20}
-              onDrop={(e) => setEntryCover(URL.createObjectURL(e[0]))}
-              className={classes.dropzone}
-              accept={[MIME_TYPES.jpeg, MIME_TYPES.png, MIME_TYPES.webp]}
-              maxSize={5 * 1024 ** 2}
-            >
-              <div style={{ pointerEvents: 'none' }}>
-                <Text align="center" color="dimmed" size="md">
-                  <Dropzone.Accept>Drop image here</Dropzone.Accept>
-                  <Dropzone.Reject>Invalid File (5mb Max)</Dropzone.Reject>
-                  <Dropzone.Idle>
-                    {entryCover ? 'Change' : 'Cover image'}
-                  </Dropzone.Idle>
-                </Text>
-              </div>
-            </Dropzone> */}
-
               <Text size="sm" mb={20} weight={600}>
                 Last updated:{' '}
-                {dayjs(Number(entryLastUpdated)).format('D MMM, YYYY')}{' '}
-                ({dayjs(Number(entryLastUpdated)).fromNow()})
+                {dayjs(Number(entryLastUpdated)).format('D MMM, YYYY')} (
+                {dayjs(Number(entryLastUpdated)).fromNow()})
               </Text>
+
+              <Dropzone
+                mb={20}
+                onDrop={(e) => {
+                  if (entryCoverRef.current) {
+                    entryCoverRef.current.value = URL.createObjectURL(e[0])
+                  }
+
+                  setEntryCover(URL.createObjectURL(e[0]))
+                }}
+                className={classes.dropzone}
+                accept={[MIME_TYPES.jpeg, MIME_TYPES.png, MIME_TYPES.webp]}
+                maxSize={5 * 1024 ** 2}
+              >
+                <div style={{ pointerEvents: 'none' }}>
+                  <Text align="center" color="dimmed" size="md">
+                    <Dropzone.Accept>Drop image here</Dropzone.Accept>
+                    <Dropzone.Reject>Invalid File (5mb Max)</Dropzone.Reject>
+                    <Dropzone.Idle>
+                      {entryCover ? 'Change' : 'Cover image'}
+                    </Dropzone.Idle>
+                  </Text>
+                </div>
+              </Dropzone>
 
               <Input
                 icon={<IconHeading size={18} />}

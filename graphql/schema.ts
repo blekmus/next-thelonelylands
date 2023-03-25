@@ -21,7 +21,6 @@ const typeDefs = gql`
     viewComments: viewComment
     deleteComment(id: ID!): Comment
   }
-  
 
   type viewComment {
     count: Int
@@ -35,6 +34,7 @@ const typeDefs = gql`
     updated_at: String
     type: Types
     cover: String
+    cover_type: CoverType
     status: Status
   }
 
@@ -52,6 +52,7 @@ const typeDefs = gql`
     type: Types!
     created_at: String!
     cover: String
+    cover_type: CoverType
     status: Status!
   }
 
@@ -60,6 +61,7 @@ const typeDefs = gql`
     notes: String
     type: Types
     cover: String
+    cover_type: CoverType
     status: Status
     created_at: String
   }
@@ -73,6 +75,11 @@ const typeDefs = gql`
   enum Status {
     DRAFT
     PUBLISHED
+  }
+
+  enum CoverType {
+    FILE
+    LINK
   }
 
   enum Types {

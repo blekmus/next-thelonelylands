@@ -23,9 +23,9 @@ import {
   IconChevronDown,
   IconPhoto,
   IconHeading,
-  IconX
+  IconX,
 } from '@tabler/icons'
-// import { Dropzone, MIME_TYPES } from '@mantine/dropzone'
+import { Dropzone, MIME_TYPES } from '@mantine/dropzone'
 import Article from './article.component'
 import { useLocalStorage } from '@mantine/hooks'
 import { gql, useMutation } from '@apollo/client'
@@ -33,12 +33,11 @@ import { showNotification } from '@mantine/notifications'
 import { useRouter } from 'next/router'
 import mediaQuery from '../lib/mediaQuery'
 
-
-
 interface Entry {
   title: string
   notes: string
   cover: string
+  cover_type: 'LINK' | 'FILE'
   created_at: string
   type: 'MOVIE' | 'SERIES' | 'POEM' | 'ESSAY' | 'STORY' | 'OTHER' | string
   status: 'PUBLISHED' | 'DRAFT'
@@ -145,24 +144,21 @@ const AdminNew = () => {
 
   const [entryCover, setEntryCover] = useLocalStorage({
     key: 'new-entry-cover',
-    defaultValue: ''
+    defaultValue: '',
   })
   const [entryTitle, setEntryTitle] = useLocalStorage({
     key: 'new-entry-title',
-    defaultValue: ''
+    defaultValue: '',
   })
   const [entryContent, setEntryContent] = useLocalStorage({
     key: 'new-entry-content',
-    defaultValue: ''
+    defaultValue: '',
   })
-  const [entryDate, setEntryDate] = useLocalStorage<
-    number
-  >({
+  const [entryDate, setEntryDate] = useLocalStorage<number>({
     key: 'new-entry-date',
     defaultValue: new Date().getTime(),
   })
   const [entryType, setEntryType] = useLocalStorage({ key: 'new-entry-type' })
-
 
   // const [entryCover, setEntryCover] = useState<string>('')
   // const [entryTitle, setEntryTitle] = useState<string>('')
@@ -171,7 +167,6 @@ const AdminNew = () => {
   //   new Date().getTime()
   // )
   // const [entryType, setEntryType] = useState<string>('')
-
 
   // useEffect(() => {
   //   setEntryCover(entryCoverLocal)
@@ -191,7 +186,6 @@ const AdminNew = () => {
   // // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [entryCover, entryTitle, entryContent, entryDate, entryType])
 
-
   const { classes, theme } = useStyles({ saveTypeOpened })
 
   const [createEntry] = useMutation(CREATE_ENTRY, {
@@ -204,16 +198,20 @@ const AdminNew = () => {
       setSaveLoading(false)
       showNotification({
         disallowClose: true,
-        message: <Text weight={700} size="md">Failed to save</Text>,
+        message: (
+          <Text weight={700} size="md">
+            Failed to save
+          </Text>
+        ),
         color: 'red',
         icon: <IconX />,
       })
-    }
+    },
   })
 
-  const saveEntry = () => {
+  const saveEntry = async () => {
     setPublishModalOpened(false)
-  
+
     const entry = {} as Entry
 
     if (entryTitle === '' || entryContent === '' || entryType === null) {
@@ -228,7 +226,27 @@ const AdminNew = () => {
     entry.status = saveType
 
     if (entryCover !== '') {
-      entry.cover = entryCover
+      if (entryCover.startsWith('blob:')) {
+        const coverFile: File = (await fetch(entryCover).then((r) =>
+          r.blob()
+        )) as File
+
+        const formData = new FormData()
+        formData.append('file', coverFile)
+
+        const resp = await fetch('/api/upload/image', {
+          method: 'POST',
+          body: formData,
+        })
+
+        const data = await resp.json()
+
+        entry.cover_type = 'FILE'
+        entry.cover = data.url
+      } else {
+        entry.cover_type = 'LINK'
+        entry.cover = entryCover
+      }
     }
 
     createEntry({ variables: { content: entry } })
@@ -397,9 +415,14 @@ const AdminNew = () => {
           className={classes.grid_left}
         >
           <Container pt={30} mb={20}>
-            {/* <Dropzone
+            <Dropzone
               mb={20}
-              onDrop={(e) => setEntryCover(URL.createObjectURL(e[0]))}
+              onDrop={(e) => {
+                if (entryCoverRef.current) {
+                  entryCoverRef.current.value = URL.createObjectURL(e[0])
+                }
+                setEntryCover(URL.createObjectURL(e[0]))
+              }}
               className={classes.dropzone}
               accept={[MIME_TYPES.jpeg, MIME_TYPES.png, MIME_TYPES.webp]}
               maxSize={5 * 1024 ** 2}
@@ -413,7 +436,7 @@ const AdminNew = () => {
                   </Dropzone.Idle>
                 </Text>
               </div>
-            </Dropzone> */}
+            </Dropzone>
 
             <Input
               icon={<IconHeading size={18} />}

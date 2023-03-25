@@ -128,11 +128,12 @@ const HomeContact: NextPage = () => {
 
       <div css={styles.content}>
         <p style={{ lineHeight: 1.6, marginBottom: 20 }}>
-          Have any comments, questions or just want to send me something? The
-          easiest way to reach me is by sending me an mail at <strong>dinil[at]pm.me</strong>
+          Have any comments, questions or a burning desire to say something to
+          (or at) me? The easiest way to reach me is by sending an email to{' '}
+          <strong>dinil[at]pm.me</strong>
         </p>
         <p style={{ lineHeight: 1.6, marginBottom: 20 }}>
-          If you want to have a chat. Hit me up on{' '}
+          If you&apos;re feeling rather chatty. Hit me up on{' '}
           <a
             title="Walker#6140"
             href="https://discordid.netlify.app/?id=534321754517143553"

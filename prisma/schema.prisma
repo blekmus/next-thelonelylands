@@ -61,6 +61,7 @@ model Entry {
     updated_at String
     type       String
     cover      String?
+    cover_type  String?
     status     String
 }
 

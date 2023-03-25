@@ -15,6 +15,7 @@ interface Props {
   date?: Date | number | null | string
   type?: string | null
   cover?: string
+  cover_type?: 'FILE' | 'LINK',
   link?: string
   link_target?: string
 }
@@ -146,6 +147,7 @@ const styles = {
 
 const Article: NextPage<Props> = ({
   cover,
+  cover_type,
   title,
   notes,
   note_words,
@@ -172,7 +174,7 @@ const Article: NextPage<Props> = ({
       <figure css={styles.entry_cover}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={cover}
+          src={cover_type === 'FILE' ? `/images/uploads/${cover}` : cover}
           alt="cover"
           css={styles.entry_cover_img}
           loading="lazy"

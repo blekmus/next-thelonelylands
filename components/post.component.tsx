@@ -16,6 +16,7 @@ interface Entry {
   title: string
   notes: string
   cover: string
+  cover_type: 'FILE' | 'LINK'
   created_at: string
   updated_at: string
   type: 'MOVIE' | 'SERIES' | 'POEM' | 'ESSAY' | 'STORY' | 'OTHER'
@@ -135,7 +136,11 @@ const Post: NextPage<Props> = ({ entry }) => {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 css={styles.cover_image}
-                src={entry.cover}
+                src={
+                  entry.cover_type === 'FILE'
+                    ? `/images/uploads/${entry.cover}`
+                    : entry.cover
+                }
                 alt="cover-image"
               />
             </figure>
