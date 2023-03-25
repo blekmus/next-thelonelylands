@@ -170,7 +170,7 @@ const Home: NextPage<Props> = ({ entries }) => {
             certificate reads, <strong>Dinil Fernando</strong>
             <br />
             <br />
-            This site is a collection of thoughts, musings, and memories that
+            This site is a collection of thoughts, musings, and memories
             I&apos;ve written down over the years. I hope you enjoy reading them
             as much as I enjoyed writing them.
             <br />

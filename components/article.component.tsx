@@ -32,6 +32,7 @@ const styles = {
       '.entry-content': {
         color: 'var(--light-text)',
         WebkitLineClamp: 'initial',
+        whiteSpace: 'pre-wrap',
       },
 
       '.entry-cover-img': {
@@ -123,7 +124,7 @@ const styles = {
     WebkitLineClamp: '2',
     display: '-webkit-box',
     MozBoxOrient: 'vertical',
-    whiteSpace: 'pre-wrap',
+    whiteSpace: 'normal',
     WebkitBoxOrient: 'vertical',
   }),
 
