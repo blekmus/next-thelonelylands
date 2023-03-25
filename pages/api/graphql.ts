@@ -9,12 +9,15 @@ import Cors from 'micro-cors'
 import { MicroRequest } from 'apollo-server-micro/dist/types'
 import { getSession } from 'next-auth/react'
 import prisma from '../../lib/prisma'
+import Keyv from 'keyv'
+import { KeyvAdapter } from '@apollo/utils.keyvadapter'
 
 const cors = Cors()
 
 const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
+  cache: new KeyvAdapter(new Keyv()),
   context: async (ctx: { req: MicroRequest }) => {
     const session = await getSession(ctx)
     return { prisma, session }
