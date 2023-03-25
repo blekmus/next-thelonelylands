@@ -114,7 +114,7 @@ const Archive: NextPage<Props> = ({ entries }) => {
 
   return (
     <div css={styles.base}>
-      <TopBar />
+      <TopBar page="archive" />
 
       <div css={styles.cont}>
         <header css={styles.header}>

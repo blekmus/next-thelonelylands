@@ -143,7 +143,7 @@ const Otaku: NextPage = () => {
 
   return (
     <div css={styles.base}>
-      <TopBar />
+      <TopBar page="otaku" />
 
       <div css={styles.header}>
         <div>

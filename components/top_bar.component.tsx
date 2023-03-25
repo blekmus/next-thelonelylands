@@ -52,7 +52,11 @@ const styles = {
   }),
 }
 
-const TopBar: NextPage = () => {
+interface Props {
+  page?: string
+}
+
+const TopBar: NextPage<Props> = ({ page }) => {
   return (
     <header css={styles.base}>
       <div css={styles.title}>
@@ -66,25 +70,53 @@ const TopBar: NextPage = () => {
       <nav css={styles.menu}>
         <p>
           <Link href="/writer">
-            <a>Writer</a>
+            <a
+              style={{
+                borderBottom:
+                  page === 'writer' ? 'solid var(--light-text) 1px' : '',
+              }}
+            >
+              Writer
+            </a>
           </Link>
         </p>
 
         <p>
           <Link href="/cinephile">
-            <a>Cinephile</a>
+            <a
+              style={{
+                borderBottom:
+                  page === 'cinephile' ? 'solid var(--light-text) 1px' : '',
+              }}
+            >
+              Cinephile
+            </a>
           </Link>
         </p>
 
         <p>
           <Link href="/otaku">
-            <a>Otaku</a>
+            <a
+              style={{
+                borderBottom:
+                  page === 'otaku' ? 'solid var(--light-text) 1px' : '',
+              }}
+            >
+              Otaku
+            </a>
           </Link>
         </p>
 
         <p>
           <Link href="/archive">
-            <a>Archive</a>
+            <a
+              style={{
+                borderBottom:
+                  page === 'archive' ? 'solid var(--light-text) 1px' : '',
+              }}
+            >
+              Archive
+            </a>
           </Link>
         </p>
       </nav>

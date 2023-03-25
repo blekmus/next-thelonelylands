@@ -92,7 +92,7 @@ const Writer: NextPage = () => {
 
   return (
     <div css={styles.base}>
-      <TopBar />
+      <TopBar page="writer" />
 
       <div css={styles.header}>
         <div>

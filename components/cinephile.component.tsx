@@ -88,7 +88,7 @@ const Cinephile: NextPage = () => {
 
   return (
     <div css={styles.base}>
-      <TopBar />
+      <TopBar page="cinephile" />
 
       <div css={styles.header}>
         <div>
