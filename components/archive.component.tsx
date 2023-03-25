@@ -45,9 +45,9 @@ const styles = {
   }),
 
   header: css({
-    marginBottom: '20px',
+    marginBottom: '40px',
 
-    [mediaQuery[0]]: { marginBottom: '10px' },
+    [mediaQuery[0]]: { marginBottom: '30px' },
   }),
 
   header_title: css({
@@ -58,6 +58,14 @@ const styles = {
 
     [mediaQuery[0]]: {
       fontSize: '32px',
+    },
+  }),
+
+  header_title_sub: css({
+    color: 'var(--dark-text)',
+
+    [mediaQuery[0]]: {
+      fontSize: '14px',
     },
   }),
 
@@ -119,6 +127,9 @@ const Archive: NextPage<Props> = ({ entries }) => {
       <div css={styles.cont}>
         <header css={styles.header}>
           <h1 css={styles.header_title}>Archive</h1>
+          <p css={styles.header_title_sub}>
+            <i>Features sorted links to all of my works except for everything Otaku</i>
+          </p>
         </header>
 
         <nav css={styles.content_menu}>
