@@ -156,8 +156,6 @@ const Post: NextPage<Props> = ({ entry }) => {
               </span>{' '}
               Published {dayjs(Number(entry.created_at)).format('D MMM, YYYY')}
               <strong> · </strong>
-              Updated {dayjs(Number(entry.updated_at)).format('D MMM, YYYY')}
-              <strong> · </strong>
               {
                 entry.notes.split(' ').filter((item) => item.trim() !== '')
                   .length
