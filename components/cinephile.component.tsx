@@ -97,14 +97,15 @@ const Cinephile: NextPage = () => {
           <h1 css={styles.title}>Cinephile</h1>
 
           <p css={styles.description}>
-            Cinematic art evokes so many different emotions in me.
+            Lights, camera, action! There&apos;s nothing quite like the magical
+            world of cinema to transport me to another dimension. Whether
+            I&apos;m howling with laughter or sobbing uncontrollably, I know
+            I&apos;m in for a wild ride whenever I put on a movie or TV series.
             <br />
             <br />
-            It makes me laugh, it makes me cry, it makes me think and in rare
-            moments, it fills me with excitement and awe. There is something
-            about film that I find to be truly captivating. I find myself being
-            drawn in by the images on the screen, and I can often find myself
-            lost in what I am watching for extended periods of time.
+            So, if you see me walking around in a daze with a bucket of popcorn,
+            you know I&apos;ve just come out of the cinema, and I&apos;m still
+            trying to find my way back to reality
           </p>
 
           <div css={styles.social}>

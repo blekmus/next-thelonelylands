@@ -150,22 +150,27 @@ const Otaku: NextPage = () => {
           <h1 css={styles.title}>Otaku</h1>
 
           <p css={styles.description}>
-            Japanese Anime, Manga and Light Novels have become a cornerstone in
-            my life. I didn&apos;t always feel this way, though. There was a
-            time when I hated anime and everything about the culture surrounding
-            it. Now... I am whom I swore I would never become.
+            Call me a sushi-rolling, ramen-slurping convert because Japanese
+            Anime, Manga, and Light Novels have taken over my life!
+            <br />
+            <br />
+            There used to be a time when I was one of the biggest haters of all
+            things anime, but now I&apos;m living proof that people can change
+            (or maybe I&apos;m just a victim of a ninja mind-control jutsu). I
+            am who I swore I&apos;d never become, but honestly, it&apos;s so
+            much more fun over here.
             <br />
             <br />I love putting my feelings into words after finishing a title;
             this is a collection of everything I&apos;ve written on{' '}
             <a
-              href="https://anilist.co"
+              href="https://anilist.co/user/blekmus"
               target="_blank"
               rel="noreferrer"
               style={{ borderBottom: 'solid var(--light-text) 1px' }}
             >
               <strong>Anilist</strong>
             </a>
-            . <br />
+            , an anime and manga tracking site. <br />
             <br />
             {totalWords} words <strong>·</strong> {totalEntries} entries
           </p>
@@ -246,7 +251,7 @@ const Otaku: NextPage = () => {
                   <Article
                     key={entry.id}
                     cover={entry.cover}
-                    cover_type='LINK'
+                    cover_type="LINK"
                     title={entry.title}
                     notes={entry.notes}
                     note_words={entry.note_words}

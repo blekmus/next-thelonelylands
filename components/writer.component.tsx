@@ -101,12 +101,17 @@ const Writer: NextPage = () => {
           <h1 css={styles.title}>Writer</h1>
 
           <p css={styles.description}>
-            I write for myself, and myself alone. I&apos;m a selfish writer.
+            I&apos;m not just a writer, I&apos;m a selfish wordsmith who crafts
+            stories and pours out my heart and soul onto the page. My writing is
+            my personal playground, and I&apos;ll swing from one idea to the
+            next with reckless abandon.
             <br />
             <br />
-            My writing is all about expressing my thoughts and feelings to the
-            best of my ability. I write what I want to write, and if someone
-            else happens to enjoy it, that&apos;s a bonus.
+            But don&apos;t get me wrong, I&apos;m not completely heartless. If
+            someone happens to stumble upon my scribbles and enjoys them, well
+            then, that&apos;s like finding a golden ticket in a candy bar.
+            It&apos;s a sweet bonus that makes my writing journey all the more
+            satisfying.
             <br />
             <br />
             It&apos;s just me, my thoughts and my words.
