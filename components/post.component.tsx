@@ -7,7 +7,6 @@ import { Divider } from '@mantine/core'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import HomeAccordian from './home.accordian.component'
-import Head from 'next/head'
 
 dayjs.extend(relativeTime)
 
@@ -79,7 +78,7 @@ const styles = {
 
     [mediaQuery[0]]: {
       marginBottom: '20px',
-    }
+    },
   }),
 
   header_title: css({
@@ -121,62 +120,53 @@ const styles = {
 
 const Post: NextPage<Props> = ({ entry }) => {
   return (
-    <>
-      <Head>
-        <title>{entry.title} | The Lonely Lands</title>
-        <meta name="robots" content="all" />
-      </Head>
-      <div css={styles.base}>
-        <TopBar />
+    <div css={styles.base}>
+      <TopBar />
 
-        <div css={styles.post}>
-          {entry.cover ? (
-            <figure css={styles.cover}>
-              <div css={styles.cover_overlay}></div>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                css={styles.cover_image}
-                src={
-                  entry.cover_type === 'FILE'
-                    ? `https://caiden-thelonelylands.s3.eu-central-003.backblazeb2.com/${entry.cover}`
-                    : entry.cover
-                }
-                alt="cover-image"
-              />
-            </figure>
-          ) : (
-            ''
-          )}
+      <div css={styles.post}>
+        {entry.cover ? (
+          <figure css={styles.cover}>
+            <div css={styles.cover_overlay}></div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              css={styles.cover_image}
+              src={
+                entry.cover_type === 'FILE'
+                  ? `https://caiden-thelonelylands.s3.eu-central-003.backblazeb2.com/${entry.cover}`
+                  : entry.cover
+              }
+              alt="cover-image"
+            />
+          </figure>
+        ) : (
+          ''
+        )}
 
-          <header css={styles.header}>
-            <h1 css={styles.header_title}>{entry.title}</h1>
-            <p css={styles.header_sub}>
-              <span css={styles.header_type}>
-                {entry.type.charAt(0) + entry.type.toLocaleLowerCase().slice(1)}
-              </span>{' '}
-              Published {dayjs(Number(entry.created_at)).format('D MMM, YYYY')}
-              <strong> · </strong>
-              {
-                entry.notes.split(' ').filter((item) => item.trim() !== '')
-                  .length
-              }{' '}
-              Words
-            </p>
-          </header>
+        <header css={styles.header}>
+          <h1 css={styles.header_title}>{entry.title}</h1>
+          <p css={styles.header_sub}>
+            <span css={styles.header_type}>
+              {entry.type.charAt(0) + entry.type.toLocaleLowerCase().slice(1)}
+            </span>{' '}
+            Published {dayjs(Number(entry.created_at)).format('D MMM, YYYY')}
+            <strong> · </strong>
+            {
+              entry.notes.split(' ').filter((item) => item.trim() !== '').length
+            }{' '}
+            Words
+          </p>
+        </header>
 
-          <div css={styles.content}>
-            <p style={{ whiteSpace: 'pre-wrap' }}>{entry?.notes}</p>
-          </div>
-
-          <Divider variant="dashed" />
+        <div css={styles.content}>
+          <p style={{ whiteSpace: 'pre-wrap' }}>{entry?.notes}</p>
         </div>
 
-        <HomeAccordian />
+        <Divider variant="dashed" />
       </div>
-    </>
+
+      <HomeAccordian />
+    </div>
   )
 }
 
 export default Post
-
-

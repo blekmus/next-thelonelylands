@@ -45,4 +45,3 @@ prisma/*.sqlite
 
 TODO.md
 data.json
-public/images/uploads/*
