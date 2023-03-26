@@ -13,9 +13,9 @@ const OtakuPage: NextPage = () => {
         <title>Otaku | The Lonely Lands</title>
         <meta name="robots" content="all" />
 
-        <meta property="og:title" content="The Lonely Lands" />
-        <meta property="twitter:title" content="The Lonely Lands" />
-        <meta name="title" content="The Lonely Lands" />
+        <meta property="og:title" content="Otaku | The Lonely Lands" />
+        <meta property="twitter:title" content="Okaku | The Lonely Lands" />
+        <meta name="title" content="Otaku | The Lonely Lands" />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="og:type" content="website" />
