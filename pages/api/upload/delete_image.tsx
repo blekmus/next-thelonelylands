@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/react'
-import { unlinkSync } from 'fs'
-import { join } from 'path'
+import { S3 } from 'aws-sdk'
+
 
 export default async function handler(
   req: NextApiRequest,
@@ -16,14 +16,26 @@ export default async function handler(
 
   const { filename } = JSON.parse(req.body)
 
-  // delete file from public/images/uploads
-  const uploadPath = join('public/images/uploads', filename)
+  // connnect to S3
+  const s3 = new S3({
+    accessKeyId: process.env.B2_ACCESS_KEY_ID,
+    secretAccessKey: process.env.B2_SECRET_ACCESS_KEY,
+    region: process.env.B2_REGION,
+    endpoint: process.env.B2_ENDPOINT,
+  })
 
-  // delete file from uploads folder
+  // connect to bucket
+  const bucket = process.env.B2_BUCKET || ''
+
+  // delete file from bucket
   try {
-    unlinkSync(uploadPath)
-  } catch (err) {
-    res.status(404).json({ message: 'File not found' })
+    await s3.deleteObject({
+      Bucket: bucket,
+      Key: filename,
+    }).promise()
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Error deleting image' })
     return
   }
 

@@ -160,32 +160,6 @@ const AdminNew = () => {
   })
   const [entryType, setEntryType] = useLocalStorage({ key: 'new-entry-type' })
 
-  // const [entryCover, setEntryCover] = useState<string>('')
-  // const [entryTitle, setEntryTitle] = useState<string>('')
-  // const [entryContent, setEntryContent] = useState<string>('')
-  // const [entryDate, setEntryDate] = useState<number>(
-  //   new Date().getTime()
-  // )
-  // const [entryType, setEntryType] = useState<string>('')
-
-  // useEffect(() => {
-  //   setEntryCover(entryCoverLocal)
-  //   setEntryTitle(entryTitleLocal)
-  //   setEntryContent(entryContentLocal)
-  //   setEntryDate(entryDateLocal)
-  //   setEntryType(entryTypeLocal)
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [])
-
-  // useEffect(() => {
-  //   setEntryCoverLocal(entryCover)
-  //   setEntryTitleLocal(entryTitle)
-  //   setEntryContentLocal(entryContent)
-  //   setEntryDateLocal(entryDate)
-  //   setEntryTypeLocal(entryType)
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [entryCover, entryTitle, entryContent, entryDate, entryType])
-
   const { classes, theme } = useStyles({ saveTypeOpened })
 
   const [createEntry] = useMutation(CREATE_ENTRY, {
@@ -552,15 +526,7 @@ const AdminNew = () => {
             <Article
               title={entryTitle}
               notes={entryContent}
-              // date={entryDate}
               cover={entryCover}
-              // note_words={
-              //   entryContent && entryContent !== ''
-              //     ? entryContent.split(' ').filter((item) => item.trim() !== '')
-              //         .length
-              //     : null
-              // }
-              // type={entryType !== '' ? entryType : null}
             />
           </Container>
         </Box>

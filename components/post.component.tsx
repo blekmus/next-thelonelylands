@@ -138,7 +138,7 @@ const Post: NextPage<Props> = ({ entry }) => {
                 css={styles.cover_image}
                 src={
                   entry.cover_type === 'FILE'
-                    ? `/images/uploads/${entry.cover}`
+                    ? `https://caiden-thelonelylands.s3.eu-central-003.backblazeb2.com/${entry.cover}`
                     : entry.cover
                 }
                 alt="cover-image"

@@ -1,9 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/react'
-import { copyFileSync } from 'fs'
+import { readFileSync } from 'fs'
 import formidable from 'formidable'
-import {join} from 'path'
-
+import { S3 } from 'aws-sdk'
 
 export const config = {
   api: {
@@ -37,17 +36,38 @@ export default async function handler(
       return
     }
 
-    const image = files.file
+    const imageInfo = files.file
 
-    // write image to public/images/uploads
+    // generate random string for filename
     const randomString = Math.random().toString(36).substring(2, 15)
-    const filename = randomString + '_' + image.originalFilename
-    const uploadPath = join('public/images/uploads', filename)
+    const filename = randomString + '_' + imageInfo.originalFilename
 
-    // copy file to uploads folder
-    copyFileSync(image.filepath, uploadPath)
+    // connnect to B2
+    const s3 = new S3({
+      accessKeyId: process.env.B2_ACCESS_KEY_ID,
+      secretAccessKey: process.env.B2_SECRET_ACCESS_KEY,
+      region: process.env.B2_REGION,
+      endpoint: process.env.B2_ENDPOINT,
+    })
 
-    // return image url
-    res.status(200).json({ url: filename })
+    // connect to bucket
+    const bucket = process.env.B2_BUCKET || ''
+    const imageBlob = readFileSync(imageInfo.filepath)
+
+    const upload = s3.upload({
+      Bucket: bucket,
+      Key: filename,
+      Body: imageBlob,
+    })
+
+    upload.send((err) => {
+      if (err) {
+        console.error(err)
+        res.status(500).json({ message: 'Error uploading file' })
+        return
+      }
+
+      res.status(200).json({ url: filename })
+    })
   })
 }

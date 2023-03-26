@@ -196,7 +196,9 @@ const AdminEdit = ({ id }: { id: string }) => {
       setEntryLastUpdated(data.entry.updated_at)
 
       if (data.entry.cover_type === 'FILE') {
-        setEntryCover(`/images/uploads/${data.entry.cover}`)
+        setEntryCover(
+          `https://caiden-thelonelylands.s3.eu-central-003.backblazeb2.com/${data.entry.cover}`
+        )
         setEntryCoverFilename(data.entry.cover)
       } else {
         setEntryCover(data.entry.cover)
@@ -274,7 +276,8 @@ const AdminEdit = ({ id }: { id: string }) => {
     if (entryCover && entryCover !== '') {
       if (
         entryCoverFilename &&
-        entryCover === `/images/uploads/${entryCoverFilename}`
+        entryCover ===
+          `https://caiden-thelonelylands.s3.eu-central-003.backblazeb2.com/${entryCoverFilename}`
       ) {
         entry.cover_type = 'FILE'
         entry.cover = entryCoverFilename

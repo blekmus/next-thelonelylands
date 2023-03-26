@@ -175,7 +175,11 @@ const Article: NextPage<Props> = ({
       <figure css={styles.entry_cover}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={cover_type === 'FILE' ? `/images/uploads/${cover}` : cover}
+          src={
+            cover_type === 'FILE'
+              ? `https://caiden-thelonelylands.s3.eu-central-003.backblazeb2.com/${cover}`
+              : cover
+          }
           alt="cover"
           css={styles.entry_cover_img}
           loading="lazy"
