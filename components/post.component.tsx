@@ -7,6 +7,8 @@ import { Divider } from '@mantine/core'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import HomeAccordian from './home.accordian.component'
+import Link from 'next/link'
+import { IconArrowsMaximize } from '@tabler/icons'
 
 dayjs.extend(relativeTime)
 
@@ -24,6 +26,7 @@ interface Entry {
 
 interface Props {
   entry: Entry
+  recentEntries: Entry[]
 }
 
 const styles = {
@@ -116,9 +119,74 @@ const styles = {
       lineHeight: 1.5,
     },
   }),
+
+  readnext_cont: css({
+    marginTop: '50px',
+  }),
+
+  readnext_card_header: css({
+    display: 'inline-flex',
+    alignItems: 'center',
+    columnGap: '10px',
+  }),
+
+  readnext_text: css({
+    marginBottom: '30px',
+    fontWeight: 700,
+  }),
+
+  readnext_card: css({
+    marginBottom: '15px',
+    background: 'var(--foreground)',
+    borderRadius: '8px',
+    padding: '18px 24px 17px 24px',
+    width: '100%',
+    display: 'block',
+
+    [mediaQuery[1]]: {
+      marginBottom: '14px',
+      padding: '14px 14px 10px 14px',
+    },
+
+    ':hover svg': {
+      opacity: 1,
+    },
+
+    ':hover h2': {
+      textDecoration: 'underline',
+    },
+
+    h2: {
+      fontWeight: 700,
+      fontSize: '22px',
+
+      [mediaQuery[0]]: {
+        fontSize: '19px',
+      },
+    },
+
+    p: {
+      margin: '0 0 8px 0',
+      color: 'var(--dark-text)',
+      fontSize: '14px',
+      lineHeight: 1.6,
+      overflow: 'hidden',
+      WebkitLineClamp: '2',
+      display: '-webkit-box',
+      MozBoxOrient: 'vertical',
+      whiteSpace: 'normal',
+      WebkitBoxOrient: 'vertical',
+    },
+  }),
+
+  readnext_card_title_icon: css({
+    opacity: 0,
+    transition: 'opacity 0.2s linear',
+    color: 'var(--light-text)',
+  }),
 }
 
-const Post: NextPage<Props> = ({ entry }) => {
+const Post: NextPage<Props> = ({ entry, recentEntries }) => {
   return (
     <div css={styles.base}>
       <TopBar />
@@ -162,6 +230,38 @@ const Post: NextPage<Props> = ({ entry }) => {
         </div>
 
         <Divider variant="dashed" />
+
+        <div css={styles.readnext_cont}>
+          <p css={styles.readnext_text} style={{ textAlign: 'center' }}>
+            Read Next
+          </p>
+          <div>
+            {recentEntries.map((item) => (
+              <Link href={`/post/${item.id}`} passHref key={item.id}>
+                <a
+                  css={styles.readnext_card}
+                  href={`/post/${item.id}`}
+                  title={item.title}
+                  target="_self"
+                  rel="noopener noreferrer"
+                >
+                  <div css={styles.readnext_card_header}>
+                    <h2>{item.title}</h2>
+                    <IconArrowsMaximize
+                      css={styles.readnext_card_title_icon}
+                      size={20}
+                    />
+                  </div>
+                  <p>
+                    {item.notes.length > 400
+                      ? `${item.notes.substring(0, 400)}...`
+                      : item.notes}
+                  </p>
+                </a>
+              </Link>
+            ))}
+          </div>
+        </div>
       </div>
 
       <HomeAccordian />

@@ -19,9 +19,10 @@ interface Entry {
 
 interface Props {
   entry: Entry
+  recentEntries: Entry[]
 }
 
-const PostPage: NextPage<Props> = ({ entry }) => {
+const PostPage: NextPage<Props> = ({ entry, recentEntries }) => {
   return (
     <>
       <Head>
@@ -92,7 +93,7 @@ const PostPage: NextPage<Props> = ({ entry }) => {
         />
       </Head>
       <ApolloProvider client={client}>
-        <Post entry={entry} />
+        <Post entry={entry} recentEntries={recentEntries} />
       </ApolloProvider>
     </>
   )
@@ -115,8 +116,52 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
       },
     })
 
+    // get the two entries published after the current one, if there aren't any get one's publish before
+    const recentEntries = await prisma.entry.findMany({
+      where: {
+        id: {
+          not: id,
+        },
+        status: "PUBLISHED",
+        created_at: {
+          gt: entry.created_at,
+        },
+      },
+      orderBy: {
+        created_at: "asc",
+      },
+      take: 2,
+    })
+
+    if (recentEntries.length < 2) {
+      const recentEntries2 = await prisma.entry.findMany({
+        where: {
+          id: {
+            not: id,
+          },
+          status: "PUBLISHED",
+          created_at: {
+            lt: entry.created_at,
+          },
+        },
+        orderBy: {
+          created_at: "desc",
+        },
+        take: 2 - recentEntries.length,
+      })
+
+      recentEntries.push(...recentEntries2)
+
+      recentEntries.sort((a, b) => {
+        return new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+      })
+    }
+
     return {
-      props: { entry: entry },
+      props: {
+        entry: entry,
+        recentEntries: recentEntries,
+      },
     }
   } catch {
     return {
