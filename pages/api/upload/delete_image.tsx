@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/react'
-import { S3 } from 'aws-sdk'
-
+import { DeleteObjectCommand, S3Client } from '@aws-sdk/client-s3'
 
 export default async function handler(
   req: NextApiRequest,
@@ -16,28 +15,28 @@ export default async function handler(
 
   const { filename } = JSON.parse(req.body)
 
-  // connnect to S3
-  const s3 = new S3({
-    accessKeyId: process.env.B2_ACCESS_KEY_ID,
-    secretAccessKey: process.env.B2_SECRET_ACCESS_KEY,
-    region: process.env.B2_REGION,
+  // connnect to B2
+  const client = new S3Client({
     endpoint: process.env.B2_ENDPOINT,
+    region: process.env.B2_REGION,
   })
 
   // connect to bucket
   const bucket = process.env.B2_BUCKET || ''
 
+  // create command
+  const command = new DeleteObjectCommand({
+    Bucket: bucket,
+    Key: filename,
+  })
+
   // delete file from bucket
   try {
-    await s3.deleteObject({
-      Bucket: bucket,
-      Key: filename,
-    }).promise()
+    await client.send(command)
+    res.status(200).json({ message: 'Success' })
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: 'Error deleting image' })
     return
   }
-
-  res.status(200).json({ message: 'Success' })
 }

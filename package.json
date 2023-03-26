@@ -13,6 +13,7 @@
   "dependencies": {
     "@apollo/client": "^3.6.9",
     "@apollo/utils.keyvadapter": "^2.0.1",
+    "@aws-sdk/client-s3": "^3.299.0",
     "@emotion/react": "^11.9.3",
     "@mantine/core": "^5.2.5",
     "@mantine/dates": "^5.2.5",
@@ -25,7 +26,6 @@
     "@prisma/client": "^4.3.1",
     "@tabler/icons": "^1.78.1",
     "apollo-server-micro": "^3.10.0",
-    "aws-sdk": "^2.1343.0",
     "dayjs": "^1.11.5",
     "formidable": "^2.1.1",
     "graphql": "^16.6.0",

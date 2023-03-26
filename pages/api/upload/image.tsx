@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/react'
 import { readFileSync } from 'fs'
 import formidable from 'formidable'
-import { S3 } from 'aws-sdk'
+import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3'
 
 export const config = {
   api: {
@@ -43,31 +43,28 @@ export default async function handler(
     const filename = randomString + '_' + imageInfo.originalFilename
 
     // connnect to B2
-    const s3 = new S3({
-      accessKeyId: process.env.B2_ACCESS_KEY_ID,
-      secretAccessKey: process.env.B2_SECRET_ACCESS_KEY,
-      region: process.env.B2_REGION,
+    const client = new S3Client({
       endpoint: process.env.B2_ENDPOINT,
+      region: process.env.B2_REGION,
     })
 
-    // connect to bucket
     const bucket = process.env.B2_BUCKET || ''
     const imageBlob = readFileSync(imageInfo.filepath)
-
-    const upload = s3.upload({
+    
+    // create command
+    const command = new PutObjectCommand({
       Bucket: bucket,
       Key: filename,
       Body: imageBlob,
     })
 
-    upload.send((err) => {
-      if (err) {
-        console.error(err)
-        res.status(500).json({ message: 'Error uploading file' })
-        return
-      }
-
+    // upload file to bucket
+    try {
+      await client.send(command)
       res.status(200).json({ url: filename })
-    })
+    } catch (err) {
+      console.error(err)
+      res.status(500).json({ message: 'Error uploading image' })
+    }
   })
 }
