@@ -4,6 +4,7 @@ import client from '../lib/site-client'
 import { ApolloProvider } from '@apollo/client'
 import prisma from '../lib/prisma'
 import Head from 'next/head'
+import Banner from '../public/images/archive-banner.webp'
 
 
 interface Entry {
@@ -23,9 +24,41 @@ const ArchivePage: NextPage<Props> = ({ entries }) => {
       <Head>
         <title>Archive | The Lonely Lands</title>
         <meta name="robots" content="all" />
+
+        <meta property="og:title" content="Archive | The Lonely Lands" />
+        <meta property="twitter:title" content="Archive | The Lonely Lands" />
+        <meta name="title" content="Archive | The Lonely Lands" />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="The Lonely Lands" />
+
+        <meta property="og:url" content="https://thelonelylands.com/archive" />
+        <meta
+          property="twitter:url"
+          content="https://thelonelylands.com/archive"
+        />
+
+        <meta
+          property="og:image"
+          content={`https://thelonelylands.com${Banner.src}`}
+        />
+        <meta
+          property="twitter:image"
+          content={`https://thelonelylands.com${Banner.src}`}
+        />
+
+        <meta
+          property="og:description"
+          content="The Lonely Lands is a collection of thoughts, musings, and memories written down over the years by Dinil Fernando (aka. blekmus/walker)"
+        />
         <meta
           name="description"
-          content="Archive of all posts on The Lonely Lands"
+          content="The Lonely Lands is a collection of thoughts, musings, and memories written down over the years by Dinil Fernando (aka. blekmus/walker)"
+        />
+        <meta
+          property="twitter:description"
+          content="The Lonely Lands is a collection of thoughts, musings, and memories written down over the years by Dinil Fernando (aka. blekmus/walker)"
         />
       </Head>
       <ApolloProvider client={client}>

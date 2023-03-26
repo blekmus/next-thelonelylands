@@ -4,6 +4,7 @@ import client from '../lib/site-client'
 import { ApolloProvider } from '@apollo/client'
 import Head from 'next/head'
 import prisma from '../lib/prisma'
+import Banner from '../public/images/home-banner.jpg'
 
 interface Entry {
   id: string
@@ -26,20 +27,37 @@ const HomePage: NextPage<Props> = ({ entries }) => {
     <>
       <Head>
         <title>The Lonely Lands</title>
+        <meta name="robots" content="all" />
+        <meta name="title" content="The Lonely Lands" />
         <meta
           name="description"
           content="The Lonely Lands is a collection of thoughts, musings, and memories written down over the years by Dinil Fernando (aka. blekmus/walker)"
         />
+
+        <meta property="og:site_name" content="The Lonely Lands" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://thelonelylands.com" />
         <meta property="og:title" content="The Lonely Lands" />
         <meta
           property="og:description"
           content="The Lonely Lands is a collection of thoughts, musings, and memories written down over the years by Dinil Fernando (aka. blekmus/walker)"
         />
-        {/* <meta
+        <meta
           property="og:image"
-          content="https://example.com/images/cool-page.jpg"
-        /> */}
-        <meta name="robots" content="all" />
+          content={`https://thelonelylands.com${Banner.src}`}
+        />
+        <meta
+          property="twitter:image"
+          content={`https://thelonelylands.com${Banner.src}`}
+        />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://thelonelylands.com" />
+        <meta property="twitter:title" content="The Lonely Lands" />
+        <meta
+          property="twitter:description"
+          content="The Lonely Lands is a collection of thoughts, musings, and memories written down over the years by Dinil Fernando (aka. blekmus/walker)"
+        />
       </Head>
       <ApolloProvider client={client}>
         <Home entries={entries} />

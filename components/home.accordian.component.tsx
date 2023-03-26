@@ -5,7 +5,7 @@ import mediaQuery from '../lib/mediaQuery'
 import Link from 'next/link'
 import BannerOtaku from '../public/images/otaku-banner.webp'
 import BannerWriter from '../public/images/writer-banner.webp'
-import BannerEnthusiast from '../public/images/enthusiast-banner.webp'
+import BannerArchive from '../public/images/archive-banner.webp'
 import BannerCinephile from '../public/images/cinephile-banner.webp'
 
 
@@ -153,7 +153,7 @@ const HomeAccordian: NextPage = () => {
 
             <Image
               css={styles.accordian_image}
-              src={BannerEnthusiast}
+              src={BannerArchive}
               alt="accordian image"
               loading="eager"
             />

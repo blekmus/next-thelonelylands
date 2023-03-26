@@ -38,7 +38,8 @@ const PostPage: NextPage<Props> = ({ entry }) => {
           }
         />
 
-        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="The Lonely Lands" />
+        <meta property="og:type" content="article" />
         <meta
           property="og:url"
           content={`https://thelonelylands.com/post/${entry.id}`}
