@@ -12,10 +12,10 @@ Built on Nextjs using Typescript. Custom user frontend with Mantine admin dashbo
 
 ## Previews
 
-![](https://user-images.githubusercontent.com/47277246/188277332-9f2a4bb1-ad8f-41bf-be09-f5d388f363a4.png)
+![image](https://user-images.githubusercontent.com/47277246/228015669-39c74b1c-e2df-4333-a63c-d0e17d94ab38.png)
 
 ### Admin Dashboard
 
-![](https://user-images.githubusercontent.com/47277246/188277447-fa2deb01-734a-4ac2-a7e4-1d0bde16b6bb.png)
+![image](https://user-images.githubusercontent.com/47277246/228016077-785496a6-fb87-4079-b9c0-c2d8c56d8666.png)
 
-![](https://user-images.githubusercontent.com/47277246/188278171-d92d4c4f-4a96-476b-b7a4-e5decba60ed7.png)
+![image](https://user-images.githubusercontent.com/47277246/228018189-05f63454-8e6b-458c-874f-caca322f85f0.png)
