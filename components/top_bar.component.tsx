@@ -47,7 +47,7 @@ const styles = {
     },
 
     'a:hover': {
-      borderBottom: 'solid var(--light-text) 1px',
+      borderBottom: 'solid var(--light-text) 1px !important',
     },
   }),
 }
@@ -73,7 +73,7 @@ const TopBar: NextPage<Props> = ({ page }) => {
             <a
               style={{
                 borderBottom:
-                  page === 'writer' ? 'solid var(--light-text) 1px' : '',
+                  page === 'writer' ? 'solid var(--light-text) 1px' : 'initial',
               }}
             >
               Writer
@@ -86,7 +86,9 @@ const TopBar: NextPage<Props> = ({ page }) => {
             <a
               style={{
                 borderBottom:
-                  page === 'cinephile' ? 'solid var(--light-text) 1px' : '',
+                  page === 'cinephile'
+                    ? 'solid var(--light-text) 1px'
+                    : 'initial',
               }}
             >
               Cinephile
@@ -99,7 +101,7 @@ const TopBar: NextPage<Props> = ({ page }) => {
             <a
               style={{
                 borderBottom:
-                  page === 'otaku' ? 'solid var(--light-text) 1px' : '',
+                  page === 'otaku' ? 'solid var(--light-text) 1px' : 'initial',
               }}
             >
               Otaku
@@ -112,7 +114,9 @@ const TopBar: NextPage<Props> = ({ page }) => {
             <a
               style={{
                 borderBottom:
-                  page === 'archive' ? 'solid var(--light-text) 1px' : '',
+                  page === 'archive'
+                    ? 'solid var(--light-text) 1px'
+                    : 'initial',
               }}
             >
               Archive

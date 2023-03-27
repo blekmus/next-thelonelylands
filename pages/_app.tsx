@@ -5,6 +5,7 @@ import { MantineProvider } from '@mantine/core'
 import type { MantineThemeOverride } from '@mantine/core'
 import { NotificationsProvider } from '@mantine/notifications'
 import { RouterTransition } from '../components/router_transition.component'
+import Script from 'next/script';
 
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
@@ -25,6 +26,12 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
       <MantineProvider theme={theme} withGlobalStyles withNormalizeCSS>
         <NotificationsProvider>
           <RouterTransition />
+          <Script
+            src="https://analytics.thelonelylands.com/harmless_mkay.js"
+            async
+            defer
+            data-website-id="43721fe7-dd40-4297-a31c-1192e89f4013"
+          />
           <Component {...pageProps} />
         </NotificationsProvider>
       </MantineProvider>
