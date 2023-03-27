@@ -1,7 +1,7 @@
 # The Lonely Lands
 A collection of thoughts, musings, and memories written down over the years by Dinil Fernando (aka. blekmus/walker)
 
-Built on Nextjs using Typescript. Custom user frontend with Mantine admin dashboard. Connected to CockroachDB backend using Prismajs
+Built on Nextjs using Typescript. Custom user frontend with Mantine admin dashboard. Connected to sqlite databse with Prismajs and Apollo Graphql
 
 ![](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
 ![](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
