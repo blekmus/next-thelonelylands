@@ -273,14 +273,23 @@ const AdminNew = () => {
           padding="xl"
         >
           <Center>
-            <Text size="md">This will be published publicly</Text>
+            <Text size="xl" color="blue" weight={700}>
+              Publishing
+            </Text>
+          </Center>
+
+          <Center>
+            <Text size="md">This _ will be visible publicly</Text>
           </Center>
 
           <SimpleGrid spacing={'xl'} cols={2} mt={30}>
             <Button
               color={'gray'}
               variant={'light'}
-              onClick={() => setPublishModalOpened(false)}
+              onClick={() => {
+                setPublishModalOpened(false)
+                setSaveLoading(false)
+              }}
             >
               Cancel
             </Button>
@@ -500,7 +509,7 @@ const AdminNew = () => {
               autosize
               minRows={2}
               variant="filled"
-              size="md"
+              size="sm"
               defaultValue={entryContent}
               className={classes.text_input}
             />

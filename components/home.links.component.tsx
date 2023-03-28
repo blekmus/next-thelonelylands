@@ -166,7 +166,7 @@ const HomeLinks: NextPage = () => {
 
         <LinkCard
           title="Alcohol"
-          description="Celebrating the art of drinking with my curated catalogue of bottles I've savoured"
+          description="Celebrating the art of drinking with a curated catalogue of bottles I've savoured"
           image={LinkAlcohol}
           url="https://dinil.notion.site/192adf11e1f942299d15f14817781233?v=11f81b80090146c299aa02a9c9c7ba69"
         />

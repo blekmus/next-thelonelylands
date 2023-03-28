@@ -128,7 +128,7 @@ const Archive: NextPage<Props> = ({ entries }) => {
         <header css={styles.header}>
           <h1 css={styles.header_title}>Archive</h1>
           <p css={styles.header_title_sub}>
-            <i>Features sorted links to all of my works except for everything Otaku</i>
+            Features sorted links to all of my works except for everything Otaku
           </p>
         </header>
 

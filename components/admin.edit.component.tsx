@@ -172,6 +172,7 @@ const AdminEdit = ({ id }: { id: string }) => {
   const [saveTypeOpened, setSaveTypeOpened] = useState(false)
 
   const [saveType, setSaveType] = useState<'DRAFT' | 'PUBLISHED'>('DRAFT')
+  const [initialSaveType, setInitialSaveType] = useState<'DRAFT' | 'PUBLISHED'>('DRAFT')
 
   const [entryLastUpdated, setEntryLastUpdated] = useState<string>()
   const [entryCover, setEntryCover] = useState<string | null>(null)
@@ -193,6 +194,7 @@ const AdminEdit = ({ id }: { id: string }) => {
       setEntryType(data.entry.type)
       setEntryContent(data.entry.notes)
       setSaveType(data.entry.status)
+      setInitialSaveType(data.entry.status)
       setEntryLastUpdated(data.entry.updated_at)
 
       if (data.entry.cover_type === 'FILE') {
@@ -330,7 +332,7 @@ const AdminEdit = ({ id }: { id: string }) => {
   const handleSaveBtn = () => {
     setSaveLoading(true)
 
-    if (saveType === 'PUBLISHED') {
+    if (initialSaveType === 'DRAFT') {
       setPublishModalOpened(true)
     } else {
       saveEntry()
@@ -370,14 +372,23 @@ const AdminEdit = ({ id }: { id: string }) => {
             padding="xl"
           >
             <Center>
-              <Text size="md">This will be published publicly</Text>
+              <Text size="xl" color="blue" weight={700}>
+                Publishing
+              </Text>
+            </Center>
+
+            <Center>
+              <Text size="md">This will be visible publicly</Text>
             </Center>
 
             <SimpleGrid spacing={'xl'} cols={2} mt={30}>
               <Button
                 color={'gray'}
                 variant={'light'}
-                onClick={() => setPublishModalOpened(false)}
+                onClick={() => {
+                  setPublishModalOpened(false)
+                  setSaveLoading(false)
+                }}
               >
                 Cancel
               </Button>
@@ -617,7 +628,7 @@ const AdminEdit = ({ id }: { id: string }) => {
                 autosize
                 minRows={2}
                 variant="filled"
-                size="md"
+                size="sm"
                 defaultValue={entryContent ? entryContent : ''}
                 className={classes.text_input}
               />
