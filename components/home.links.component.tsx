@@ -4,11 +4,10 @@ import Image, { StaticImageData } from 'next/image'
 import mediaQuery from '../lib/mediaQuery'
 
 import LinkCommicasa from '../public/images/commicasa.jpg'
-import LinkAlcohol from '../public/images/alcohol.webp'
-// import LinkAnitracker from '../public/images/anime.webp'
-import LinkDocs from '../public/images/docs.webp'
-import LinkWatch from '../public/images/watch.webp'
-import LinkPodcasts from '../public/images/podcasts.webp'
+import LinkAlcohol from '../public/images/alcohol.jpg'
+import LinkDocs from '../public/images/docs.jpg'
+import LinkWatch from '../public/images/watch.jpg'
+import LinkPodcasts from '../public/images/podcasts.jpg'
 import LinkTools from '../public/images/tools.jpg'
 
 

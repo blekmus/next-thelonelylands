@@ -181,7 +181,9 @@ const Home: NextPage<Props> = ({ entries }) => {
                 <strong>Archive</strong>
               </a>
             </Link>{' '}
-            to find links to all of my posts. Have fun reading my
+            to find links to all of my posts. All images except movie, anime and series posters are AI generated. Yea.
+            <br /><br />
+            Have fun reading my
             philosophy-induced ramblings!
             <br />
             <br />
