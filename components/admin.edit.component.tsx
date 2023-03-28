@@ -378,7 +378,7 @@ const AdminEdit = ({ id }: { id: string }) => {
             </Center>
 
             <Center>
-              <Text size="md">This will be visible publicly</Text>
+              <Text size="md">This draft will be visible publicly</Text>
             </Center>
 
             <SimpleGrid spacing={'xl'} cols={2} mt={30}>
