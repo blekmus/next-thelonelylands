@@ -332,7 +332,7 @@ const AdminEdit = ({ id }: { id: string }) => {
   const handleSaveBtn = () => {
     setSaveLoading(true)
 
-    if (initialSaveType === 'DRAFT') {
+    if (initialSaveType === 'DRAFT' && saveType === 'PUBLISHED') {
       setPublishModalOpened(true)
     } else {
       saveEntry()
