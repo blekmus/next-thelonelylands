@@ -27,6 +27,6 @@ npm install
 npx prisma generate
 npx prisma migrate dev --name init
 
-# # Copy entries file to prisma folder
+# Copy entries file to prisma folder
 npm run seed
 ```
