@@ -19,3 +19,14 @@ Built on Nextjs using Typescript. Custom user frontend with Mantine admin dashbo
 ![image](https://user-images.githubusercontent.com/47277246/228016077-785496a6-fb87-4079-b9c0-c2d8c56d8666.png)
 
 ![image](https://user-images.githubusercontent.com/47277246/228018189-05f63454-8e6b-458c-874f-caca322f85f0.png)
+
+## Setting up
+
+``` bash
+npm install
+npx prisma generate
+npx prisma migrate dev --name init
+
+# # Copy entries file to prisma folder
+npm run seed
+```

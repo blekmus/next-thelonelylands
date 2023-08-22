@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 async function main() {
   // get data.json file data
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const entries = require('./data.json')
+  const entries = require('./entries.json')
 
   console.log(`Start seeding ...`)
 
