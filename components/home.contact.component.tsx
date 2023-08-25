@@ -135,8 +135,8 @@ const HomeContact: NextPage = () => {
         <p style={{ lineHeight: 1.6, marginBottom: 20 }}>
           If you&apos;re feeling rather chatty. Hit me up on{' '}
           <a
-            title="Walker#6140"
-            href="https://discordid.netlify.app/?id=534321754517143553"
+            title="blekmus"
+            href="https://discordapp.com/users/534321754517143553"
             style={{ borderBottom: 'solid var(--light-text) 1px' }}
             target="_blank"
             rel="noreferrer"
