@@ -28,7 +28,7 @@
     "apollo-server-micro": "^3.10.0",
     "dayjs": "^1.11.5",
     "formidable": "^2.1.1",
-    "graphql": "^16.6.0",
+    "graphql": "^16.8.1",
     "keyv": "^4.5.2",
     "micro-cors": "^0.1.1",
     "next": "^13.5.4",
