@@ -152,8 +152,8 @@ const Home: NextPage<Props> = ({ entries }) => {
           <Image
             src="https://avatars.githubusercontent.com/u/47277246"
             alt="profile"
-            width="300px"
-            height="300px"
+            width={300}
+            height={300}
             layout="responsive"
             css={styles.profile_pic}
             priority
