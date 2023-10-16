@@ -6,7 +6,7 @@ import mediaQuery from '../lib/mediaQuery'
 import LinkCommicasa from '../public/images/commicasa.jpg'
 import LinkAlcohol from '../public/images/alcohol.jpg'
 import LinkDocs from '../public/images/docs.jpg'
-import LinkWatch from '../public/images/watch.jpg'
+import LinkPhotos from '../public/images/photos.png'
 import LinkPodcasts from '../public/images/podcasts.jpg'
 import LinkTools from '../public/images/tools.jpg'
 
@@ -51,6 +51,7 @@ const styles = {
   link_card: css({
     borderRadius: '8px',
     backgroundColor: 'var(--foreground)',
+    cursor: 'pointer',
 
     ':hover img': {
       filter: 'grayscale(0%)',
@@ -157,10 +158,10 @@ const HomeLinks: NextPage = () => {
       <p css={styles.link_text}>Links</p>
       <div css={styles.links}>
         <LinkCard
-          title="Time Pieces"
-          description="Don't you just love it when things are needlessly complicated. It's like a work of art!"
-          image={LinkWatch}
-          url="https://dinil.notion.site/087bf556c2aa48d58fe97183b40b3ea5?v=f29ad37abc07438f939e7c84b8758dc0"
+          title="Photography"
+          description="I love taking photos. Here's a dump of my favourite ones"
+          image={LinkPhotos}
+          url="https://flic.kr/ps/42R857"
         />
 
         <LinkCard
@@ -169,13 +170,6 @@ const HomeLinks: NextPage = () => {
           image={LinkAlcohol}
           url="https://dinil.notion.site/192adf11e1f942299d15f14817781233?v=11f81b80090146c299aa02a9c9c7ba69"
         />
-
-        {/* <LinkCard
-          title="AniTracker"
-          description="What anime do I watch? What manga do I read? Find out here"
-          image={LinkAnitracker}
-          url="https://anime.thelonelylands.com"
-        /> */}
 
         <LinkCard
           title="Commicasa"

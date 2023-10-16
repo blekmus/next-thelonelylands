@@ -325,22 +325,6 @@ const Home: NextPage<Props> = ({ entries }) => {
                 />
               </svg>
             </a>
-            <a
-              href="https://flic.kr/ps/42R857"
-              target="_blank"
-              rel="noreferrer"
-              title="Flickr: blekmus"
-              style={{ display: 'contents' }}
-            >
-              <svg
-                viewBox="0 0 512 512"
-                xmlns="http://www.w3.org/2000/svg"
-                style={{ width: '30px' }}
-                fill="currentcolor"
-              >
-                <path d="M256,0C114.615,0,0,114.615,0,256S114.615,512,256,512,512,397.385,512,256,397.385,0,256,0ZM166.813,326.814A70.814,70.814,0,1,1,237.627,256,70.814,70.814,0,0,1,166.813,326.814Zm178.373,0A70.814,70.814,0,1,1,416,256,70.815,70.815,0,0,1,345.186,326.814Z" />
-              </svg>
-            </a>
           </div>
         </div>
       </div>
