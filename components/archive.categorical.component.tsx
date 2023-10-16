@@ -136,20 +136,20 @@ const ArchiveCategorical: NextPage<Props> = ({ entries }) => {
           </h3>
           <div css={styles.archive_posts}>
             {entry.entries.map((entry) => (
-              <Link key={entry.id} href={`/post/${entry.id}`}>
-                <a css={styles.archive_entry} href={`/post/${entry.id}`}>
-                  <h3>{entry.title}</h3>
-                  <p>
-                    {dayjs(Number(entry.created_at)).format('D MMMM, YYYY')}
-                  </p>
-                </a>
-              </Link>
+              (<Link key={entry.id} href={`/post/${entry.id}`} css={styles.archive_entry}>
+
+                <h3>{entry.title}</h3>
+                <p>
+                  {dayjs(Number(entry.created_at)).format('D MMMM, YYYY')}
+                </p>
+
+              </Link>)
             ))}
           </div>
         </div>
       ))}
     </div>
-  )
+  );
 }
 
 export default ArchiveCategorical

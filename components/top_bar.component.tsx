@@ -62,70 +62,70 @@ const TopBar: NextPage<Props> = ({ page }) => {
       <div css={styles.title}>
         <h2>
           <Link href="/">
-            <a>The Lonely Lands</a>
+            The Lonely Lands
           </Link>
         </h2>
       </div>
 
       <nav css={styles.menu}>
         <p>
-          <Link href="/writer">
-            <a
-              style={{
-                borderBottom:
-                  page === 'writer' ? 'solid var(--light-text) 1px' : 'initial',
-              }}
-            >
+          <Link
+            href="/writer"
+            style={{
+              borderBottom:
+                page === 'writer' ? 'solid var(--light-text) 1px' : 'initial',
+            }}>
+            
               Writer
-            </a>
+            
           </Link>
         </p>
 
         <p>
-          <Link href="/cinephile">
-            <a
-              style={{
-                borderBottom:
-                  page === 'cinephile'
-                    ? 'solid var(--light-text) 1px'
-                    : 'initial',
-              }}
-            >
+          <Link
+            href="/cinephile"
+            style={{
+              borderBottom:
+                page === 'cinephile'
+                  ? 'solid var(--light-text) 1px'
+                  : 'initial',
+            }}>
+            
               Cinephile
-            </a>
+            
           </Link>
         </p>
 
         <p>
-          <Link href="/otaku">
-            <a
-              style={{
-                borderBottom:
-                  page === 'otaku' ? 'solid var(--light-text) 1px' : 'initial',
-              }}
-            >
+          <Link
+            href="/otaku"
+            style={{
+              borderBottom:
+                page === 'otaku' ? 'solid var(--light-text) 1px' : 'initial',
+            }}>
+            
               Otaku
-            </a>
+            
           </Link>
         </p>
 
         <p>
-          <Link href="/archive">
-            <a
-              style={{
-                borderBottom:
-                  page === 'archive'
-                    ? 'solid var(--light-text) 1px'
-                    : 'initial',
-              }}
-            >
+          <Link
+            href="/archive"
+            style={{
+              borderBottom:
+                page === 'archive'
+                  ? 'solid var(--light-text) 1px'
+                  : 'initial',
+            }}>
+            
               Archive
-            </a>
+            
           </Link>
         </p>
       </nav>
     </header>
-  )
+  );
 }
 
 export default TopBar

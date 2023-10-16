@@ -143,22 +143,22 @@ const ArchiveAlphabetical: NextPage<Props> = ({ entries }) => {
           <h3 css={styles.archive_letter_header}>{letter.letter}</h3>
           <div css={styles.archive_posts}>
             {letter.entries.map((entry) => (
-              <Link key={entry.id} href={`/post/${entry.id}`}>
-                <a css={styles.archive_entry} href={`/post/${entry.id}`}>
-                  <h3>{entry.title}</h3>
-                  <p>
-                    {dayjs(Number(entry.created_at)).format('D MMMM, YYYY')}
-                    <strong> · </strong>
-                    {entry.type.charAt(0) + entry.type.slice(1).toLowerCase()}
-                  </p>
-                </a>
-              </Link>
+              (<Link key={entry.id} href={`/post/${entry.id}`} css={styles.archive_entry}>
+
+                <h3>{entry.title}</h3>
+                <p>
+                  {dayjs(Number(entry.created_at)).format('D MMMM, YYYY')}
+                  <strong> · </strong>
+                  {entry.type.charAt(0) + entry.type.slice(1).toLowerCase()}
+                </p>
+
+              </Link>)
             ))}
           </div>
         </div>
       ))}
     </div>
-  )
+  );
 }
 
 export default ArchiveAlphabetical

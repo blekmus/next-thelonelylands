@@ -237,28 +237,29 @@ const Post: NextPage<Props> = ({ entry, recentEntries }) => {
           </p>
           <div>
             {recentEntries.map((item) => (
-              <Link href={`/post/${item.id}`} passHref key={item.id}>
-                <a
-                  css={styles.readnext_card}
-                  href={`/post/${item.id}`}
-                  title={item.title}
-                  target="_self"
-                  rel="noopener noreferrer"
-                >
-                  <div css={styles.readnext_card_header}>
-                    <h2>{item.title}</h2>
-                    <IconArrowsMaximize
-                      css={styles.readnext_card_title_icon}
-                      size={20}
-                    />
-                  </div>
-                  <p>
-                    {item.notes.length > 400
-                      ? `${item.notes.substring(0, 400)}...`
-                      : item.notes}
-                  </p>
-                </a>
-              </Link>
+              (<Link
+                href={`/post/${item.id}`}
+                passHref
+                key={item.id}
+                css={styles.readnext_card}
+                title={item.title}
+                target="_self"
+                rel="noopener noreferrer">
+
+                <div css={styles.readnext_card_header}>
+                  <h2>{item.title}</h2>
+                  <IconArrowsMaximize
+                    css={styles.readnext_card_title_icon}
+                    size={20}
+                  />
+                </div>
+                <p>
+                  {item.notes.length > 400
+                    ? `${item.notes.substring(0, 400)}...`
+                    : item.notes}
+                </p>
+
+              </Link>)
             ))}
           </div>
         </div>
@@ -266,7 +267,7 @@ const Post: NextPage<Props> = ({ entry, recentEntries }) => {
 
       <HomeAccordian />
     </div>
-  )
+  );
 }
 
 export default Post

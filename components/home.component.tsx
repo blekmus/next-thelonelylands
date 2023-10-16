@@ -176,10 +176,10 @@ const Home: NextPage<Props> = ({ entries }) => {
             <br />
             <br />
             Visit the{' '}
-            <Link href="/archive">
-              <a style={{ borderBottom: 'solid var(--light-text) 1px' }}>
-                <strong>Archive</strong>
-              </a>
+            <Link href="/archive" style={{ borderBottom: 'solid var(--light-text) 1px' }}>
+
+              <strong>Archive</strong>
+
             </Link>{' '}
             to find links to all of my posts. All images except movie, anime and
             series posters are AI generated. Yea.
@@ -373,7 +373,7 @@ const Home: NextPage<Props> = ({ entries }) => {
 
       <HomeAccordian />
     </div>
-  )
+  );
 }
 
 export default Home

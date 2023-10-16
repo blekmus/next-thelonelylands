@@ -89,7 +89,7 @@ const HomeAccordian: NextPage = () => {
         Explore More
       </p>
       <div css={styles.accordian}>
-        <Link href="/writer">
+        <Link href="/writer" legacyBehavior>
           <div css={styles.accordian_item}>
             <div css={styles.accordian_content}>
               <h2>Writer</h2>
@@ -107,7 +107,7 @@ const HomeAccordian: NextPage = () => {
           </div>
         </Link>
 
-        <Link href="/cinephile">
+        <Link href="/cinephile" legacyBehavior>
           <div css={styles.accordian_item}>
             <div css={styles.accordian_content}>
               <h2>Cinephile</h2>
@@ -124,7 +124,7 @@ const HomeAccordian: NextPage = () => {
           </div>
         </Link>
 
-        <Link href="/otaku">
+        <Link href="/otaku" legacyBehavior>
           <div css={styles.accordian_item}>
             <div css={styles.accordian_content}>
               <h2>Otaku</h2>
@@ -142,7 +142,7 @@ const HomeAccordian: NextPage = () => {
           </div>
         </Link>
 
-        <Link href="/archive">
+        <Link href="/archive" legacyBehavior>
           <div css={styles.accordian_item}>
             <div css={styles.accordian_content}>
               <h2>Archive</h2>
@@ -161,7 +161,7 @@ const HomeAccordian: NextPage = () => {
         </Link>
       </div>
     </div>
-  )
+  );
 }
 
 export default HomeAccordian

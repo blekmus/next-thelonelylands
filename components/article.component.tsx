@@ -192,15 +192,15 @@ const Article: NextPage<Props> = ({
   // header section
   const headerSection = link ? (
     <header css={styles.entry_title_link}>
-      <Link href={`/post/${link}`} passHref>
-        <a
-          href={`/post/${link}`}
-          title="Fullpage"
-          target={link_target || '_self'}
-          rel="noopener noreferrer"
-        >
-          <h2>{title}</h2>
-        </a>
+      <Link
+        href={`/post/${link}`}
+        passHref
+        title="Fullpage"
+        target={link_target || '_self'}
+        rel="noopener noreferrer">
+
+        <h2>{title}</h2>
+
       </Link>
       <IconArrowsMaximize css={styles.entry_title_icon} size={20} />
     </header>
