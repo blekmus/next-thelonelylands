@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import { css } from '@emotion/react'
 import TopBar from './top_bar.component'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import mediaQuery from '../lib/mediaQuery'
 import Article from './article.component'
 import HomeContact from './home.contact.component'

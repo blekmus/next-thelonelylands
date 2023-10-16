@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { css } from '@emotion/react'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import mediaQuery from '../lib/mediaQuery'
 import Link from 'next/link'
 import BannerOtaku from '../public/images/otaku-banner.webp'

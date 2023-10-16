@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { css } from '@emotion/react'
-import Image, { StaticImageData } from 'next/image'
+import Image, { StaticImageData } from "next/legacy/image"
 import mediaQuery from '../lib/mediaQuery'
 
 import LinkCommicasa from '../public/images/commicasa.jpg'
