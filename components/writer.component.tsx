@@ -101,15 +101,9 @@ const Writer: NextPage = () => {
           <h1 css={styles.title}>Writer</h1>
 
           <p css={styles.description}>
-            I&apos;m not just a writer, I&apos;m a selfish wordsmith who crafts
-            stories and pours out my heart and soul onto the page. My writing is
-            my personal playground, and I&apos;ll swing from one idea to the
-            next with reckless abandon.
-            <br />
-            <br />
-            But don&apos;t get me wrong, I&apos;m not completely heartless. If
-            someone happens to stumble upon my scribbles and enjoys them, well
-            then, that&apos;s like finding a golden ticket in a candy bar.
+            I write when I feel like it, and I write what I feel like writing.
+            I&apos;m a selfish writer, but don&apos;t get me wrong, I&apos;m not completely heartless.
+            If someone happens to enjoy my scribbles on this digital wall, I consider that a win.
             It&apos;s a sweet bonus that makes my writing journey all the more
             satisfying.
             <br />

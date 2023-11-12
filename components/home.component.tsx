@@ -182,7 +182,7 @@ const Home: NextPage<Props> = ({ entries }) => {
 
             </Link>{' '}
             to find links to all of my posts. All images except movie, anime and
-            series posters are AI generated. Yea.
+            series posters are AI generated. Yea...
             <br />
             <br />
             Have fun reading my philosophy-induced ramblings!

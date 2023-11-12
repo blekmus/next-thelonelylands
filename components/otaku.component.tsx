@@ -150,15 +150,15 @@ const Otaku: NextPage = () => {
           <h1 css={styles.title}>Otaku</h1>
 
           <p css={styles.description}>
-            Call me a sushi-rolling, ramen-slurping convert because Japanese
-            Anime, Manga, and Light Novels have taken over my life!
+            Anime is the medium that&apos;s closest to my heart. In a way,
+            it&apos;s like my lifeline. After getting into it back in 2019,
+            I&apos;ve experienced so many emotions that I never thought I
+            would.
             <br />
             <br />
-            There used to be a time when I was one of the biggest haters of all
-            things anime, but now I&apos;m living proof that people can change
-            (or maybe I&apos;m just a victim of a ninja mind-control jutsu). I
-            am who I swore I&apos;d never become, but honestly, it&apos;s so
-            much more fun over here.
+            There used to be a time when I hated anime, and now I&apos;m living
+            proof that people can change. I have become who I swore never to
+            become, but honestly, it&apos;s so much more fun.
             <br />
             <br />I love putting my feelings into words after finishing a title;
             this is a collection of everything I&apos;ve written on{' '}

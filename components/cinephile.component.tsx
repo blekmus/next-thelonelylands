@@ -97,15 +97,13 @@ const Cinephile: NextPage = () => {
           <h1 css={styles.title}>Cinephile</h1>
 
           <p css={styles.description}>
-            Lights, camera, action! There&apos;s nothing quite like the magical
-            world of cinema to transport me to another dimension. Whether
-            I&apos;m howling with laughter or sobbing uncontrollably, I know
-            I&apos;m in for a wild ride whenever I put on a movie or TV series.
+            Movies, TV series, and everything in between to me is a form of
+            escapism. Though I might not be as invested in them as anime, I
+            enjoy them a great deal. I don&apos;t watch them as much as I used
+            to, but I still try to watch a few every now and then.
             <br />
-            <br />
-            So, if you see me walking around in a daze with a bucket of popcorn,
-            you know I&apos;ve just come out of the cinema, and I&apos;m still
-            trying to find my way back to reality
+            <br />I might not be a movie critic, but here are some of my
+            thoughts.
           </p>
 
           <div css={styles.social}>

@@ -161,7 +161,7 @@ const HomeLinks: NextPage = () => {
           title="Photography"
           description="I love taking photos. Here's a dump of my favourite ones"
           image={LinkPhotos}
-          url="https://flic.kr/ps/42R857"
+          url="https://unsplash.com/@blekmus"
         />
 
         <LinkCard
