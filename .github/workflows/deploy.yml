@@ -15,4 +15,5 @@ jobs:
         key: ${{ secrets.KEY }}
         script: |
             cd ${{ secrets.PATH }}
-            ls
+            ssh-add ~/.ssh/git_id_rsa
+            git pull
