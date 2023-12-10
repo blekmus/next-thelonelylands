@@ -175,7 +175,7 @@ const HomeLinks: NextPage = () => {
           title="Commicasa"
           description="Where code, communism and fair development meet"
           image={LinkCommicasa}
-          url="https://commicasa.thelonelylands.com"
+          url="https://git.dinil.dev"
         />
 
         <LinkCard
