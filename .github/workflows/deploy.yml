@@ -15,5 +15,8 @@ jobs:
         key: ${{ secrets.KEY }}
         script: |
             cd ${{ secrets.PATH }}
-            ssh-add ~/.ssh/git_id_rsa
             git pull
+            npm install
+            npm run build
+            nvm use 16
+            pm2 restart thelonelylands
