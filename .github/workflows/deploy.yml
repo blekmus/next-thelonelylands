@@ -13,7 +13,8 @@ jobs:
         port: ${{ secrets.PORT }}
         key: ${{ secrets.KEY }}
         script: |
-            whoami
-            fish
-            ./deploy.sh        
+          eval `ssh-agent -s`
+          ssh-add ~/.ssh/git_id_rsa
+          cd ${{ PATH}} 
+          git pull
             
