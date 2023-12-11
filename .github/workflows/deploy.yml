@@ -1,24 +1,17 @@
 name: Deploy App
-on:
-  push:
-    branches: [master]
+on: [push]
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    env:
-      SSH_KEY: ${{ secrets.KEY }}
     steps:
-      - uses: actions/checkout@v4
-      - name: Running Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 16
-      - run: npm install
-      - run: npm run build
-      - run: mkdir ~/.ssh
-      - run: echo "$SSH_KEY" >> ~/.ssh/github-action
-      - run: chmod 400 ~/.ssh/github-action
-      - run: echo -e "Host vps\n\tUser root\n\tHostname 11.000.000.111\n\tIdentityFile ~/.ssh/github-action\n\tStrictHostKeyChecking No" >> ~/.ssh/config
-      - run: rsync -re ssh ./.next/ vps:${{ secrets.PATH }}/.next
-      - run: ssh vps "${{ secrets.NODE }}/node ${{ secrets.NODE }}/pm2 restart thelonelylands"
+    - name: remote execution
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        port: ${{ secrets.PORT }}
+        key: ${{ secrets.KEY }}
+        script: |
+            cd ${{ secrets.PATH }}
+            git pull
