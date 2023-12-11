@@ -24,5 +24,5 @@ jobs:
       - run: echo "$SSH_KEY" >> ~/.ssh/github-action
       - run: chmod 400 ~/.ssh/github-action
       - run: echo -e "Host vps\n\tUser root\n\tHostname 11.000.000.111\n\tIdentityFile ~/.ssh/github-action\n\tStrictHostKeyChecking No" >> ~/.ssh/config
-      - run: rsync -re ssh ./.next/ vps:${{ PATH }}/.next
-      - run: ssh vps "${{ NODE }}/node ${{ NODE }}/pm2 restart thelonelylands"
+      - run: rsync -re ssh ./.next/ vps:${{ secrets.PATH }}/.next
+      - run: ssh vps "${{ secrets.NODE }}/node ${{ secrets.NODE }}/pm2 restart thelonelylands"
