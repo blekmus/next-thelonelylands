@@ -1,11 +1,13 @@
 name: Deploy App
-on: [push]
+on:
+  push:
+    branches: [master]
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
     steps:
-    - name: remote execution
+    - name: SSH Exec
       uses: appleboy/ssh-action@v1.0.0
       with:
         host: ${{ secrets.HOST }}
@@ -17,4 +19,6 @@ jobs:
           ssh-add ~/.ssh/git_id_rsa
           cd ${{ secrets.PATH}} 
           git pull
-            
+          ${{ NODE }}/node ${{ NODE }}/npm install
+          ${{ NODE }}/node ${{ NODE }}/npm run build
+          ${{ NODE }}/node ${{ NODE }}/pm2 restart thelonelylands
