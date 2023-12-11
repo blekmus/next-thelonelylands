@@ -19,6 +19,6 @@ jobs:
           ssh-add ~/.ssh/git_id_rsa
           cd ${{ secrets.PATH}} 
           git pull
-          ${{ NODE }}/node ${{ NODE }}/npm install
-          ${{ NODE }}/node ${{ NODE }}/npm run build
-          ${{ NODE }}/node ${{ NODE }}/pm2 restart thelonelylands
+          ${{ secrets.NODE }}/node ${{ secrets.NODE }}/npm install
+          ${{ secrets.NODE }}/node ${{ secrets.NODE }}/npm run build
+          ${{ secrets.NODE }}/node ${{ secrets.NODE }}/pm2 restart thelonelylands
