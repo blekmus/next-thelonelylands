@@ -5,6 +5,9 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
+    - uses: webfactory/ssh-agent@v0.8.0
+      with:
+        ssh-private-key: ${{ secrets.KEY }}
     - name: remote execution
       uses: appleboy/ssh-action@v1.0.0
       with:
