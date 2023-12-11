@@ -6,19 +6,15 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.x]
     env:
       SSH_KEY: ${{ secrets.KEY }}
     steps:
-      - uses: actions/checkout@master
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - name: Running Node
+        uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: "npm"
-      - run: npm i
+          node-version: 16
+      - run: npm install
       - run: npm run build
       - run: mkdir ~/.ssh
       - run: echo "$SSH_KEY" >> ~/.ssh/github-action
