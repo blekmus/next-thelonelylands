@@ -21,4 +21,4 @@ jobs:
           git pull
           ${{ secrets.NODE }}/node ${{ secrets.NODE }}/npm install
           ${{ secrets.NODE }}/node ${{ secrets.NODE }}/npm run build
-          ${{ secrets.NODE }}/node ${{ secrets.NODE }}/pm2 restart thelonelylands
+          ${{ secrets.NODE }}/node ${{ secrets.NODE }}/pm2 restart thelonelylands --silent
