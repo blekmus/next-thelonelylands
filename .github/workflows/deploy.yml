@@ -1,22 +1,28 @@
 name: Deploy App
-on: [push]
+on:
+  push:
+    branches: [master]
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    env:
+      SSH_KEY: ${{ secrets.KEY }}
     steps:
-    - name: remote execution
-      uses: appleboy/ssh-action@v1.0.0
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        port: ${{ secrets.PORT }}
-        key: ${{ secrets.KEY }}
-        script: |
-            cd ${{ secrets.PATH }}
-            git pull
-            npm install
-            npm run build
-            nvm use 16
-            pm2 restart thelonelylands
+      - uses: actions/checkout@master
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: npm i
+      - run: npm run build
+      - run: mkdir ~/.ssh
+      - run: echo "$SSH_KEY" >> ~/.ssh/github-action
+      - run: chmod 400 ~/.ssh/github-action
+      - run: echo -e "Host vps\n\tUser root\n\tHostname 11.000.000.111\n\tIdentityFile ~/.ssh/github-action\n\tStrictHostKeyChecking No" >> ~/.ssh/config
+      - run: rsync -re ssh ./.next/ vps:${{ PATH }}/.next
+      - run: ssh vps "${{ NODE }}/node ${{ NODE }}/pm2 restart thelonelylands"
