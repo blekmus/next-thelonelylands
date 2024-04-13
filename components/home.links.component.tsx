@@ -8,7 +8,7 @@ import LinkAlcohol from '../public/images/alcohol.jpg'
 import LinkDocs from '../public/images/docs.jpg'
 import LinkPhotos from '../public/images/photos.png'
 import LinkPodcasts from '../public/images/podcasts.jpg'
-import LinkTools from '../public/images/tools.jpg'
+import LinkTools from '../public/images/glyph.png'
 
 
 const styles = {
@@ -187,7 +187,7 @@ const HomeLinks: NextPage = () => {
 
         <LinkCard
           title="Projects"
-          description=" A collection of websites and applications I've built"
+          description=" A collection of cool websites and applications I've built over the years"
           image={LinkTools}
           url="https://archive.dinil.dev/projects"
         />
