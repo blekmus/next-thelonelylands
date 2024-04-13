@@ -172,20 +172,6 @@ const HomeLinks: NextPage = () => {
         />
 
         <LinkCard
-          title="Commicasa"
-          description="Where code, communism and fair development meet"
-          image={LinkCommicasa}
-          url="https://git.dinil.dev"
-        />
-
-        <LinkCard
-          title="Archive"
-          description="A techy encyclopedia for the mentally retarded and easily forgetful"
-          image={LinkDocs}
-          url="https://archive.thelonelylands.com"
-        />
-
-        <LinkCard
           title="Podcasts"
           description="The podcasts (mostly fictional) that stole my heart and made me a devoted fan"
           image={LinkPodcasts}
@@ -193,10 +179,24 @@ const HomeLinks: NextPage = () => {
         />
 
         <LinkCard
-          title="Tools"
-          description=" A collection of very specialized tools that are better off having a web interface "
+          title="Archive"
+          description="A techy encyclopedia for the mentally retarded and easily forgetful"
+          image={LinkDocs}
+          url="https://archive.dinil.dev"
+        />
+
+        <LinkCard
+          title="Projects"
+          description=" A collection of websites and applications I've built"
           image={LinkTools}
-          url="https://tools.thelonelylands.com"
+          url="https://archive.dinil.dev/projects"
+        />
+
+        <LinkCard
+          title="Commicasa"
+          description="Where code, communism and fair development meet"
+          image={LinkCommicasa}
+          url="https://git.dinil.dev"
         />
       </div>
     </div>
