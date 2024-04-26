@@ -31,29 +31,13 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
             defer
             data-website-id="43721fe7-dd40-4297-a31c-1192e89f4013"
           />
-          <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="/icons/apple-touch-icon.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="/icons/favicon-32x32.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="/icons/favicon-16x16.png"
-          />
+          <link rel="icon" type="image/x-icon" href="/favicon.ico" />
           <link rel="manifest" href="/icons/site.webmanifest" />
           <Component {...pageProps} />
         </NotificationsProvider>
       </MantineProvider>
     </SessionProvider>
   )
-}
+} 
 
 export default MyApp
