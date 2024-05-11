@@ -1,6 +1,5 @@
 {
   "name": "thelonelylands",
-  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev -p 5003",
@@ -9,6 +8,9 @@
     "start": "next start -p 5004",
     "lint": "next lint",
     "seed": "node prisma/seed.js"
+  },
+  "engines": {
+    "node": ">=20.0.0 <21.0.0"
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
