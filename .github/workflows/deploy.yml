@@ -19,7 +19,9 @@ jobs:
           ssh-add ~/.ssh/git_id_rsa
           cd ${{ secrets.PATH}} 
           git pull
+          export NVM_DIR=~/.nvm
+          source ~/.nvm/nvm.sh
           nvm use 20
           npm install
           npm run build
-          ${{ secrets.NODE }}/pm2 restart thelonelylands --silent
+          pm2 restart thelonelylands --silent
