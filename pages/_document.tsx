@@ -18,11 +18,10 @@ class MyDocument extends Document {
           />
 
           <script
-            src="https://analytics.thelonelylands.com/harmless_mkay.js"
-            async
             defer
+            src="https://analytics.thelonelylands.com/harmless_mkay"
             data-website-id="2407c2c3-edb2-4896-a687-3a769d0dc2a9"
-          />
+          ></script>
 
           <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         </Head>

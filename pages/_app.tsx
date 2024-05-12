@@ -5,7 +5,6 @@ import { MantineProvider } from '@mantine/core'
 import type { MantineThemeOverride } from '@mantine/core'
 import { NotificationsProvider } from '@mantine/notifications'
 import { RouterTransition } from '../components/router_transition.component'
-import Script from 'next/script'
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const theme = {
