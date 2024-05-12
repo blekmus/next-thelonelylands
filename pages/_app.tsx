@@ -25,14 +25,6 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
       <MantineProvider theme={theme} withGlobalStyles withNormalizeCSS>
         <NotificationsProvider>
           <RouterTransition />
-          <Script
-            src="https://analytics.thelonelylands.com/harmless_mkay.js"
-            async
-            defer
-            data-website-id="2407c2c3-edb2-4896-a687-3a769d0dc2a9"
-          />
-          <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-          <link rel="manifest" href="/icons/site.webmanifest" />
           <Component {...pageProps} />
         </NotificationsProvider>
       </MantineProvider>

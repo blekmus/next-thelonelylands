@@ -16,6 +16,15 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap"
             rel="stylesheet"
           />
+
+          <script
+            src="https://analytics.thelonelylands.com/harmless_mkay.js"
+            async
+            defer
+            data-website-id="2407c2c3-edb2-4896-a687-3a769d0dc2a9"
+          />
+
+          <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         </Head>
         <body>
           <Main />
