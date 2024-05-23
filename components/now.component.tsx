@@ -90,7 +90,7 @@ const styles = {
     fontSize: '17px',
     marginBottom: '80px',
 
-    'h3': {
+    h3: {
       fontFamily: 'Oxygen, sans-serif',
     },
 
@@ -110,10 +110,10 @@ const styles = {
 
     // all p with a p after it
     'p + p': {
-      marginTop: '-10px',
+      marginTop: '0px',
     },
 
-    'a': {
+    a: {
       borderBottom: 'solid var(--light-text) 1px',
     },
 
@@ -196,54 +196,62 @@ const Now = () => {
 
       <div css={styles.post}>
         <header css={styles.header}>
-          <h1 css={styles.header_title}>What I&apos;m doing Now</h1>
-          <p css={styles.header_sub}>Written on 22 May, 2024</p>
+          <h1 css={styles.header_title}>Now</h1>
+          <p css={styles.header_sub}>
+            Updated 22 May, 2024 from Barrie, ON, Canada
+          </p>
         </header>
 
         <div css={styles.content}>
-          <p>I&apos;m totally keeping this page up to date, hopefully...</p>
-          <h3>Playing</h3>
           <p style={{ whiteSpace: 'pre-wrap' }}>
-            I&apos;m playing Ghost of Tsushima on PS5, and it&apos;s one of the best games
-            I&apos;ve ever played. The PS5 controller experience is incredible, far
-            beyond my expectations. I&apos;m used to playing on PC with an Xbox
-            Series X controller, but this is on another level.
-          </p>
-
-          <h3>Watching</h3>
-          <p style={{ whiteSpace: 'pre-wrap' }}>
-            I&apos;m watching the Monogatari series right now. I didn&apos;t like it much
-            when I first tried it two years ago, but a certain{' '}
-            <a href="https://youtu.be/p-yaen2_1TQ?si=jnbnpsYJXZ7SfJa8">
-              <strong>video</strong>
-            </a>{' '}
-            made me want to give it another shot. I&apos;m currently halfway through
-            the series (finished Tsuki) and I&apos;m really enjoying it
-            this time around.
-          </p>
-
-          <h3>College</h3>
-          <p style={{ whiteSpace: 'pre-wrap' }}>
-            College is relatively easy as always. Though I&apos;m learning ASP.NET
-            this semester, it follows a similar formula to frameworks like
-            Laravel and Django, so there&apos;s nothing particularly new or fresh
-            making it a breeze.
+            College is relatively easy as always. Though I&apos;m learning
+            ASP.NET this semester, it follows a similar formula to frameworks
+            like Laravel and Django, so there&apos;s nothing particularly new or
+            fresh making it a breeze.
           </p>
 
           <h3>Learning</h3>
           <p style={{ whiteSpace: 'pre-wrap' }}>
-            I&apos;m exploring C++ and the animation library GSAP in my free time.
-            I&apos;ve never touched a language that lets me tinker and shoot myself
-            in the foot as much as C++ does so it&apos;s a new experience. GSAP is
-            fun, especially since my previous animations have been with CSS
-            keyframes or dare I say Framer Motion. Framer never quite clicked
-            for me, I think GSAP will be different.
+            I&apos;m exploring C++ and the animation library GSAP in my free
+            time. I&apos;ve never touched a language that lets me tinker and
+            shoot myself in the foot as much as C++ does so it&apos;s a new
+            experience. GSAP is fun, especially since my previous animations
+            have been with CSS keyframes or dare I say Framer Motion. Framer
+            never quite clicked for me, I think GSAP will be different.
           </p>
           <p>
             I&apos;m also studying for the AWS Solutions Architect exam again.
             Although starting with the Cloud Practitioner certification is
             recommended, I have enough AWS experience from my startup to take it
             on.
+          </p>
+
+          <h3>Playing</h3>
+          <p style={{ whiteSpace: 'pre-wrap' }}>
+            I&apos;m playing Ghost of Tsushima on PS5, and it&apos;s one of the
+            best games I&apos;ve ever played. The PS5 controller experience is
+            incredible, far beyond my expectations. I&apos;m used to playing on
+            PC with an Xbox Series X controller, but this is on another level.
+            The game is like you&apos;re playing a series of cutscenes and what
+            really stuck with me is the combat. It&apos;s so fluid and
+            satisfying, reminds me of how it felt playing Dead Cells.
+          </p>
+
+          <h3>Watching</h3>
+          <p style={{ whiteSpace: 'pre-wrap' }}>
+            I&apos;m watching the Monogatari series right now. I didn&apos;t
+            like it much when I first tried it two years ago, but a certain{' '}
+            <a href="https://youtu.be/p-yaen2_1TQ?si=jnbnpsYJXZ7SfJa8">
+              <strong>video</strong>
+            </a>{' '}
+            made me want to give it another shot. I&apos;m glad I did, I&apos;m
+            enjoying it quite a bit this time around.
+          </p>
+
+          <p style={{ whiteSpace: 'pre-wrap', marginTop: 40 }}>
+            This is a more up-to-date about page that&apos;s a little more
+            personal. Inspired by{' '}
+            <a href="https://nownownow.com/about">Derek Sivers</a>.
           </p>
         </div>
 
