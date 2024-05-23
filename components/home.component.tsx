@@ -171,18 +171,23 @@ const Home: NextPage<Props> = ({ entries }) => {
             <br />
             <br />
             This site is a collection of thoughts, musings, and memories
-            I&apos;ve written down over the years. I hope you enjoy reading them
-            as much as I enjoyed writing them.
-            <br />
-            <br />
-            Visit the{' '}
-            <Link href="/archive" style={{ borderBottom: 'solid var(--light-text) 1px' }}>
-
+            I&apos;ve written down over the years. Visit the{' '}
+            <Link
+              href="/archive"
+              style={{ borderBottom: 'solid var(--light-text) 1px' }}
+            >
               <strong>Archive</strong>
-
             </Link>{' '}
-            to find links to all of my posts. All images except movie, anime and
-            series posters are AI generated. Yea...
+            to find links to all of my posts.
+            <br />
+            <br />
+            What am I up to now?{' '}
+            <Link
+              href="/now"
+              style={{ borderBottom: 'solid var(--light-text) 1px' }}
+            >
+              <strong>Find out.</strong>
+            </Link>{' '}
             <br />
             <br />
             Have fun reading my philosophy-induced ramblings!
