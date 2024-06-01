@@ -2,8 +2,10 @@ import { css } from '@emotion/react'
 import TopBar from './top_bar.component'
 import mediaQuery from '../lib/mediaQuery'
 import { Divider } from '@mantine/core'
-
 import HomeAccordian from './home.accordian.component'
+import { NowEntry } from '../pages/now'
+import Markdown from 'react-markdown'
+import dayjs from 'dayjs'
 
 const styles = {
   base: css({
@@ -98,11 +100,6 @@ const styles = {
       marginBottom: '15px',
     },
 
-    // every h3 followed by a p
-    // 'h3:not(:last-child) + p': {
-    //   marginBottom: '30px',
-    // },
-
     // every p with a h3 after it
     'p + h3': {
       marginTop: '30px',
@@ -115,6 +112,7 @@ const styles = {
 
     a: {
       borderBottom: 'solid var(--light-text) 1px',
+      fontWeight: 600,
     },
 
     [mediaQuery[0]]: {
@@ -189,7 +187,7 @@ const styles = {
   }),
 }
 
-const Now = () => {
+const Now = ({now} : {now: NowEntry}) => {
   return (
     <div css={styles.base}>
       <TopBar />
@@ -198,61 +196,13 @@ const Now = () => {
         <header css={styles.header}>
           <h1 css={styles.header_title}>Now</h1>
           <p css={styles.header_sub}>
-            Updated 22 May, 2024 from Barrie, ON, Canada
+            Updated {dayjs(Number(now.created_at)).format('D MMMM, YYYY')} from{' '}
+            {now.location}
           </p>
         </header>
 
         <div css={styles.content}>
-          <p style={{ whiteSpace: 'pre-wrap' }}>
-            College is relatively easy as always. Though I&apos;m learning
-            ASP.NET this semester, it follows a similar formula to frameworks
-            like Laravel and Django, so there&apos;s nothing particularly new or
-            fresh making it a breeze.
-          </p>
-
-          <h3>Learning</h3>
-          <p style={{ whiteSpace: 'pre-wrap' }}>
-            I&apos;m exploring C++ and the animation library GSAP in my free
-            time. I&apos;ve never touched a language that lets me tinker and
-            shoot myself in the foot as much as C++ does so it&apos;s a new
-            experience. GSAP is fun, especially since my previous animations
-            have been with CSS keyframes or dare I say Framer Motion. Framer
-            never quite clicked for me, I think GSAP will be different.
-          </p>
-          <p>
-            I&apos;m also studying for the AWS Solutions Architect exam again.
-            Although starting with the Cloud Practitioner certification is
-            recommended, I have enough AWS experience from my startup to take it
-            on.
-          </p>
-
-          <h3>Playing</h3>
-          <p style={{ whiteSpace: 'pre-wrap' }}>
-            I&apos;m playing Ghost of Tsushima on PS5, and it&apos;s one of the
-            best games I&apos;ve ever played. The PS5 controller experience is
-            incredible, far beyond my expectations. I&apos;m used to playing on
-            PC with an Xbox Series X controller, but this is on another level.
-            The game is like you&apos;re playing a series of cutscenes and what
-            really stuck with me is the combat. It&apos;s so fluid and
-            satisfying, reminds me of how it felt playing Dead Cells.
-          </p>
-
-          <h3>Watching</h3>
-          <p style={{ whiteSpace: 'pre-wrap' }}>
-            I&apos;m watching the Monogatari series right now. I didn&apos;t
-            like it much when I first tried it two years ago, but a certain{' '}
-            <a href="https://youtu.be/p-yaen2_1TQ?si=jnbnpsYJXZ7SfJa8">
-              <strong>video</strong>
-            </a>{' '}
-            made me want to give it another shot. I&apos;m glad I did, I&apos;m
-            enjoying it quite a bit this time around.
-          </p>
-
-          <p style={{ whiteSpace: 'pre-wrap', marginTop: 40 }}>
-            This is a more up-to-date about page that&apos;s a little more
-            personal. Inspired by{' '}
-            <a href="https://nownownow.com/about">Derek Sivers</a>.
-          </p>
+          <Markdown>{now.content}</Markdown>
         </div>
 
         <Divider variant="dashed" />

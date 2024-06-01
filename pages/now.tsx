@@ -1,9 +1,20 @@
-import type { NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import Banner from '../public/images/otaku-banner.webp'
 import Now from '../components/now.component'
+import prisma from '../lib/prisma'
 
-const NowPage: NextPage = () => {
+export interface NowEntry {
+  content: string
+  location: string
+  created_at: string
+}
+
+
+interface Props {
+  now: NowEntry
+}
+const NowPage: NextPage<Props> = ({ now }) => {
   return (
     <>
       <Head>
@@ -43,9 +54,31 @@ const NowPage: NextPage = () => {
           content="The Lonely Lands is a collection of thoughts, musings, and memories written down over the years by Dinil Fernando (aka. blekmus/walker)"
         />
       </Head>
-      <Now />
+      <Now now={now} />
     </>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const id = 'clwwgopk70000retqg2mvnda4'
+
+  try {
+    const now = await prisma.now.findFirstOrThrow({
+      where: {
+        id: id,
+      },
+    })
+
+    return {
+      props: {
+        now: now,
+      },
+    }
+  } catch {
+    return {
+      notFound: true,
+    }
+  }
 }
 
 export default NowPage

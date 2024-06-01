@@ -1,12 +1,11 @@
 import type { NextPage } from 'next'
 import { css } from '@emotion/react'
 import mediaQuery from '../lib/mediaQuery'
-import { useRef } from 'react'
+import { useState } from 'react'
 
 import dayjs from 'dayjs'
 import Link from 'next/link'
-import { IconArrowsMaximize, } from '@tabler/icons'
-
+import { IconArrowsMaximize } from '@tabler/icons'
 
 interface Props {
   title: string
@@ -15,7 +14,7 @@ interface Props {
   date?: Date | number | null | string
   type?: string | null
   cover?: string
-  cover_type?: 'FILE' | 'LINK',
+  cover_type?: 'FILE' | 'LINK'
   link?: string
   link_target?: string
 }
@@ -126,6 +125,11 @@ const styles = {
     MozBoxOrient: 'vertical',
     whiteSpace: 'normal',
     WebkitBoxOrient: 'vertical',
+
+    // every p not the last one
+    'p:not(:last-child)': {
+      marginBottom: 15,
+    },
   }),
 
   entry_footer: css({
@@ -155,19 +159,10 @@ const Article: NextPage<Props> = ({
   date,
   type,
   link,
-  link_target
+  link_target,
 }) => {
   let coverSection
-  const entryEl = useRef<HTMLDivElement>(null)
-
-
-  const handleEntryClick = () => {
-    if (entryEl.current?.classList.contains('active')) {
-      entryEl.current.classList.remove('active')
-    } else {
-      entryEl.current?.classList.add('active')
-    }
-  }
+  const [active, setActive] = useState(false)
 
   // cover section
   if (cover) {
@@ -197,10 +192,9 @@ const Article: NextPage<Props> = ({
         passHref
         title="Fullpage"
         target={link_target || '_self'}
-        rel="noopener noreferrer">
-
+        rel="noopener noreferrer"
+      >
         <h2>{title}</h2>
-
       </Link>
       <IconArrowsMaximize css={styles.entry_title_icon} size={20} />
     </header>
@@ -211,11 +205,20 @@ const Article: NextPage<Props> = ({
   )
 
   // content section
-  const contentSection = (
-    <div className="entry-content" css={styles.entry_content}>
-      <p>{notes}</p>
-    </div>
-  )
+  let contentSection
+  if (active) {
+    contentSection = (
+      <div className="entry-content" css={styles.entry_content}>
+        
+      </div>
+    )
+  } else {
+    contentSection = (
+      <div className="entry-content" css={styles.entry_content}>
+        <p>{notes}</p>
+      </div>
+    )
+  }
 
   // footer section
   const footerSection = (
@@ -238,8 +241,8 @@ const Article: NextPage<Props> = ({
   )
 
   return (
-    <article css={styles.entry} ref={entryEl}>
-      <div css={styles.entry_overlay} onClick={handleEntryClick} />
+    <article css={styles.entry} className={active ? 'active' : ''}>
+      <div css={styles.entry_overlay} onClick={() => setActive(!active)} />
 
       {coverSection}
       {headerSection}

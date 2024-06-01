@@ -654,15 +654,7 @@ const AdminEdit = ({ id }: { id: string }) => {
               <Article
                 title={entryTitle ? entryTitle : ''}
                 notes={entryContent ? entryContent : ''}
-                // date={entryDate}
                 cover={entryCover ? entryCover : undefined}
-                // note_words={
-                //   entryContent && entryContent !== ''
-                //     ? entryContent.split(' ').filter((item) => item.trim() !== '')
-                //         .length
-                //     : null
-                // }
-                // type={entryType !== '' ? entryType : null}
               />
             </Container>
           </Box>

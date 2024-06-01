@@ -12,12 +12,11 @@ import {
 } from '@mantine/core'
 import {
   TablerIcon,
-  // IconHome2,
   IconPlus,
   IconLogout,
   IconLayoutList,
   IconEdit,
-  // IconQuote,
+  IconNorthStar,
 } from '@tabler/icons'
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/router'
@@ -91,7 +90,7 @@ function NavbarLink({ icon: Icon, label, active, onClick }: NavbarLinkProps) {
 }
 
 interface Props {
-  active: 'new' | 'dashboard' | 'entry_list' | 'edit' | 'comments'
+  active: 'new' | 'dashboard' | 'entry_list' | 'edit' | 'comments' | 'now'
 }
 
 const NavbarMinimal = ({ active }: Props) => {
@@ -109,15 +108,6 @@ const NavbarMinimal = ({ active }: Props) => {
     >
       <Navbar.Section grow>
         <Stack justify="center" spacing={10} className={classes.icon_cont}>
-          {/* <NavbarLink
-            icon={IconHome2}
-            label="Dashboard"
-            onClick={() => {
-              setCurrentActive('dashboard')
-              router.push('/admin/dashboard')
-            }}
-            active={currentActive === 'dashboard'}
-          /> */}
           <NavbarLink
             icon={IconLayoutList}
             label="Entries"
@@ -127,15 +117,16 @@ const NavbarMinimal = ({ active }: Props) => {
             }}
             active={currentActive === 'entry_list'}
           />
-          {/* <NavbarLink
-            icon={IconQuote}
-            label="Comments"
+
+          <NavbarLink
+            icon={IconNorthStar}
+            label="Now"
             onClick={() => {
-              setCurrentActive('comments')
-              router.push('/admin/comments')
+              setCurrentActive('now')
+              router.push('/admin/now')
             }}
-            active={currentActive === 'comments'}
-          /> */}
+            active={currentActive === 'now'}
+          />
 
           <NavbarLink
             icon={IconPlus}
@@ -185,10 +176,13 @@ const NavbarMinimal = ({ active }: Props) => {
             >
               Cancel
             </Button>
-            <Button color="red" onClick={() => {
-              signOut()
-              router.push('/admin')
-            }}>
+            <Button
+              color="red"
+              onClick={() => {
+                signOut()
+                router.push('/admin')
+              }}
+            >
               Confirm
             </Button>
           </SimpleGrid>

@@ -9,7 +9,7 @@ import mediaQuery from '../lib/mediaQuery'
 
 
 interface Props {
-  content: 'new' | 'dashboard' | 'entry_list' | 'edit' | 'comments'
+  content: 'new' | 'dashboard' | 'entry_list' | 'edit' | 'comments' | 'now'
   children: ReactNode
 }
 

@@ -9,7 +9,8 @@ const typeDefs = gql`
       perPage: Int
     ): [Entry]!
     entry(id: ID!): Entry
-    comments(currentPage: Int, perPage: Int): [Comment]!
+
+    now(id: ID!): Now
   }
 
   type Mutation {
@@ -17,13 +18,7 @@ const typeDefs = gql`
     updateEntry(id: ID!, content: EntryUpdateContent!): Entry
     deleteEntry(id: ID!): Entry
 
-    createComment(content: CommentCreateContent!): Comment
-    viewComments: viewComment
-    deleteComment(id: ID!): Comment
-  }
-
-  type viewComment {
-    count: Int
+    updateNow(id: ID!, content: NowUpdateContent!): Now
   }
 
   type Entry {
@@ -38,12 +33,12 @@ const typeDefs = gql`
     status: Status
   }
 
-  type Comment {
+  type Now {
     id: ID
-    name: String
-    message: String
-    viewed: Boolean
+    content: String
     created_at: String
+    updated_at: String
+    location: String
   }
 
   input EntryCreateContent {
@@ -66,10 +61,10 @@ const typeDefs = gql`
     created_at: String
   }
 
-  input CommentCreateContent {
-    name: String
-    message: String
-    token: String
+  input NowUpdateContent {
+    content: String
+    location: String
+    created_at: String
   }
 
   enum Status {

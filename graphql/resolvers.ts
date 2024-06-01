@@ -50,34 +50,15 @@ export const resolvers = {
       return entry
     },
 
-    comments(_: any, args: any, context: any) {
+    now(_: any, args: any, context: any) {
       const prisma: typeof prismaClient = context.prisma
 
-      if (args.perPage && args.currentPage) {
-        const comments = prisma.comment.findMany({
-          skip: args.perPage * (args.currentPage - 1),
-          take: args.perPage,
-          where: {
-            viewed: args.viewed,
-          },
-          orderBy: {
-            created_at: 'desc',
-          },
-        })
-
-        return comments
-      } else {
-        const comments = prisma.comment.findMany({
-          where: {
-            viewed: args.viewed,
-          },
-          orderBy: {
-            created_at: 'desc',
-          },
-        })
-
-        return comments
-      }
+      const now = prisma.now.findFirstOrThrow({
+        where: {
+          id: args.id,
+        },
+      })
+      return now
     },
   },
 
@@ -144,107 +125,26 @@ export const resolvers = {
       }
     },
 
-    async createComment(_: any, args: any, context: any) {
+    async updateNow(_: any, args: any, context: any) {
+      const prisma: typeof prismaClient = context.prisma
+
+      if (!context.session)
+        throw new ForbiddenError("Hm. What do you think you're doing?")
+
       const data = args.content
-
-      const captchaResult = await (
-        await fetch('https://www.google.com/recaptcha/api/siteverify', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: `secret=${process.env.RECAPTCHA_SECRET}&response=${data.token}`,
-        })
-      ).json()
-
-      if (captchaResult.success === false || captchaResult.score < 0.5) {
-        throw new ApolloError('Captcha Faliure')
-      }
-
-      data.created_at = String(new Date().getTime())
-      delete data.token
-
-      const prisma: typeof prismaClient = context.prisma
+      data.updated_at = String(new Date().getTime())
 
       try {
-        const comment = await prisma.comment.create({
-          data: data,
-        })
-
-        const discord = {
-          embeds: [
-            {
-              title: 'New Comment on thelonelylands',
-              color: 6184036,
-              timestamp: new Date(),
-              fields: [
-                {
-                  name: 'Name',
-                  value: comment.name,
-                },
-                {
-                  name: 'Message',
-                  value: comment.message,
-                },
-              ],
-            },
-          ],
-        }
-
-        // make a request to discord webhook
-        if (process.env.DISCORD_WEBHOOK) {
-          await fetch(process.env.DISCORD_WEBHOOK, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(discord),
-          })
-        }
-
-        return comment
-      } catch (error) {
-        throw new ApolloError('Creation Error')
-      }
-    },
-
-    async viewComments(_: any, _args: any, context: any) {
-      const prisma: typeof prismaClient = context.prisma
-
-      if (!context.session)
-        throw new ForbiddenError("Hm. What do you think you're doing?")
-
-      try {
-        const updatedCommentCount = await prisma.comment.updateMany({
-          where: {
-            viewed: false,
-          },
-          data: {
-            viewed: true,
-          },
-        })
-        return updatedCommentCount
-      } catch (_e) {
-        throw new ApolloError('Update Error')
-      }
-    },
-
-    async deleteComment(_: any, args: any, context: any) {
-      const prisma: typeof prismaClient = context.prisma
-
-      if (!context.session)
-        throw new ForbiddenError("Hm. What do you think you're doing?")
-
-      try {
-        const comment = prisma.comment.delete({
+        const now = await prisma.now.update({
           where: {
             id: args.id,
           },
+          data: data,
         })
 
-        return comment
+        return now
       } catch (_e) {
-        throw new ApolloError('Delete Error')
+        throw new ApolloError('Update Error')
       }
     },
   },

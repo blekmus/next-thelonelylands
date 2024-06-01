@@ -348,7 +348,6 @@ const Home: NextPage<Props> = ({ entries }) => {
                 title={entry.title}
                 notes={entry.notes}
                 link={entry.id}
-                date={Number(entry.created_at)}
                 type={
                   entry.type.charAt(0) + entry.type.toLocaleLowerCase().slice(1)
                 }
@@ -366,38 +365,3 @@ const Home: NextPage<Props> = ({ entries }) => {
 }
 
 export default Home
-
-// const [mouseMoving, setMouseMoving] = useState(false)
-
-// const [stylesMenuAnimation, setMenuAnimation] = useSpring(() => ({ opacity: 0, y: 0, config: config.gentle }))
-
-// let timeout: ReturnType<typeof setTimeout>
-// const changeMouse = () => {
-//   clearTimeout(timeout)
-//   timeout = setTimeout(() => setMouseMoving(false), 500)
-
-//   if (!mouseMoving) {
-//     // when the state is set here, the timeout created above is orphaned
-//     // the clearTimeout run in the next function run doesn't work on it
-//     // so the timeout has to be cleared beforehand
-//     // this causes a false to appear every two second because the first timeout isn't cleared
-//     clearTimeout(timeout)
-//     setMouseMoving(true)
-//   }
-// }
-
-// useEffect(() => {
-//   if (mouseMoving) {
-//     setMenuAnimation({ opacity: 1, y: 0 })
-//   } else {
-//     setMenuAnimation({ opacity: 0 })
-//   }
-// }, [mouseMoving, setMenu  // content: css({
-// Animation])
-
-// return (
-//   <div css={styles.base}>
-// {/* onMouseMove={() => changeMouse()} */}
-// {/* <animated.div style={stylesMenuAnimation}>
-//   <TopBar />
-// </animated.div> */}
