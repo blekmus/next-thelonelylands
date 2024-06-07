@@ -338,7 +338,7 @@ const Home: NextPage<Props> = ({ entries }) => {
 
       <div css={styles.content}>
         <div css={styles.content_recent}>
-          <p css={styles.content_text}>Recent Posts</p>
+          <p css={styles.content_text}>Recent</p>
           <div>
             {entryList.map((entry) => (
               <Article

@@ -6,6 +6,7 @@ import { useState } from 'react'
 import dayjs from 'dayjs'
 import Link from 'next/link'
 import { IconArrowsMaximize } from '@tabler/icons'
+import Markdown from 'react-markdown'
 
 interface Props {
   title: string
@@ -209,7 +210,7 @@ const Article: NextPage<Props> = ({
   if (active) {
     contentSection = (
       <div className="entry-content" css={styles.entry_content}>
-        
+        <Markdown>{notes}</Markdown>
       </div>
     )
   } else {
