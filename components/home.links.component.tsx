@@ -180,7 +180,7 @@ const HomeLinks: NextPage = () => {
 
         <LinkCard
           title="Archive"
-          description="A techy encyclopedia for the mentally retarded and easily forgetful"
+          description="A techy knowledge base for the easily forgetful, like me"
           image={LinkDocs}
           url="https://archive.dinil.dev"
         />
