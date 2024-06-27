@@ -150,17 +150,12 @@ const Otaku: NextPage = () => {
           <h1 css={styles.title}>Otaku</h1>
 
           <p css={styles.description}>
-            Anime is the medium that&apos;s closest to my heart. In a way,
-            it&apos;s like my lifeline. After getting into it back in 2019,
-            I&apos;ve experienced so many emotions that I never thought I
-            would.
+            Anime is my go to for both entertainment and emotional damage. Ever
+            since I got into it back in 2019, I&apos;ve experienced emotions and
+            perspectives that I never thought I would.
+          
             <br />
-            <br />
-            There used to be a time when I hated anime, and now I&apos;m living
-            proof that people can change. I have become who I swore never to
-            become, but honestly, it&apos;s so much more fun.
-            <br />
-            <br />I love putting my feelings into words after finishing a title;
+            <br />I love putting my feelings into words after finishing a manga or an anime;
             this is a collection of everything I&apos;ve written on{' '}
             <a
               href="https://anilist.co/user/blekmus"
@@ -254,7 +249,7 @@ const Otaku: NextPage = () => {
                     cover_type="LINK"
                     title={entry.title}
                     notes={entry.notes}
-                    note_words={entry.note_words}
+                    // note_words={entry.note_words}
                     date={entry.date}
                   />
                 ))}
