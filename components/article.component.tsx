@@ -210,13 +210,28 @@ const Article: NextPage<Props> = ({
   if (active) {
     contentSection = (
       <div className="entry-content" css={styles.entry_content}>
-        <Markdown>{notes}</Markdown>
+        <Markdown
+          components={{
+            pre: ({ children }) => <>{children}</>, // anilist review support
+            code: ({ children }) => <>{children}</> // anilist review support
+          }}
+        >{notes}</Markdown>
       </div>
     )
   } else {
     contentSection = (
       <div className="entry-content" css={styles.entry_content}>
-        <p>{notes}</p>
+        <Markdown
+          components={{
+            i: ({ children }) => <>{children}</>,
+            em: ({ children }) => <>{children}</>,
+            strong: ({ children }) => <>{children}</>,
+            pre: ({ children }) => <>{children}</>,
+            code: ({ children }) => <>{children}</>,
+          }}
+        >
+          {notes}
+        </Markdown>
       </div>
     )
   }
