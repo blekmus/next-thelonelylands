@@ -10,7 +10,7 @@
     "seed": "node prisma/seed.js"
   },
   "engines": {
-    "node": ">=20.0.0 <21.0.0"
+    "node": ">=22.0.0 <23.0.0"
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
