@@ -21,7 +21,7 @@ jobs:
           git pull
           export NVM_DIR=~/.nvm
           source ~/.nvm/nvm.sh
-          nvm use 20
+          nvm use 22
           npm install
           npm run build
           ${{ secrets.node }}/node ${{ secrets.node }}/pm2 restart thelonelylands --silent
