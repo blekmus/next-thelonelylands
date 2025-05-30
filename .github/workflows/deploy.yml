@@ -32,5 +32,5 @@ jobs:
           npm install
           npm run build
 
-          # Restart the app with pm2 (assumes pm2 is globally installed)
-          pm2 restart thelonelylands --silent
+          # Restart the app with pm2
+          pm2 restart thelonelylands
