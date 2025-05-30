@@ -15,13 +15,22 @@ jobs:
         port: ${{ secrets.PORT }}
         key: ${{ secrets.KEY }}
         script: |
-          eval `ssh-agent -s`
+          # Start SSH agent and add GitHub SSH key
+          eval "$(ssh-agent -s)"
           ssh-add ~/.ssh/git_id_rsa
-          cd ${{ secrets.PATH }} 
+
+          # Go to project directory and pull latest code
+          cd ${{ secrets.PATH }}
           git pull
-          export NVM_DIR=~/.nvm
-          source ~/.nvm/nvm.sh
-          nvm use 20
+
+          # Set up NVM environment and use Node.js v22
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+          nvm use 22
+
+          # Install dependencies and build the app
           npm install
           npm run build
-          ${{ secrets.node }}/node ${{ secrets.node }}/pm2 restart thelonelylands --silent
+
+          # Restart the app with pm2
+          pm2 restart thelonelylands

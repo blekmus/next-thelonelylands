@@ -4,8 +4,6 @@ A collection of thoughts, musings, and memories written down over the years by D
 
 Built on Nextjs using Typescript. Custom user frontend with Mantine admin dashboard. Connected to SQLite database with Prismajs and Apollo Graphql.
 
-![](https://img.shields.io/github/actions/workflow/status/blekmus/next-thelonelylands/deploy.yml?style=for-the-badge&logo=github&logoColor=white)
-
 ![](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
 ![](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)

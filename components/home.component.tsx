@@ -181,12 +181,13 @@ const Home: NextPage<Props> = ({ entries }) => {
             to find links to all of my posts.
             <br />
             <br />
-            What am I up to now?{' '}
+            What do I do for a living?{' '}
             <Link
-              href="/now"
+              href="https://dinil.dev"
               style={{ borderBottom: 'solid var(--light-text) 1px' }}
+              target="_blank"
             >
-              <strong>Find out.</strong>
+              <strong>Portfolio</strong>
             </Link>{' '}
             <br />
             <br />

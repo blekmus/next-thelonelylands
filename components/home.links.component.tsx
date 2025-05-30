@@ -4,9 +4,9 @@ import Image, { StaticImageData } from "next/legacy/image"
 import mediaQuery from '../lib/mediaQuery'
 
 import LinkCommicasa from '../public/images/commicasa.jpg'
-import LinkAlcohol from '../public/images/alcohol.jpg'
+import LinkAlcohol from '../public/images/alcohol.webp'
 import LinkDocs from '../public/images/docs.jpg'
-import LinkPhotos from '../public/images/photos.png'
+import LinkPhotos from '../public/images/photos.jpg'
 import LinkPodcasts from '../public/images/podcasts.jpg'
 import LinkTools from '../public/images/glyph.png'
 
