@@ -3,7 +3,6 @@ title: "Critique of Criticism"
 type: "essay"
 publishedAt: "2022-10-13"
 updatedAt: "2023-05-14"
-cover: "mvw103elzaf_EhxS7su(1).png"
 coverAlt: "Critique of Criticism cover"
 draft: false
 ---

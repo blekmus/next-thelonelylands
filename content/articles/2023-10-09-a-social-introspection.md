@@ -3,7 +3,6 @@ title: "A Social Introspection"
 type: "story"
 publishedAt: "2023-10-09"
 updatedAt: "2024-03-11"
-cover: "jyxjiarrs0o_blob"
 coverAlt: "A Social Introspection cover"
 draft: false
 ---

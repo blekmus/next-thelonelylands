@@ -3,7 +3,6 @@ title: "Everything Everywhere All at Once"
 type: "movie"
 publishedAt: "2023-04-14"
 updatedAt: "2023-04-14"
-cover: "ypfvmew7ofc_everything-everywhere-fall-at-once-cover.jpg"
 coverAlt: "Everything Everywhere All at Once cover"
 draft: false
 ---

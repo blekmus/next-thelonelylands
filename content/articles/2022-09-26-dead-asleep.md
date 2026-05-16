@@ -3,7 +3,6 @@ title: "Dead Asleep"
 type: "story"
 publishedAt: "2022-09-26"
 updatedAt: "2023-05-14"
-cover: "h1hwk2ku5cn_j1sVNk4f.jpg"
 coverAlt: "Dead Asleep cover"
 draft: false
 ---

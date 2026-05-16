@@ -3,7 +3,6 @@ title: "The Impermanence of Memory"
 type: "essay"
 publishedAt: "2023-03-27"
 updatedAt: "2023-03-28"
-cover: "9duhsl4i8ss_output.jpg"
 coverAlt: "The Impermanence of Memory cover"
 draft: false
 ---

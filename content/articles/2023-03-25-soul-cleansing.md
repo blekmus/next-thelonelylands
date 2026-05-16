@@ -3,7 +3,6 @@ title: "Soul Cleansing"
 type: "essay"
 publishedAt: "2023-03-25"
 updatedAt: "2023-05-14"
-cover: "jjsnisl34ss_1eWXZNL.jpg"
 coverAlt: "Soul Cleansing cover"
 draft: false
 ---

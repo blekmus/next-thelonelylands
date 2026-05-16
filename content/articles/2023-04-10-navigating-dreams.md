@@ -3,7 +3,6 @@ title: "Navigating Dreams"
 type: "essay"
 publishedAt: "2023-04-10"
 updatedAt: "2023-04-11"
-cover: "83mzud4bl4i_00026-295c2073473(2)(1).png"
 coverAlt: "Navigating Dreams cover"
 draft: false
 ---

@@ -3,7 +3,6 @@ title: "The Perfect Heist"
 type: "story"
 publishedAt: "2023-03-21"
 updatedAt: "2023-05-14"
-cover: "sap4i9x7z9_xv9QoxP.jpg"
 coverAlt: "The Perfect Heist cover"
 draft: false
 ---

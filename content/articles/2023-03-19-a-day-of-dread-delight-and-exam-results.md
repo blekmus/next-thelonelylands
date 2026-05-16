@@ -3,7 +3,6 @@ title: "A Day of Dread, Delight & Exam Results"
 type: "story"
 publishedAt: "2023-03-19"
 updatedAt: "2023-03-28"
-cover: "irgeogwvdl_ichoked_hand_made_of_shadow_touching_hand_made_of_light_dark_an_ceb59d2b-a2d4-4cd7-b0bb-a61b308438a8.jpg"
 coverAlt: "A Day of Dread, Delight & Exam Results cover"
 draft: false
 ---

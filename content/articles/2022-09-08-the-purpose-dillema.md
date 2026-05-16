@@ -3,7 +3,6 @@ title: "The Purpose Dillema"
 type: "essay"
 publishedAt: "2022-09-08"
 updatedAt: "2023-05-14"
-cover: "6mi41j3v25j_kkNjsjnxaKS2(1)(1).jpg"
 coverAlt: "The Purpose Dillema cover"
 draft: false
 ---

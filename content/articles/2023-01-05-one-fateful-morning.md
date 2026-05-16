@@ -3,7 +3,6 @@ title: "One Fateful Morning"
 type: "story"
 publishedAt: "2023-01-05"
 updatedAt: "2023-03-28"
-cover: "djitygp5hdk_output.jpg"
 coverAlt: "One Fateful Morning cover"
 draft: false
 ---

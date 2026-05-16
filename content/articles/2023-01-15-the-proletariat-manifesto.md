@@ -3,7 +3,6 @@ title: "The Proletariat Manifesto"
 type: "story"
 publishedAt: "2023-01-15"
 updatedAt: "2023-05-14"
-cover: "y14x5klbb9i_n0ahVSw.jpg"
 coverAlt: "The Proletariat Manifesto cover"
 draft: false
 ---
