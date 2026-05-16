@@ -7,17 +7,10 @@ import ArchiveChronological from './archive.chronological.component'
 import TopBar from './top_bar.component'
 import ArchiveAlphabetical from './archive.alphabetical.component'
 import ArchiveCategorical from './archive.categorical.component'
-
-
-interface Entry {
-  id: string
-  title: string
-  created_at: string
-  type: 'MOVIE' | 'SERIES' | 'POEM' | 'ESSAY' | 'STORY' | 'OTHER'
-}
+import { ArticleEntry } from '../lib/content'
 
 interface Props {
-  entries: Entry[]
+  entries: ArticleEntry[]
 }
 
 const styles = {
@@ -114,7 +107,7 @@ const styles = {
 const Archive: NextPage<Props> = ({ entries }) => {
   const [type, setType] = useState<'ALPHA' | 'CHRONO' | 'CATE'>('CHRONO')
 
-  const [entryList, setEntryList] = useState<Entry[]>([])
+  const [entryList, setEntryList] = useState<ArticleEntry[]>([])
 
   useEffect(() => {
     setEntryList(entries)

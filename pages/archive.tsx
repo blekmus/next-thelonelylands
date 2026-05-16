@@ -1,21 +1,12 @@
-import type { GetServerSideProps, NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import Archive from '../components/archive.component'
-import client from '../lib/site-client'
-import { ApolloProvider } from '@apollo/client'
-import prisma from '../lib/prisma'
 import Head from 'next/head'
 import Banner from '../public/images/archive-banner.webp'
+import { ArticleEntry, getAllArticles } from '../lib/content'
 
-
-interface Entry {
-  id: string
-  title: string
-  created_at: string
-  type: 'MOVIE' | 'SERIES' | 'POEM' | 'ESSAY' | 'STORY' | 'OTHER'
-}
 
 interface Props {
-  entries: Entry[]
+  entries: ArticleEntry[]
 }
 
 const ArchivePage: NextPage<Props> = ({ entries }) => {
@@ -61,37 +52,14 @@ const ArchivePage: NextPage<Props> = ({ entries }) => {
           content="The Lonely Lands is a collection of thoughts, musings, and memories written down over the years by Dinil Fernando (aka. blekmus/walker)"
         />
       </Head>
-      <ApolloProvider client={client}>
-        <Archive entries={entries} />
-      </ApolloProvider>
+      <Archive entries={entries} />
     </>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  try {
-    const entries = await prisma.entry.findMany({
-      select: {
-        id: true,
-        title: true,
-        created_at: true,
-        type: true,
-      },
-      where: {
-        status: 'PUBLISHED',
-      },
-      orderBy: {
-        created_at: 'desc',
-      },
-    })
-
-    return {
-      props: { entries: entries },
-    }
-  } catch {
-    return {
-      notFound: true,
-    }
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  return {
+    props: { entries: getAllArticles() },
   }
 }
 

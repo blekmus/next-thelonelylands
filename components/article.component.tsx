@@ -7,6 +7,7 @@ import dayjs from 'dayjs'
 import Link from 'next/link'
 import { IconArrowsMaximize } from '@tabler/icons'
 import Markdown from 'react-markdown'
+import remarkBreaks from 'remark-breaks'
 
 interface Props {
   title: string
@@ -164,6 +165,10 @@ const Article: NextPage<Props> = ({
 }) => {
   let coverSection
   const [active, setActive] = useState(false)
+  const coverSrc =
+    cover_type === 'FILE' && cover && !cover.startsWith('/')
+      ? `https://caiden-thelonelylands.s3.eu-central-003.backblazeb2.com/${cover}`
+      : cover
 
   // cover section
   if (cover) {
@@ -172,9 +177,7 @@ const Article: NextPage<Props> = ({
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={
-            cover_type === 'FILE'
-              ? `https://caiden-thelonelylands.s3.eu-central-003.backblazeb2.com/${cover}`
-              : cover
+            coverSrc
           }
           alt="cover"
           css={styles.entry_cover_img}
@@ -211,17 +214,21 @@ const Article: NextPage<Props> = ({
     contentSection = (
       <div className="entry-content" css={styles.entry_content}>
         <Markdown
+          remarkPlugins={[remarkBreaks]}
           components={{
             pre: ({ children }) => <>{children}</>, // anilist review support
-            code: ({ children }) => <>{children}</> // anilist review support
+            code: ({ children }) => <>{children}</>, // anilist review support
           }}
-        >{notes}</Markdown>
+        >
+          {notes}
+        </Markdown>
       </div>
     )
   } else {
     contentSection = (
       <div className="entry-content" css={styles.entry_content}>
         <Markdown
+          remarkPlugins={[remarkBreaks]}
           components={{
             i: ({ children }) => <>{children}</>,
             em: ({ children }) => <>{children}</>,

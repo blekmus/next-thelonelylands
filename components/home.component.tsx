@@ -9,21 +9,10 @@ import HomeLinks from './home.links.component'
 import HomeAccordian from './home.accordian.component'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-
-interface Entry {
-  id: string
-  title: string
-  notes: string
-  cover: string
-  cover_type: 'FILE' | 'LINK'
-  created_at: string
-  updated_at: string
-  type: 'MOVIE' | 'SERIES' | 'POEM' | 'ESSAY' | 'STORY' | 'OTHER'
-  status: 'PUBLISHED' | 'DRAFT'
-}
+import { ArticleEntry } from '../lib/content'
 
 interface Props {
-  entries: Entry[]
+  entries: ArticleEntry[]
 }
 
 const styles = {
@@ -137,7 +126,7 @@ const styles = {
 }
 
 const Home: NextPage<Props> = ({ entries }) => {
-  const [entryList, setEntryList] = useState<Entry[]>([])
+  const [entryList, setEntryList] = useState<ArticleEntry[]>([])
 
   useEffect(() => {
     setEntryList(entries)
@@ -396,8 +385,8 @@ const Home: NextPage<Props> = ({ entries }) => {
                 cover={entry.cover}
                 cover_type={entry.cover_type}
                 title={entry.title}
-                notes={entry.notes}
-                link={entry.id}
+                notes={entry.excerpt}
+                link={entry.slug}
                 type={
                   entry.type.charAt(0) + entry.type.toLocaleLowerCase().slice(1)
                 }

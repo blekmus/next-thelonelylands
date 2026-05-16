@@ -1,28 +1,26 @@
-import type { GetServerSideProps, NextPage } from 'next'
+import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Post from '../../components/post.component'
-import client from '../../lib/site-client'
-import { ApolloProvider } from '@apollo/client'
-import prisma from '../../lib/prisma'
 import Head from 'next/head'
-
-interface Entry {
-  id: string
-  title: string
-  notes: string
-  cover: string
-  cover_type: 'LINK' | 'FILE'
-  created_at: string
-  updated_at: string
-  type: 'MOVIE' | 'SERIES' | 'POEM' | 'ESSAY' | 'STORY' | 'OTHER'
-  status: 'PUBLISHED' | 'DRAFT'
-}
+import {
+  ArticleEntry,
+  getAdjacentArticles,
+  getAllArticles,
+  getArticleBySlug,
+} from '../../lib/content'
 
 interface Props {
-  entry: Entry
-  recentEntries: Entry[]
+  entry: ArticleEntry
+  recentEntries: ArticleEntry[]
 }
 
 const PostPage: NextPage<Props> = ({ entry, recentEntries }) => {
+  const description =
+    entry.excerpt.length > 200 ? `${entry.excerpt.substring(0, 200)}...` : entry.excerpt
+  const image =
+    entry.cover && entry.cover.startsWith('/')
+      ? `https://thelonelylands.com${entry.cover}`
+      : entry.cover
+
   return (
     <>
       <Head>
@@ -32,18 +30,14 @@ const PostPage: NextPage<Props> = ({ entry, recentEntries }) => {
         <meta name="title" content={`${entry.title} | The Lonely Lands`} />
         <meta
           name="description"
-          content={
-            entry.notes.length > 100
-              ? `${entry.notes.substring(0, 100)}...`
-              : entry.notes
-          }
+          content={description}
         />
 
         <meta property="og:site_name" content="The Lonely Lands" />
         <meta property="og:type" content="article" />
         <meta
           property="og:url"
-          content={`https://thelonelylands.com/post/${entry.id}`}
+          content={`https://thelonelylands.com/post/${entry.slug}`}
         />
         <meta
           property="og:title"
@@ -51,25 +45,14 @@ const PostPage: NextPage<Props> = ({ entry, recentEntries }) => {
         />
         <meta
           property="og:description"
-          content={
-            entry.notes.length > 200
-              ? `${entry.notes.substring(0, 200)}...`
-              : entry.notes
-          }
+          content={description}
         />
-        <meta
-          property="og:image"
-          content={
-            entry.notes.length > 200
-              ? `${entry.notes.substring(0, 200)}...`
-              : entry.notes
-          }
-        />
+        {image && <meta property="og:image" content={image} />}
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta
           property="twitter:url"
-          content={`https://thelonelylands.com/post/${entry.id}`}
+          content={`https://thelonelylands.com/post/${entry.slug}`}
         />
         <meta
           property="twitter:title"
@@ -77,96 +60,46 @@ const PostPage: NextPage<Props> = ({ entry, recentEntries }) => {
         />
         <meta
           property="twitter:description"
-          content={
-            entry.notes.length > 200
-              ? `${entry.notes.substring(0, 200)}...`
-              : entry.notes
-          }
+          content={description}
         />
-        <meta
-          property="twitter:image"
-          content={
-            entry.cover_type === 'FILE'
-              ? `https://caiden-thelonelylands.s3.eu-central-003.backblazeb2.com/${entry.cover}`
-              : entry.cover
-          }
-        />
+        {image && <meta property="twitter:image" content={image} />}
       </Head>
-      <ApolloProvider client={client}>
-        <Post entry={entry} recentEntries={recentEntries} />
-      </ApolloProvider>
+      <Post entry={entry} recentEntries={recentEntries} />
     </>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const id = params?.id
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: getAllArticles().map((entry) => ({
+      params: { id: entry.slug },
+    })),
+    fallback: false,
+  }
+}
 
-  if (!id || Array.isArray(id)) {
+export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
+  const slug = params?.id
+
+  if (!slug || Array.isArray(slug)) {
     return {
       notFound: true,
     }
   }
 
-  try {
-    const entry = await prisma.entry.findFirstOrThrow({
-      where: {
-        id: id,
-        status: "PUBLISHED",
-      },
-    })
+  const entry = getArticleBySlug(slug)
 
-    // get the two entries published after the current one, if there aren't any get one's publish before
-    const recentEntries = await prisma.entry.findMany({
-      where: {
-        id: {
-          not: id,
-        },
-        status: "PUBLISHED",
-        created_at: {
-          gt: entry.created_at,
-        },
-      },
-      orderBy: {
-        created_at: "asc",
-      },
-      take: 2,
-    })
-
-    if (recentEntries.length < 2) {
-      const recentEntries2 = await prisma.entry.findMany({
-        where: {
-          id: {
-            not: id,
-          },
-          status: "PUBLISHED",
-          created_at: {
-            lt: entry.created_at,
-          },
-        },
-        orderBy: {
-          created_at: "desc",
-        },
-        take: 2 - recentEntries.length,
-      })
-
-      recentEntries.push(...recentEntries2)
-
-      recentEntries.sort((a, b) => {
-        return new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
-      })
-    }
-
-    return {
-      props: {
-        entry: entry,
-        recentEntries: recentEntries,
-      },
-    }
-  } catch {
+  if (!entry) {
     return {
       notFound: true,
     }
+  }
+
+  return {
+    props: {
+      entry,
+      recentEntries: getAdjacentArticles(slug),
+    },
   }
 }
 

@@ -1,8 +1,7 @@
 /** @type {import('next-sitemap').IConfig} */
 
 module.exports = {
-  siteUrl: 'https://' + process.env.VERCEL_URL || 'http://localhost:3000',
-  exclude: ['/api/*', '/admin/*', '/admin', '/server-sitemap.xml'],
+  siteUrl: process.env.SITE_URL || 'https://thelonelylands.com',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
   robotsTxtOptions: {
@@ -10,11 +9,7 @@ module.exports = {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/admin/', '/api', '/admin'],
       },
     ],
-    additionalSitemaps: [
-      `${'https://' + process.env.VERCEL_URL || 'http://localhost:3000'}/server-sitemap.xml`,
-    ],
-  }
+  },
 }

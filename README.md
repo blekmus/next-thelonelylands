@@ -2,13 +2,12 @@
 
 A collection of thoughts, musings, and memories written down over the years by Dinil Fernando (aka. blekmus/walker).
 
-Built on Nextjs using Typescript. Custom user frontend with Mantine admin dashboard. Connected to SQLite database with Prismajs and Apollo Graphql.
+Built as a static Next.js site using TypeScript, Markdown articles, Emotion, Mantine, and Apollo GraphQL for the client-side AniList page.
 
 ![](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
 ![](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![](https://img.shields.io/badge/mantine-1a83ce?style=for-the-badge&logo=mantine&logoColor=white)
-![](https://img.shields.io/badge/prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
 ![](https://img.shields.io/badge/apollo%20graphql-311C87?style=for-the-badge&logo=apollo%20graphql&logoColor=white)
 
 ## Previews
@@ -25,9 +24,21 @@ Built on Nextjs using Typescript. Custom user frontend with Mantine admin dashbo
 
 ``` bash
 npm install
-npx prisma generate
-npx prisma migrate dev --name init
+npm run dev
+```
 
-# Copy entries file to prisma folder
-npm run seed
+## Content
+
+Writer and Cinephile articles live in `content/articles/*.md`. The filename becomes the post slug under `/post`.
+
+``` markdown
+---
+title: "Article title"
+type: "essay"
+publishedAt: "2026-05-15"
+cover: "/images/home-banner.jpg"
+draft: false
+---
+
+Article body goes here.
 ```

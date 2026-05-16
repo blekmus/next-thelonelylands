@@ -1,12 +1,14 @@
-import type { NextPage } from 'next'
-import { ApolloProvider } from '@apollo/client'
-import client from '../lib/site-client'
+import type { GetStaticProps, NextPage } from 'next'
 import Writer from '../components/writer.component'
 import Head from 'next/head'
 import Banner from '../public/images/writer-banner.webp'
+import { ArticleEntry, getAllArticles } from '../lib/content'
 
+interface Props {
+  entries: ArticleEntry[]
+}
 
-const WriterPage: NextPage = () => {
+const WriterPage: NextPage<Props> = ({ entries }) => {
   return (
     <>
       <Head>
@@ -49,11 +51,19 @@ const WriterPage: NextPage = () => {
           content="The Lonely Lands is a collection of thoughts, musings, and memories written down over the years by Dinil Fernando (aka. blekmus/walker)"
         />
       </Head>
-      <ApolloProvider client={client}>
-        <Writer />
-      </ApolloProvider>
+      <Writer entries={entries} />
     </>
   )
+}
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const entries = getAllArticles().filter((entry) =>
+    ['POEM', 'ESSAY', 'STORY', 'OTHER'].includes(entry.type)
+  )
+
+  return {
+    props: { entries },
+  }
 }
 
 export default WriterPage

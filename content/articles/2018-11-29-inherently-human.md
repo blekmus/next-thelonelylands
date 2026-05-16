@@ -1,0 +1,9 @@
+---
+title: "Inherently Human"
+type: "essay"
+publishedAt: "2018-11-29"
+updatedAt: "2022-08-24"
+draft: false
+---
+
+Most believe in the false realities, blindly put forth by judging another through the ideals of one’s physical composition or by believing in the words of another whose ideals are unquestioned and regarding the complexities of such queries as irrelevant. Using only their senses and intuition to deduce the condition. They judge by analysing the way one; walks, speaks, works, acts (actions) or simply by the physical manifestation. Such fundamental flaws in human cognition (biases) create a multitude of problems and conflicts affecting us both mentally and physically. This could escalate even more if the person compares their life circumstances to another whose superior social status and wealth margin by a negated value. Similarly, these prejudices in cognition could also fuel the regiments of inequality and the ever-present depression manifestation. And in creating classes creeds and other hierarchical norms, as it has already become so. As horrifying as it may be, there lives none, who is not affected by these weaknesses. Though some are partially affected while some are in amplitude. The scenario of falsely judging others is not a recent discovery or materialisation. This kind of lack of ability may also be the very existence of the biblical saying; never judge others. Although these incapabilities may sound odd, it is natural for us humans to judge another the minute we lay our eyes on them. We all are inherently impaired with cognitive biases since the time of our ancient hunter-gatherers. Though how hard we may try to refrain from being engulfed, we cannon forestall it. Whether we like it, or not. The very comprehension of our weaknesses and imperfections is one of the cardinal factors that makes us inherently human.

@@ -4,17 +4,11 @@ import { css } from '@emotion/react'
 import dayjs from 'dayjs'
 import Link from 'next/link'
 import mediaQuery from '../lib/mediaQuery'
+import { ArticleEntry, ArticleType } from '../lib/content'
 
-
-interface Entry {
-  id: string
-  title: string
-  created_at: string
-  type: 'MOVIE' | 'SERIES' | 'POEM' | 'ESSAY' | 'STORY' | 'OTHER'
-}
 
 interface Props {
-  entries: Entry[]
+  entries: ArticleEntry[]
 }
 
 const styles = {
@@ -83,8 +77,8 @@ const styles = {
 
 
 interface CategoricalEntries {
-  type: 'MOVIE' | 'SERIES' | 'POEM' | 'ESSAY' | 'STORY' | 'OTHER'
-  entries: Entry[]
+  type: ArticleType
+  entries: ArticleEntry[]
 
 }
 
@@ -136,7 +130,7 @@ const ArchiveCategorical: NextPage<Props> = ({ entries }) => {
           </h3>
           <div css={styles.archive_posts}>
             {entry.entries.map((entry) => (
-              (<Link key={entry.id} href={`/post/${entry.id}`} css={styles.archive_entry}>
+              (<Link key={entry.id} href={`/post/${entry.slug}`} css={styles.archive_entry}>
 
                 <h3>{entry.title}</h3>
                 <p>
@@ -153,4 +147,3 @@ const ArchiveCategorical: NextPage<Props> = ({ entries }) => {
 }
 
 export default ArchiveCategorical
-

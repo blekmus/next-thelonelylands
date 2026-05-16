@@ -1,12 +1,14 @@
-import type { NextPage } from 'next'
-import { ApolloProvider } from '@apollo/client'
-import client from '../lib/site-client'
+import type { GetStaticProps, NextPage } from 'next'
 import Cinephile from '../components/cinephile.component'
 import Head from 'next/head'
 import Banner from '../public/images/cinephile-banner.webp'
+import { ArticleEntry, getAllArticles } from '../lib/content'
 
+interface Props {
+  entries: ArticleEntry[]
+}
 
-const CinephilePage: NextPage = () => {
+const CinephilePage: NextPage<Props> = ({ entries }) => {
   return (
     <>
       <Head>
@@ -52,11 +54,19 @@ const CinephilePage: NextPage = () => {
           content="The Lonely Lands is a collection of thoughts, musings, and memories written down over the years by Dinil Fernando (aka. blekmus/walker)"
         />
       </Head>
-      <ApolloProvider client={client}>
-        <Cinephile />
-      </ApolloProvider>
+      <Cinephile entries={entries} />
     </>
   )
+}
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const entries = getAllArticles().filter((entry) =>
+    ['MOVIE', 'SERIES'].includes(entry.type)
+  )
+
+  return {
+    props: { entries },
+  }
 }
 
 export default CinephilePage

@@ -9,24 +9,15 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 import HomeAccordian from './home.accordian.component'
 import Link from 'next/link'
 import { IconArrowsMaximize } from '@tabler/icons'
+import Markdown from 'react-markdown'
+import remarkBreaks from 'remark-breaks'
+import { ArticleEntry } from '../lib/content'
 
 dayjs.extend(relativeTime)
 
-interface Entry {
-  id: string
-  title: string
-  notes: string
-  cover: string
-  cover_type: 'FILE' | 'LINK'
-  created_at: string
-  updated_at: string
-  type: 'MOVIE' | 'SERIES' | 'POEM' | 'ESSAY' | 'STORY' | 'OTHER'
-  status: 'PUBLISHED' | 'DRAFT'
-}
-
 interface Props {
-  entry: Entry
-  recentEntries: Entry[]
+  entry: ArticleEntry
+  recentEntries: ArticleEntry[]
 }
 
 const styles = {
@@ -114,6 +105,10 @@ const styles = {
     fontSize: '17px',
     marginBottom: '80px',
 
+    p: {
+      margin: '20px 0',
+    },
+
     [mediaQuery[0]]: {
       fontSize: '15px',
       lineHeight: 1.5,
@@ -187,6 +182,11 @@ const styles = {
 }
 
 const Post: NextPage<Props> = ({ entry, recentEntries }) => {
+  const coverSrc =
+    entry.cover_type === 'FILE' && entry.cover && !entry.cover.startsWith('/')
+      ? `https://caiden-thelonelylands.s3.eu-central-003.backblazeb2.com/${entry.cover}`
+      : entry.cover
+
   return (
     <div css={styles.base}>
       <TopBar />
@@ -198,12 +198,8 @@ const Post: NextPage<Props> = ({ entry, recentEntries }) => {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               css={styles.cover_image}
-              src={
-                entry.cover_type === 'FILE'
-                  ? `https://caiden-thelonelylands.s3.eu-central-003.backblazeb2.com/${entry.cover}`
-                  : entry.cover
-              }
-              alt="cover-image"
+              src={coverSrc}
+              alt={entry.coverAlt || 'cover-image'}
             />
           </figure>
         ) : (
@@ -226,7 +222,7 @@ const Post: NextPage<Props> = ({ entry, recentEntries }) => {
         </header>
 
         <div css={styles.content}>
-          <p style={{ whiteSpace: 'pre-wrap' }}>{entry?.notes}</p>
+          <Markdown remarkPlugins={[remarkBreaks]}>{entry.notes}</Markdown>
         </div>
 
         <Divider variant="dashed" />
@@ -238,7 +234,7 @@ const Post: NextPage<Props> = ({ entry, recentEntries }) => {
           <div>
             {recentEntries.map((item) => (
               (<Link
-                href={`/post/${item.id}`}
+                href={`/post/${item.slug}`}
                 passHref
                 key={item.id}
                 css={styles.readnext_card}
@@ -254,9 +250,9 @@ const Post: NextPage<Props> = ({ entry, recentEntries }) => {
                   />
                 </div>
                 <p>
-                  {item.notes.length > 400
-                    ? `${item.notes.substring(0, 400)}...`
-                    : item.notes}
+                  {item.excerpt.length > 400
+                    ? `${item.excerpt.substring(0, 400)}...`
+                    : item.excerpt}
                 </p>
 
               </Link>)

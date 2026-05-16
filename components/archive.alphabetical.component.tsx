@@ -3,21 +3,15 @@ import { css } from '@emotion/react'
 import dayjs from 'dayjs'
 import Link from 'next/link'
 import mediaQuery from '../lib/mediaQuery'
-
-interface Entry {
-  id: string
-  title: string
-  created_at: string
-  type: 'MOVIE' | 'SERIES' | 'POEM' | 'ESSAY' | 'STORY' | 'OTHER'
-}
+import { ArticleEntry } from '../lib/content'
 
 interface Props {
-  entries: Entry[]
+  entries: ArticleEntry[]
 }
 
 interface AlphabeticalEntries {
   letter: string
-  entries: Entry[]
+  entries: ArticleEntry[]
 }
 
 const styles = {
@@ -143,7 +137,7 @@ const ArchiveAlphabetical: NextPage<Props> = ({ entries }) => {
           <h3 css={styles.archive_letter_header}>{letter.letter}</h3>
           <div css={styles.archive_posts}>
             {letter.entries.map((entry) => (
-              (<Link key={entry.id} href={`/post/${entry.id}`} css={styles.archive_entry}>
+              (<Link key={entry.id} href={`/post/${entry.slug}`} css={styles.archive_entry}>
 
                 <h3>{entry.title}</h3>
                 <p>

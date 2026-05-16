@@ -2,91 +2,42 @@ import type { NextPage } from 'next'
 
 import TopBar from './top_bar.component'
 import { useEffect, useState } from 'react'
-import { useQuery, gql } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Article from './article.component'
-import { Text } from '@mantine/core'
-import { showNotification } from '@mantine/notifications'
-import { IconX } from '@tabler/icons'
 import styles from '../styles/main_page.css'
+import { ArticleEntry } from '../lib/content'
 
-interface Entry {
-  id: string
-  title: string
-  notes: string
-  cover: string
-  cover_type: 'FILE' | 'LINK'
-  created_at: string
-  updated_at: string
-  type: 'MOVIE' | 'SERIES' | 'POEM' | 'ESSAY' | 'STORY' | 'OTHER'
-  status: 'PUBLISHED' | 'DRAFT'
+interface Props {
+  entries: ArticleEntry[]
 }
 
-const QUERY = gql`
-  query Entries($types: [Types]) {
-    entries(types: $types, status: PUBLISHED) {
-      id
-      title
-      notes
-      created_at
-      updated_at
-      type
-      cover
-      cover_type
-      status
-    }
-  }
-`
-
-const Writer: NextPage = () => {
+const Writer: NextPage<Props> = ({ entries }) => {
   const [viewType, setViewType] = useState<'ALL' | 'POEM' | 'ESSAY' | 'STORY' | 'OTHER'>(
     'ALL'
   )
-  const [currentData, setCurrentData] = useState<Entry[]>([])
-  const [currentVisibleData, setCurrentVisibleData] = useState<Entry[]>([])
-
-  useQuery(QUERY, {
-    variables: {
-      types: ['POEM', 'ESSAY', 'STORY', 'OTHER'],
-    },
-    onCompleted: (data) => {
-      setCurrentData(data.entries)
-    },
-    onError: () => {
-      showNotification({
-        disallowClose: true,
-        message: (
-          <Text weight={700} size="md">
-            Failed to load entries
-          </Text>
-        ),
-        color: 'red',
-        icon: <IconX />,
-      })
-    },
-  })
+  const [currentVisibleData, setCurrentVisibleData] = useState<ArticleEntry[]>([])
 
   useEffect(() => {
     if (viewType === 'ALL') {
       setCurrentVisibleData(
-        currentData.slice(0, 5)
+        entries.slice(0, 5)
       )
       return
     }
 
     setCurrentVisibleData(
-      currentData.filter((entry) => entry.type === viewType).slice(0, 5)
+      entries.filter((entry) => entry.type === viewType).slice(0, 5)
     )
-  }, [currentData, viewType])
+  }, [entries, viewType])
 
   const loadMore = () => {
     if (viewType === 'ALL') {
-      setCurrentVisibleData(currentData.slice(0, currentVisibleData.length + 5))
+      setCurrentVisibleData(entries.slice(0, currentVisibleData.length + 5))
       return
     }
 
     setCurrentVisibleData(
-      currentData
+      entries
         .filter((entry) => entry.type === viewType)
         .slice(0, currentVisibleData.length + 5)
     )
@@ -178,8 +129,8 @@ const Writer: NextPage = () => {
                     cover={entry.cover}
                     cover_type={entry.cover_type}
                     title={entry.title}
-                    notes={entry.notes}
-                    link={entry.id}
+                    notes={entry.excerpt}
+                    link={entry.slug}
                     type={
                       viewType === 'ALL'
                         ? entry.type.charAt(0) +
